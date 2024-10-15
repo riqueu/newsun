@@ -1,0 +1,23 @@
+{
+  "Sink": {
+        "dialogue": "Do you want to wash your face?",
+        "options": [
+            {"text": "Wash face", "action": "wash_face"},
+            {"text": "Leave", "action": "leave"}
+        ],
+        "next_stage": {
+            "dialogue": "The water feels cold.",
+            "options": [
+                {"text": "Dry face", "action": "dry_face"},
+                {"text": "Walk away", "action": "leave"}
+            ]
+        }
+    },
+  "Mirror": {
+      "dialogue": "You look into the mirror and see a familiar stranger.",
+      "options": [
+          {"text": "Look closer", "action": "look_closer"},
+          {"text": "Walk away", "action": "leave"}
+      ]
+  }
+}

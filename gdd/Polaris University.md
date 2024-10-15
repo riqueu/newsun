@@ -1,0 +1,1 @@
+Polaris University is a private university located in [[Förgätmigej]]. It’s recently bought [[Newsun Hotel]] to accommodate students from other cities.
