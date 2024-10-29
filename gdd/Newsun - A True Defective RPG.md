@@ -4,27 +4,32 @@
 
 Newsun is a short Disco Elysium parody for a Programming Languages college course Final Project.
 
-The nameless amnesiac [[Protagonist]] experiences a day [[Newsun Hotel]], a weirdly familiar 5-story establishment.
+The nameless amnesiac [Protagonist](Protagonist.md) experiences a day [Newsun Hotel](Newsun_Hotel.md), a weirdly familiar 1-story establishment.
 
 ---
 ## Inspiration
 
 - Disco Elysium (No shit)
+    - like everything lol
 - Pathologic 2
+    - it’s themes/relationship with time
 - Half-Life: Alyx
+    - simplicity of interaction
 - Night in the Woods
+    - dialogues/characters
 - A Short Hike
+    - dialogues/characters
 
 ---
 ## Player Experience
 
-The [[Story]] starts with the player waking up clueless in room 501 with one single objective: get a grip on what the hell is going on! Who they are? Where the fuck they are? Why is everyone crazy? As you connect with the guests, you start to uncover the mysteries that lie within Newsun.
+The [Story](Story.md) starts with the player waking up clueless in room 101 with one single objective: get a grip on what the hell is going on! Who they are? Where the fuck they are? Why is everyone crazy? As you connect with the guests, you start to uncover the mysteries that lie within Newsun.
 
-[[Time]] is a precious gift, make sure you use it wisely. You must investigate the objects and interact with guests who might or might not know you. Each interaction costs time.
+[Time](Time.md) is a precious gift, make sure you use it wisely. You must investigate the objects and interact with guests who might or might not know you. Each interaction costs time.
 
-[[Skills]] are ones who guide you along your path. They shall help you where you need the most.
+[Skills](Skills.md) are ones who guide you along your path. They shall help you where you need the most.
 
-By the end of the day you shall reach the Floor -1, where you will find answers for some of the mysteries of [[Newsun Hotel]].
+By the end of the day you shall reach the Floor -1, where you will find answers for some of the mysteries of [Newsun Hotel](Newsun_Hotel.md).
 
 ---
 ## Development Software
@@ -60,27 +65,28 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 
 - Time is All
 - Sacrifice is Strength
-- Conformity is None
+- Information is Key
+- Risks are a Necessity
 
 ---
 ## Primary Mechanics
 
-- [[Rolls]]
-- [[Interaction]]
-- [[Conversation]]
+- [Checks](Checks.md)
+- [Interaction](Interaction.md)
+- [Conversation](Conversation.md)
 
 ---
 ## Secondary Mechanics
 
-- [[Time]]
-- [[Health]]
-- [[Sanity]]
+- [Time](Time.md)
+- [Health](Health.md)
+- [Reason](Reason.md)
 
 ---
 # Art
 ## Theme Interpretation
 
-- Limited [[Color Palette]] represent the [[Protagonist]]’s defected memory; with emphasized colors to represent possible [[Interaction]]s
+- Emphasized colors to represent possible [interactions](Interaction.md)
 
 ---
 ## Design

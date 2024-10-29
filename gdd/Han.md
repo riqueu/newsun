@@ -1,1 +1,0 @@
-Han is an Eldritch Beast whose known little to nothing of *it*. It’s only appearance is by the end of the game, when the [[Protagonist]] learns about the deal they made: exchanging their memory for a perfect score on a Programming Languages Course.

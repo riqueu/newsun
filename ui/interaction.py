@@ -18,3 +18,17 @@ class DialogueBox:
     def render(self, screen):
         text_surface = self.font.render(self.current_text, True, (255, 255, 255))
         screen.blit(text_surface, (50, 500))  # Position the text
+
+    
+class DialogueManager:
+    def __init__(self, dialogue_data):
+        self.dialogue_data = dialogue_data
+        self.current_line = 0
+
+    # TODO: Make Method Work
+    """def start_interaction(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:  # Space to advance dialogue
+                self.current_line += 1
+                if self.current_line >= len(self.dialogue_data['dialogue']):
+                    self.current_line = 0  # Loop back to start (for simplicity)"""

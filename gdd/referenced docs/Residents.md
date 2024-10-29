@@ -1,0 +1,4 @@
+- Höst, The Uneasy student
+    - Stays near the elevator’s door.
+- Tabastan, The Mindful Truant
+    - Rests by Floor 01 Hall.

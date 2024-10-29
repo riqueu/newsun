@@ -1,0 +1,1 @@
+Time is Key; each [Interaction](Interaction.md) takes some of your time. Some [Interactions](Interaction.md) take more time than others. Dialogues, for example, can usually take more time than opening a door or looking into the sink.

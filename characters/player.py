@@ -1,22 +1,24 @@
 import pygame
+import numpy as np
+from settings import WIDTH, HEIGHT
 
 class Player:
     def __init__(self):
         # Initial skill levels or stats
         self.position = (50, 50)
-        self.intelligence = 5
+        """self.intelligence = 5
         self.charisma = 3
         self.strength = 4
         self.dexterity = 4
         self.wisdom = 3
-        self.constitution = 6
+        self.constitution = 6"""
         
         # Initial health and mana
-        self.health = 100
-        self.mana = 50
+        self.health = 4
+        self.reason = 2
         
         # Load the player's sprite
-        self.sprite = pygame.image.load('assets/images/frames/protagonist_frame.png')
+        self.sprite = pygame.image.load('assets/images/protagonist/protagonist_frame_temp.png')
         self.sprite = pygame.transform.scale(self.sprite, (100, 100))  # Resize the sprite to 100x100 pixels
         
         # Movement speed
@@ -34,9 +36,8 @@ class Player:
 
     def roll_skill_check(self, skill_name, difficulty_class):
         """Rolls a skill check based on the character's current stats."""
-        import random
         skill_value = getattr(self, skill_name, 0)  # Get the value of the skill
-        roll = random.randint(1, 20)
+        roll = np.random.randint(1, 21)
         return roll + skill_value >= difficulty_class  # Simple pass/fail check
     
     def reduce_attribute(self, attribute_name, amount):
@@ -49,14 +50,16 @@ class Player:
         
     def handle_movement(self):
         keys = pygame.key.get_pressed()
+        x, y = self.position
         if keys[pygame.K_LEFT]:
-            self.position = (self.position[0] - self.speed, self.position[1])
+            x = max(0, x - self.speed)
         if keys[pygame.K_RIGHT]:
-            self.position = (self.position[0] + self.speed, self.position[1])
+            x = min(WIDTH - self.sprite.get_width(), x + self.speed)
         if keys[pygame.K_UP]:
-            self.position = (self.position[0], self.position[1] - self.speed)
+            y = max(0, y - self.speed)
         if keys[pygame.K_DOWN]:
-            self.position = (self.position[0], self.position[1] + self.speed)
+            y = min(HEIGHT - self.sprite.get_height(), y + self.speed)
+        self.position = (x, y)
 
 
 # Example of using the protagonist in a scene

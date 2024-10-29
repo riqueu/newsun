@@ -1,1 +1,0 @@
-Förgätmigej (Forget-Me-Not) is an old city. It’s known as the Old Capital of The Land of The Future. Not much attention is given to Förgätmigej; it’s an abandoned dream by the coast of a declining land. [[Moya]] is one of the better neighborhoods in Förgätmigej.
