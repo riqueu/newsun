@@ -8,10 +8,10 @@ Your ability to persuade and convince others.
 
 Your power to know things without the help of your senses. Your intuition/sixth sense. 
 
-## 3. 
+## 3. [Forbearance](Forbearance.md)
 
+Patience/Self-Control. It’s your tolerance to the passage of time and to being in complicated situations.
 
+## 4. [Resonance](Resonance.md)
 
-## 4. 
-
-
+Your empathy; your way or understanding others and their motives. Shared traumas, collective sentiments, buried thoughts, etc.
