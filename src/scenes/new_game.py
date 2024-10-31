@@ -14,7 +14,7 @@ class NewGame:
         self.character_creator_active = True
         self.game_begin = False
     
-    # FIXME: This method should display the initial dialogue after character creation and before the game starts
+    # TODO: This method should display the initial dialogue after character creation and before the game starts
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and self.dialogue_manager.dialogue_active:
             if event.key == pygame.K_z:

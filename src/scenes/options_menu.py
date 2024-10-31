@@ -9,6 +9,7 @@ class OptionsMenu:
         self.volume = 0.5  # Initial volume level (50%)
         self.options = ["Volume", "Back"]
         self.selected_option = 0
+        self.previous_screen = None
         
 
     def handle_event(self, event):
@@ -23,9 +24,11 @@ class OptionsMenu:
             elif event.key == pygame.K_RIGHT and self.selected_option == 0:
                 self.volume = min(1.0, self.volume + 0.1)  # Increase volume
                 pygame.mixer.music.set_volume(self.volume)
-            elif event.key == pygame.K_z or event.key == pygame.K_x:
-                if self.options[self.selected_option] == "Back" or event.key == pygame.K_x:
+            elif event.key == pygame.K_z:
+                if self.options[self.selected_option] == "Back":
                     return "Back"
+            elif event.key == pygame.K_x:
+                return "Back"
         return None
 
     def draw(self):
@@ -33,13 +36,13 @@ class OptionsMenu:
         for i, option in enumerate(self.options):
             color = (255, 255, 255) if i == self.selected_option else (100, 100, 100)
             text = self.font.render(option, True, color)
-            rect = text.get_rect(center=(self.screen.get_width() // 2, 150 + i * 50))
+            rect = text.get_rect(center=(self.screen.get_width() // 2, 250 + i * 50))
             self.screen.blit(text, rect)
             
         # Draw volume slider if "Volume" is selected
         if self.selected_option == 0:
             slider_x = self.screen.get_width() // 2
-            slider_y = 250
+            slider_y = 350
             slider_width = 200
             slider_height = 10
             pygame.draw.rect(self.screen, (255, 255, 255), (slider_x - slider_width // 2, slider_y, slider_width, slider_height))
