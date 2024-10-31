@@ -1,3 +1,5 @@
+"""PLACEHOLDER: Room 101 Scene"""
+
 import pygame
 from src.ui.interaction import DialogueManager
 

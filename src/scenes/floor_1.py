@@ -1,11 +1,13 @@
+"""PLACEHOLDER: Floor 1 scene for the game."""
+
 import pygame
 import json
 
-class Floor5:
+class Floor1:
     def __init__(self):
         # Load any assets for this scene (e.g., images, music)
-        self.background = pygame.image.load("assets/images/floor_5_background.png")
-        with open("scripts/floor_5.json") as f:
+        self.background = pygame.image.load("assets/images/floor_1_background.png")
+        with open("scripts/floor_1.json") as f:
             self.dialogue_data = json.load(f)
         self.current_line = 0
 

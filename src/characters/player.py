@@ -1,3 +1,5 @@
+"""Player class for the protagonist of the game."""
+
 import pygame
 import numpy as np
 from settings import WIDTH, HEIGHT
@@ -6,12 +8,11 @@ class Player:
     def __init__(self):
         # Initial skill levels or stats
         self.position = (50, 50)
-        """self.intelligence = 5
-        self.charisma = 3
-        self.strength = 4
-        self.dexterity = 4
-        self.wisdom = 3
-        self.constitution = 6"""
+        
+        self.eloquence = 0
+        self.clairvoyance = 0
+        self.forbearance = 0
+        self.resonance = 0
         
         # Initial health and mana
         self.health = 4
@@ -33,6 +34,16 @@ class Player:
     
     def get_position(self):
         return self.position
+    
+    def get_skills(self):
+        return {"Eloquence": self.eloquence, "Clairvoyance": self.clairvoyance,
+                "Forbearance": self.forbearance, "Resonance": self.resonance}
+        
+    def set_skills(self, skills):
+        self.eloquence = skills["Eloquence"]
+        self.clairvoyance = skills["Clairvoyance"]
+        self.forbearance = skills["Forbearance"]
+        self.resonance = skills["Resonance"]
 
     def roll_skill_check(self, skill_name, difficulty_class):
         """Rolls a skill check based on the character's current stats."""

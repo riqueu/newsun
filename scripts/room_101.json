@@ -1,4 +1,12 @@
 {
+  "Yourself": {
+        "dialogue": "You are in a room with a sink and a mirror.",
+        "options": [
+            {"text": "Look at sink", "action": "look_sink"},
+            {"text": "Look at mirror", "action": "look_mirror"},
+            {"text": "Leave", "action": "leave"}
+        ]
+   }, 
   "Sink": {
         "dialogue": "Do you want to wash your face?",
         "options": [
@@ -18,6 +26,12 @@
       "options": [
           {"text": "Look closer", "action": "look_closer"},
           {"text": "Walk away", "action": "leave"}
-      ]
+      ],
+      "next_stage": {
+            "dialogue": "You see a reflection of what seems to be yourself.",
+            "options": [
+                {"text": "Walk away", "action": "leave"}
+            ]
+      }
   }
 }

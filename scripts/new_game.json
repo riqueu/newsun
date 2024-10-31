@@ -1,0 +1,16 @@
+{
+    "dialogue": [
+        {
+            "character": "Narrator",
+            "text": "Welcome to the game! Are you ready to begin your adventure?"
+        },
+        {
+            "character": "Player",
+            "text": "Yes, I am ready!"
+        },
+        {
+            "character": "Narrator",
+            "text": "Great! Let's get started."
+        }
+    ]
+}

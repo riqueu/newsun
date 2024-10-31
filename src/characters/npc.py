@@ -1,3 +1,5 @@
+"""PLACEHOLDER: NPC class for creating non-player characters in the game."""
+
 class NPC:
     def __init__(self, name, dialogue_lines):
         """Initializes the NPC with a name and a list of dialogue lines."""

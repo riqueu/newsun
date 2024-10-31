@@ -1,3 +1,5 @@
+"""Options Menu Scene"""
+
 import pygame
 
 class OptionsMenu:
@@ -21,8 +23,8 @@ class OptionsMenu:
             elif event.key == pygame.K_RIGHT and self.selected_option == 0:
                 self.volume = min(1.0, self.volume + 0.1)  # Increase volume
                 pygame.mixer.music.set_volume(self.volume)
-            elif event.key == pygame.K_z:
-                if self.options[self.selected_option] == "Back":
+            elif event.key == pygame.K_z or event.key == pygame.K_x:
+                if self.options[self.selected_option] == "Back" or event.key == pygame.K_x:
                     return "Back"
         return None
 

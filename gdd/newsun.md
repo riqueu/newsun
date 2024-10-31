@@ -4,7 +4,7 @@
 
 Newsun is a short Disco Elysium parody for a Programming Languages college course Final Project.
 
-The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsun Hotel](ref/Newsun_Hotel.md), a weirdly familiar 1-story establishment.
+The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsun Hotel](ref/Newsun_Hotel.md), a weirdly familiar 5-story establishment.
 
 ---
 ## Inspiration
@@ -43,6 +43,7 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 - CRPG
 - Point & Click
 - Mystery
+- “Puzzle?”
 
 ---
 ## Target Audience
