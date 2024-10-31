@@ -25,8 +25,6 @@ The corridor is quite eerie, the lights flicker, it seems liminal, yet you feel 
 
 ##### *Interactions* 
 - Room 101 Door
-- Room 102 Door
-- Room 111 Door
 - Elevator (Door’s Broken on Floor 1)
 - Stairs to Floor 0
 - Stairs to Floor 2 (You’re not athletic enough)
