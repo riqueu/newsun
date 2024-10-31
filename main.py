@@ -63,7 +63,6 @@ class Game:
                 selected_option = self.main_menu.handle_event(event)
                 if selected_option == "Start Game":
                     self.menu_state = "new_game" # "game"  # Start the game
-                    pygame.mixer.music.stop()  # Stop the menu music
                     
                 elif selected_option == "Options":
                     self.options_menu.previous_screen = "main"
@@ -91,6 +90,7 @@ class Game:
             elif self.menu_state == "new_game":
                 self.new_game.handle_event(event)
                 if self.new_game.game_begin:
+                    pygame.mixer.music.stop()  # Stop the menu music
                     self.menu_state = "game"
                     self.player = self.new_game.player
                     pygame.mixer.music.load('assets/sounds/door_knock_angry.mp3')

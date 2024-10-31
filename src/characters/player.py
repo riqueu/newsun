@@ -27,10 +27,6 @@ class Player:
         
         # Inventory
         self.inventory = []
-        
-        # Experience and level
-        self.experience = 0
-        self.level = 1
     
     def get_position(self):
         return self.position
@@ -38,6 +34,12 @@ class Player:
     def get_skills(self):
         return {"Eloquence": self.eloquence, "Clairvoyance": self.clairvoyance,
                 "Forbearance": self.forbearance, "Resonance": self.resonance}
+    
+    def get_skills_description(self):
+        return {"Eloquence": "Speech and persuasion skills \nto influence others.",
+                "Clairvoyance": "Insight and intuition \ninto what surrounds you.",
+                "Forbearance": "Patience and endurance \nin the face of adversity.",
+                "Resonance": "Your connection to the world \nand others around you."}
         
     def set_skills(self, skills):
         self.eloquence = skills["Eloquence"]
@@ -75,7 +77,7 @@ class Player:
 
 # Example of using the protagonist in a scene
 # protagonist = Player()
-# if protagonist.roll_skill_check('intelligence', 12):
+# if protagonist.roll_skill_check('eloquence', 12):
 #     print("Skill check passed!")
 # else:
 #     print("Skill check failed!")

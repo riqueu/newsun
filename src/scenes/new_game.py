@@ -38,6 +38,7 @@ class NewGame:
 
         # Display player stats using the Player object
         stats = self.player.get_skills()  # Assuming Player class has a get_stats method
+        descriptions = self.player.get_skills_description()
         y_offset = 200
         for stat, value in stats.items():
             stat_text = font.render(f"{stat}: {value}", True, (255, 255, 255))
@@ -81,6 +82,12 @@ class NewGame:
             self.screen.fill((0, 0, 0))
             self.screen.blit(text, (50, 50))
             self.screen.blit(font.render(f"Available Points: {points}", True, (255, 255, 255)), (50, 100))
+                        
+            description_text = descriptions[skill_names[selected_skill]]
+            description_lines = description_text.split('\n')
+            for i, line in enumerate(description_lines):
+                description_surface = font.render(line, True, (255, 255, 255))
+                self.screen.blit(description_surface, (400, y_offset - 300 + i * 30))
 
             y_offset = 200
             for i, (stat, value) in enumerate(stats.items()):

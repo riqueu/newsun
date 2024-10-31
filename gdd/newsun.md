@@ -35,7 +35,6 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 ## Development Software
 
 - Pygame
-- Aseprite
 
 ---
 ## Genre
