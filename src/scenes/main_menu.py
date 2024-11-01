@@ -7,13 +7,14 @@ class MainMenu:
         self.screen = screen
         self.options = ["Start Game", "Options", "Exit"]
         self.selected_option = 0
+        self.title_font = pygame.font.Font(None, 72)
         self.font = pygame.font.Font(None, 36)
         self.default_color = (255, 255, 255)
 
     def draw(self):
         self.screen.fill((0, 0, 0))
         # Display title and keybinds
-        newsun = self.font.render("Newsun", True, self.default_color)
+        newsun = self.title_font.render("Newsun", True, self.default_color)
         rect_newsun = newsun.get_rect(center=(self.screen.get_width() // 2, 150))
         
         keybinds = self.font.render("Z to Select | X to Cancel | Arrows to Move", True, self.default_color)

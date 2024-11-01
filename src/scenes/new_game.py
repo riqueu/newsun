@@ -9,7 +9,7 @@ class NewGame:
         self.screen = screen
         self.interactions = interactions
         self.dialogue_manager = DialogueManager(interactions)
-        self.player = Player()  # Initialize the Player object
+        self.player = Player(self.screen)  # Initialize the Player object
         
         self.character_creator_active = True
         self.game_begin = False
@@ -87,7 +87,7 @@ class NewGame:
             description_lines = description_text.split('\n')
             for i, line in enumerate(description_lines):
                 description_surface = font.render(line, True, (255, 255, 255))
-                self.screen.blit(description_surface, (400, y_offset - 300 + i * 30))
+                self.screen.blit(description_surface, (325, y_offset - 250 + i * 30))
 
             y_offset = 200
             for i, (stat, value) in enumerate(stats.items()):

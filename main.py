@@ -3,6 +3,7 @@
 import pygame
 import sys
 import json
+
 from settings import WIDTH, HEIGHT, FPS
 from src.scenes.main_menu import MainMenu
 from src.scenes.options_menu import OptionsMenu
@@ -49,6 +50,7 @@ class Game:
                 # TODO: Find the hotel soundtrack
                 # pygame.mixer.music.load('assets/music/newsun_hotel.ogg')
                 # pygame.mixer.music.play(-1)  # Loop the music indefinitely
+                # TODO: Player Movement
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.menu_state = "pause"
@@ -113,11 +115,13 @@ class Game:
             self.new_game.draw_character_creator()
         elif self.menu_state == "game":
             self.room_101.draw()
+            self.player.draw()
         elif self.menu_state == "pause":
             self.pause_menu.draw()
         else:
             self.screen.fill((0, 0, 0))  # Clear screen with black; adjust as needed
-            pygame.display.flip()  # Update the entire screen
+        
+        pygame.display.flip()  # Update the entire screen
 
     def run(self):
         while self.running:
