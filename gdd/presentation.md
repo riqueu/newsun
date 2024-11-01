@@ -11,16 +11,23 @@ p {
 }
 </style>
 
+<style scoped>
+p {
+    text-align: center;
+    font-size: 25px;
+}
+</style>
+
 # Newsun
 
 ###### A2 - Linguagens de Programação
+Artur Vidal, Bruno Luís, Gustavo Luciano, Gustavo Oliveira, Henrique Coelho
 
 ---
 
-# Generos
+# Gêneros
 - CRPG
 - Mistério
-- Point & Click
 
 ---
 
@@ -80,6 +87,4 @@ https://itch.io/game-assets/free
 https://opengameart.org/
 https://kenney.nl/assets/category:2D
 
----
-
-# OBRIGADO
+e também faremos alguns.
