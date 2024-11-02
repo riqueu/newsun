@@ -35,6 +35,8 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 ## Development Software
 
 - Pygame
+- Aseprite
+- Yarn Spinner *(for dialogue graphs)*
 
 ---
 ## Genre
@@ -74,8 +76,7 @@ You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to
 ## Primary Mechanics
 
 - [Checks](ref/Checks.md)
-- [Interaction](ref/Interaction.md)
-- [Conversation](ref/Conversation.md)
+- [Interactions/Conversations](ref/Interaction.md)
 
 ---
 ## Secondary Mechanics
@@ -130,6 +131,7 @@ Sound effects when necessary, e.g.:
 
 - Z to Confirm/Interact
 - X to Back/Cancel
+- Numbers for Dialogue Options
 - Arrows to Move
 - Escape to Pause
 
