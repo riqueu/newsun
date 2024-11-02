@@ -1,37 +1,33 @@
-{
-  "Yourself": {
-        "dialogue": "You are in a room with a sink and a mirror.",
-        "options": [
-            {"text": "Look at sink", "action": "look_sink"},
-            {"text": "Look at mirror", "action": "look_mirror"},
-            {"text": "Leave", "action": "leave"}
-        ]
-   }, 
-  "Sink": {
-        "dialogue": "Do you want to wash your face?",
-        "options": [
-            {"text": "Wash face", "action": "wash_face"},
-            {"text": "Leave", "action": "leave"}
-        ],
-        "next_stage": {
-            "dialogue": "The water feels cold.",
-            "options": [
-                {"text": "Dry face", "action": "dry_face"},
-                {"text": "Walk away", "action": "leave"}
-            ]
-        }
+[
+    {
+        "body": "Sink: Do you want to wash your face?\n\n[1]: Wash face\n[2]: Leave",
+        "key": {
+            "1": "WashFace",
+            "2": "Leave"
+        },
+        "title": "Sink"
     },
-  "Mirror": {
-      "dialogue": "You look into the mirror and see a familiar stranger.",
-      "options": [
-          {"text": "Look closer", "action": "look_closer"},
-          {"text": "Walk away", "action": "leave"}
-      ],
-      "next_stage": {
-            "dialogue": "You see a reflection of what seems to be yourself.",
-            "options": [
-                {"text": "Walk away", "action": "leave"}
-            ]
-      }
-  }
-}
+    {
+        "body": "Sink: The water feels cold.\n\n[1]: Dry face\n[2]: Walk away",
+        "key": {
+            "1": "DryFace",
+            "2": "Leave"
+        },
+        "title": "WashFace"
+    },
+    {
+        "body": "Mirror: You look into the mirror and see a familiar stranger.\n\n[1]: Look closer\n[2]: Walk away",
+        "key": {
+            "1": "LookCloser",
+            "2": "Leave"
+        },
+        "title": "Mirror"
+    },
+    {
+        "body": "Mirror: You see a reflection of what seems to be yourself.\n\n[1]: Walk away",
+        "key": {
+            "1": "Leave"
+        },
+        "title": "LookCloser"
+    }
+]

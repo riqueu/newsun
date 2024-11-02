@@ -19,7 +19,7 @@ class Player:
         
         self.health = 4
         self.reason = 2
-        self.speed = 2
+        self.speed = 5
         
         # Load the player's sprite
         self.sprite = pygame.image.load('assets/images/protagonist/protagonist_frame_temp.png')
@@ -30,6 +30,21 @@ class Player:
     
     def get_position(self):
         return self.position
+    
+    def handle_movement(self, keys):
+        """Handles player movement based on key presses."""
+        if keys[pygame.K_UP]:
+            self.position[1] -= self.speed
+        if keys[pygame.K_DOWN]:
+            self.position[1] += self.speed
+        if keys[pygame.K_LEFT]:
+            self.position[0] -= self.speed
+        if keys[pygame.K_RIGHT]:
+            self.position[0] += self.speed
+        # Ensure the player does not move out of the screen boundaries
+        self.position[0] = max(0, min(self.position[0], WIDTH - self.sprite.get_width()))
+        self.position[1] = max(0, min(self.position[1], HEIGHT - self.sprite.get_height()))
+
     
     def get_skills(self):
         return {"Eloquence": self.eloquence, "Clairvoyance": self.clairvoyance,
@@ -81,17 +96,3 @@ class Player:
         
     def draw(self):
         self.screen.blit(self.sprite, self.position)
-        
-    # FIXME: Not working properly
-    """def handle_movement(self):
-        keys = pygame.key.get_pressed()
-        # x, y = self.position
-        if keys[pygame.K_LEFT]:
-            self.position[0] += max(0, self.position[0] - self.speed)
-        if keys[pygame.K_RIGHT]:
-            self.position[0] += min(WIDTH - self.sprite.get_width(), self.position[0] + self.speed)
-        if keys[pygame.K_UP]:
-            self.position[1] += max(0, self.position[1] - self.speed)
-        if keys[pygame.K_DOWN]:
-            self.position[1] = min(HEIGHT - self.sprite.get_height(), self.position[1] + self.speed)
-        # self.position = (x, y)"""

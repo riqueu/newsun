@@ -12,6 +12,7 @@ from src.scenes.pause_menu import PauseMenu
 from src.scenes.room_101 import Room101
 from src.scenes.new_game import NewGame
 
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -25,50 +26,54 @@ class Game:
         self.new_game_interactions = json.load(open('scripts/new_game.json'))
         self.room_101_interactions = json.load(open('scripts/room_101.json'))
             
-        
         # Scene initialization
         self.main_menu = MainMenu(self.screen)  # Initialize MainMenu
         self.options_menu = OptionsMenu(self.screen)  # Initialize OptionsMenu
-        self.new_game = NewGame(self.screen, self.new_game_interactions)  # Initialize NewGame
         self.pause_menu = PauseMenu(self.screen)  # Initialize PauseMenu
         
+        self.new_game = NewGame(self.screen, self.new_game_interactions)  # Initialize NewGame
         self.room_101 = Room101(self.screen, self.room_101_interactions)  # Initialize Room101
         
         # Game variables
         self.menu_state = "main"
+        self.interaction_state = False
+        
+        # TODO: Implement Fade in/out effect between scenes
+        self.fade = pygame.Surface((WIDTH, HEIGHT)).convert_alpha()
+        self.fade.fill((0, 0, 0, 0))
+        self.fade_alpha = 255
 
-    def draw_text(self, text, font, color, x, y):
-        img = font.render(text, True, color)
-        self.screen.blit(img, (x, y))
-    
     def handle_events(self):
+        # outside event loop to allow for continuous movement
+        if self.menu_state == "game" and not self.interaction_state:
+            keys = pygame.key.get_pressed()
+            self.player.handle_movement(keys)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             
             if self.menu_state == "game":
-                # TODO: Find the hotel soundtrack
-                # pygame.mixer.music.load('assets/music/newsun_hotel.ogg')
-                # pygame.mixer.music.play(-1)  # Loop the music indefinitely
-                # TODO: Player Movement
+                if not pygame.mixer.music.get_busy():
+                    pygame.mixer.music.load('assets/music/newsun_hotel.ogg')
+                    pygame.mixer.music.play(-1)  # Loop the music indefinitely
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.menu_state = "pause"
                         pygame.mixer.music.pause()
             
             if self.menu_state == "main":
-                # TODO: Check if audio gets paused when entering the options menu (shouldn't happen)
                 if not pygame.mixer.music.get_busy():
                     pygame.mixer.music.load('assets/music/main.ogg')
                     pygame.mixer.music.play(-1)  # Loop the music indefinitely
             
                 selected_option = self.main_menu.handle_event(event)
                 if selected_option == "Start Game":
-                    self.menu_state = "new_game" # "game"  # Start the game
+                    self.menu_state = "new_game"
                     
                 elif selected_option == "Options":
                     self.options_menu.previous_screen = "main"
-                    self.menu_state = "options"  # Enter options menu
+                    self.menu_state = "options" 
                 elif selected_option == "Exit":
                     self.running = False  # Exit the game
             
@@ -91,8 +96,11 @@ class Game:
                 
             elif self.menu_state == "new_game":
                 self.new_game.handle_event(event)
+                if self.new_game.dialogue_manager.dialogue_active and not pygame.mixer.music.get_busy():
+                    pygame.mixer.music.load('assets/music/new_game_conversation.ogg')
+                    pygame.mixer.music.play(-1)
                 if self.new_game.game_begin:
-                    pygame.mixer.music.stop()  # Stop the menu music
+                    self.screen.fill((0, 0, 0))
                     self.menu_state = "game"
                     self.player = self.new_game.player
                     pygame.mixer.music.load('assets/sounds/door_knock_angry.mp3')
@@ -113,13 +121,16 @@ class Game:
             self.options_menu.draw()
         elif self.menu_state == "new_game" and self.new_game.character_creator_active:
             self.new_game.draw_character_creator()
+        elif self.menu_state == "new_game" and self.new_game.dialogue_manager.dialogue_active:
+            self.new_game.dialogue_manager.draw()
         elif self.menu_state == "game":
+            # FIXME: Fix Player Sprite Flickering
             self.room_101.draw()
             self.player.draw()
         elif self.menu_state == "pause":
             self.pause_menu.draw()
         else:
-            self.screen.fill((0, 0, 0))  # Clear screen with black; adjust as needed
+            pass
         
         pygame.display.flip()  # Update the entire screen
 

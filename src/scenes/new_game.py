@@ -1,32 +1,30 @@
 """New Game Scene"""
 
 import pygame
-from src.ui.interaction import DialogueManager
+from src.ui.interaction import DialogueManager, get_key_to_node
 from src.characters.player import Player
 
 class NewGame:
     def __init__(self, screen, interactions):
         self.screen = screen
-        self.interactions = interactions
-        self.dialogue_manager = DialogueManager(interactions)
+        self.key_to_node = get_key_to_node(interactions)
+        self.dialogue_manager = DialogueManager(self.screen, interactions, self.key_to_node)
         self.player = Player(self.screen)  # Initialize the Player object
         
         self.character_creator_active = True
         self.game_begin = False
     
-    # TODO: This method should display the initial dialogue after character creation and before the game starts
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN and self.dialogue_manager.dialogue_active:
-            if event.key == pygame.K_z:
-                self.dialogue_manager.next_line()
-                if not self.dialogue_manager.dialogue_active:
-                    self.game_begin = True
-            self.dialogue_manager.draw(self.screen)
+        if self.dialogue_manager.dialogue_ended:
+                self.game_begin = True
+                pygame.mixer.music.stop()
+        elif self.dialogue_manager.dialogue_active:
+            self.dialogue_manager.handle_event(event)
                 
             
     def draw_character_creator(self):
         self.screen.fill((0, 0, 0))
-        self.dialogue_manager.draw(self.screen)
+        # self.dialogue_manager.draw()
         pygame.display.flip()
         # Display player stats selection screen
         font = pygame.font.Font(None, 36)
@@ -87,7 +85,7 @@ class NewGame:
             description_lines = description_text.split('\n')
             for i, line in enumerate(description_lines):
                 description_surface = font.render(line, True, (255, 255, 255))
-                self.screen.blit(description_surface, (325, y_offset - 250 + i * 30))
+                self.screen.blit(description_surface, (500, y_offset - 250 + i * 30))
 
             y_offset = 200
             for i, (stat, value) in enumerate(stats.items()):
@@ -102,6 +100,7 @@ class NewGame:
         
         self.dialogue_manager.dialogue_active = True
         self.character_creator_active = False
+        pygame.mixer.music.stop()
         self.screen.fill((0, 0, 0))
         self.player.set_skills(stats)  # Assuming Player class has a set_skills method
 

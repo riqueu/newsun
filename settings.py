@@ -1,6 +1,6 @@
 # Screen dimensions
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1280
+HEIGHT = 720
 
 # Frames per second
 FPS = 60

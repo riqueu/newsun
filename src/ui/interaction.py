@@ -8,49 +8,85 @@ from settings import WIDTH, HEIGHT
 def load_interactions(filename):
     with open(filename, 'r') as f:
         return json.load(f)
-    
+
+def get_key_to_node(interactions):
+    return {interaction['title']: interaction['key'] for interaction in interactions if 'key' in interaction}
 
 class DialogueBox:
     def __init__(self):
-        self.current_text = ""
-        self.font = pygame.font.Font(None, 36)
-        self.box_width = 300
-        self.box_height = 200
-        self.box_x = (WIDTH - self.box_width) // 2
+        self.box_width = 400
+        self.box_height = 600
+        self.box_x = (7 * (WIDTH - self.box_width)) // 8
         self.box_y = (HEIGHT - self.box_height) // 2
-        
+        self.font = pygame.font.Font(None, 30)
+        self.text = ""
+        self.lines = []
 
     def set_text(self, text):
-        self.current_text = text
+        self.text = text
+        self.lines = self.wrap_text(text)
+
+    def wrap_text(self, text):
+        words = text.split(' ')
+        lines = []
+        current_line = ""
+
+        for word in words:
+            if '\n' in word:
+                parts = word.split('\n')
+                for part in parts[:-1]:
+                    test_line = current_line + part + " "
+                    lines.append(test_line.strip())
+                    current_line = ""
+                current_line = parts[-1] + " "
+            else:
+                test_line = current_line + word + " "
+                if self.font.size(test_line)[0] <= self.box_width - 20:  # Adjusted to fit within the box
+                    current_line = test_line
+                else:
+                    lines.append(current_line.strip())
+                    current_line = word + " "
+
+        if current_line.strip():
+            lines.append(current_line.strip())
+        return lines
 
     def render(self, screen):
-        text_surface = self.font.render(str(self.current_text), True, (255, 255, 255))
-        screen.blit(text_surface, (50, 500))  # Position the text
+        # Draw the red background box
+        pygame.draw.rect(screen, (255, 0, 0), (self.box_x, self.box_y, self.box_width, self.box_height))
+        for i, line in enumerate(self.lines):
+            text_surface = self.font.render(line, True, (255, 255, 255))
+            screen.blit(text_surface, (self.box_x + 10, self.box_y + i * 40 + 10))
 
-    
+
 class DialogueManager:
-    def __init__(self, dialogue_data):
+    def __init__(self, screen, dialogue_data, key_to_node):
+        self.screen = screen
+        self.key_to_node = key_to_node
         self.dialogue_data = dialogue_data
-        self.current_line = 0
+        self.current_node = self.find_node("Start")
         self.dialogue_box = DialogueBox()
         self.dialogue_active = False
+        self.dialogue_ended = False
     
-    def start_dialogue(self, object_name):
-        self.current_line = 0
-        self.dialogue_active = True
-        self.dialogue_box.set_text(self.dialogue_data[object_name][self.current_line])
-    
-    def next_line(self):
-        self.current_line += 1
-        if self.current_line < len(self.dialogue_data):
-            self.dialogue_box.set_text(self.dialogue_data[self.current_line])
-        else:
-            self.dialogue_active = False
-    
-    def draw(self, screen):
-        if self.dialogue_active:
-            self.dialogue_box.render(screen)
+    def find_node(self, title):
+        for node in self.dialogue_data:
+            if node['title'] == title:
+                return node
+        return None
 
-    def handle_event(self, event):
-        if event.type == pygame.KEYDOWN:
-            self.next_line()
+    def handle_event(self, event):    
+        if self.current_node['title'] == "End":
+            self.dialogue_ended = True
+        
+        elif event.type == pygame.KEYDOWN:
+            pressed_key = event.unicode
+            self.next_node_title = self.current_node['key'].get(pressed_key)
+            if self.next_node_title:
+                self.current_node = self.find_node(self.next_node_title)
+    
+    def draw(self):
+        if self.current_node['title'] != "End":
+            self.screen.fill((0, 0, 0))
+            self.dialogue_box.set_text(self.current_node['body'])
+            self.dialogue_box.render(self.screen)
