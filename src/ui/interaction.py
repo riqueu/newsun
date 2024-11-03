@@ -2,6 +2,7 @@
 
 import pygame
 import json
+from pygamevideo import Video
 
 from settings import WIDTH, HEIGHT
 
@@ -18,9 +19,12 @@ class DialogueBox:
         self.box_height = 600
         self.box_x = (7 * (WIDTH - self.box_width)) // 8
         self.box_y = (HEIGHT - self.box_height) // 2
-        self.font = pygame.font.Font(None, 30)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 18)
         self.text = ""
         self.lines = []
+        self.video_in = Video('assets/ui/DialogueBoxIn.mp4')
+        self.video = Video('assets/ui/DialogueBox.mp4')
+        self.video_out = Video('assets/ui/DialogueBoxOut.mp4')
 
     def set_text(self, text):
         self.text = text
@@ -41,7 +45,7 @@ class DialogueBox:
                 current_line = parts[-1] + " "
             else:
                 test_line = current_line + word + " "
-                if self.font.size(test_line)[0] <= self.box_width - 20:  # Adjusted to fit within the box
+                if self.font.size(test_line)[0] <= self.box_width - 30:  # Adjusted to fit within the box
                     current_line = test_line
                 else:
                     lines.append(current_line.strip())
@@ -51,12 +55,16 @@ class DialogueBox:
             lines.append(current_line.strip())
         return lines
 
-    def render(self, screen):
-        # Draw the red background box
-        pygame.draw.rect(screen, (255, 0, 0), (self.box_x, self.box_y, self.box_width, self.box_height))
+    def render_bg(self, screen):
+        #TODO: In and Out Animations
+        self.video.play(loop=True)
+        self.video.draw_to(screen, (self.box_x, self.box_y))
+
+    
+    def render_text(self, screen):
         for i, line in enumerate(self.lines):
             text_surface = self.font.render(line, True, (255, 255, 255))
-            screen.blit(text_surface, (self.box_x + 10, self.box_y + i * 40 + 10))
+            screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
 
 
 class DialogueManager:
@@ -66,6 +74,7 @@ class DialogueManager:
         self.dialogue_data = dialogue_data
         self.current_node = self.find_node("Start")
         self.dialogue_box = DialogueBox()
+        self.dialogue_started = False
         self.dialogue_active = False
         self.dialogue_ended = False
     
@@ -89,4 +98,10 @@ class DialogueManager:
         if self.current_node['title'] != "End":
             self.screen.fill((0, 0, 0))
             self.dialogue_box.set_text(self.current_node['body'])
-            self.dialogue_box.render(self.screen)
+            
+            self.dialogue_box.render_bg(self.screen)
+            self.dialogue_box.render_text(self.screen)
+            pygame.display.flip()
+                
+
+            

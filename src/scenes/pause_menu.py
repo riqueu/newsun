@@ -5,7 +5,7 @@ import pygame
 class PauseMenu:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font(None, 36)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.options = ["Resume", "Options", "Exit"]
         self.selected_option = 0
 

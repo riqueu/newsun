@@ -20,7 +20,6 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True  # Set a running flag for game control
-        self.font = pygame.font.SysFont("arialblack", 36)  # Default font for text
         
         # Interactions
         self.new_game_interactions = json.load(open('scripts/new_game.json'))

@@ -7,8 +7,8 @@ class MainMenu:
         self.screen = screen
         self.options = ["Start Game", "Options", "Exit"]
         self.selected_option = 0
-        self.title_font = pygame.font.Font(None, 72)
-        self.font = pygame.font.Font(None, 36)
+        self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 52)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.default_color = (255, 255, 255)
 
     def draw(self):

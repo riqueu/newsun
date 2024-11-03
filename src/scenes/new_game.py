@@ -27,10 +27,10 @@ class NewGame:
         # self.dialogue_manager.draw()
         pygame.display.flip()
         # Display player stats selection screen
-        font = pygame.font.Font(None, 36)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         points = 8 # Assuming the player has 8 points to distribute
-        text = font.render("Choose your stats:", True, (255, 255, 255))
-        text_2 = font.render("Available Points: {points}", True, (255, 255, 255))
+        text = self.font.render("Choose your stats:", True, (255, 255, 255))
+        text_2 = self.font.render("Available Points: {points}", True, (255, 255, 255))
         self.screen.blit(text, (50, 50))
         self.screen.blit(text_2, (50, 100))
 
@@ -39,7 +39,7 @@ class NewGame:
         descriptions = self.player.get_skills_description()
         y_offset = 200
         for stat, value in stats.items():
-            stat_text = font.render(f"{stat}: {value}", True, (255, 255, 255))
+            stat_text = self.font.render(f"{stat}: {value}", True, (255, 255, 255))
             self.screen.blit(stat_text, (50, y_offset))
             y_offset += 50
 
@@ -55,7 +55,7 @@ class NewGame:
             if begin:
                 break
             
-            confirm_text = font.render("Press Z to confirm", True, (255, 255, 255))
+            confirm_text = self.font.render("Press Z to confirm", True, (255, 255, 255))
             self.screen.blit(confirm_text, (50, y_offset + 50))
 
             for event in pygame.event.get():
@@ -79,18 +79,18 @@ class NewGame:
             # Redraw the screen
             self.screen.fill((0, 0, 0))
             self.screen.blit(text, (50, 50))
-            self.screen.blit(font.render(f"Available Points: {points}", True, (255, 255, 255)), (50, 100))
+            self.screen.blit(self.font.render(f"Available Points: {points}", True, (255, 255, 255)), (50, 100))
                         
             description_text = descriptions[skill_names[selected_skill]]
             description_lines = description_text.split('\n')
             for i, line in enumerate(description_lines):
-                description_surface = font.render(line, True, (255, 255, 255))
+                description_surface = self.font.render(line, True, (255, 255, 255))
                 self.screen.blit(description_surface, (500, y_offset - 250 + i * 30))
 
             y_offset = 200
             for i, (stat, value) in enumerate(stats.items()):
                 color = (255, 0, 0) if i == selected_skill else (255, 255, 255)
-                stat_text = font.render(f"{stat}: {value}", True, color)
+                stat_text = self.font.render(f"{stat}: {value}", True, color)
                 self.screen.blit(stat_text, (50, y_offset))
                 y_offset += 50
 
@@ -98,6 +98,7 @@ class NewGame:
             pygame.display.flip()
             pygame.time.wait(100)
         
+        self.dialogue_manager.dialogue_started = True
         self.dialogue_manager.dialogue_active = True
         self.character_creator_active = False
         pygame.mixer.music.stop()

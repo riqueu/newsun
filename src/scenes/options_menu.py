@@ -5,7 +5,7 @@ import pygame
 class OptionsMenu:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font(None, 36)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.volume = 0.5  # Initial volume level (50%)
         self.options = ["Volume", "Back"]
         self.selected_option = 0

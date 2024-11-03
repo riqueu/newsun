@@ -24,14 +24,14 @@
       "title": "Next"
     },
     {
-      "body": "[???]: There's no time for that \n\n[1]: What's going on?",
+      "body": "[???]: There's no time for that. \n\n[1]: What's going on?",
       "key": {
         "1": "Next2"
         },
       "title": "Sorry"
     },
     {
-      "body": "[???]: Soon you'll see \n\n[1]: I guess I will?",
+      "body": "[???]: Soon you'll see. \n\n[1]: I guess?",
       "key": {
         "1": "Tutorial_Hello"
         },
@@ -54,7 +54,7 @@
       "title": "Tutorial"
     },
     {
-      "body": "[Tutorial Agent]: Skill Checks are used to determine the outcome of an action. Each Check is linked to a certain *part* of you. The stronger that inner part of yourself is, the higher will your odds be. For example, if you're trying to persuade someone, you'll need a high *Eloquence* to make your odds better. Got anything else? \n\n[1]: Can you repeat the whole thing one more time? \n[2]: Got it, let's get this over with.",
+      "body": "[Tutorial Agent]: Skill Checks are used to determine the outcome of an action. Each Check is linked to a certain *part* of you. The stronger that inner part of yourself is, the higher will your odds be. For example, if you're trying to persuade someone, you'll need a high *Eloquence* to make your odds better. Got it? \n\n[1]: Can you repeat the whole thing one more time? \n[2]: Got it, let's get this over with.",
       "key": {
         "1": "Tutorial_Again",
         "2": "Begin"
@@ -69,7 +69,7 @@
       "title": "Tutorial_Again"
     },
     {
-      "body": "[Tutorial Agent]: I'm sorry, I can't answer that. There are some things you have to figure out on your own. \n\n[1]: Sure... can you repeat those instructions again? \n[2]: Whatever you say, can we just get started?",
+      "body": "[Tutorial Agent]: I'm sorry, I can't answer that. There are some things you have to figure out on your own. \n\n[1]: Can you repeat those instructions again? \n[2]: Whatever you say, can we just get started?",
       "key": {
         "1": "Tutorial_Again",
         "2": "Begin"

@@ -1,4 +1,4 @@
-"""TEST SCRIPT FOR DIALOGUE TREE GAME"""
+"""TEMP. TEST SCRIPT FOR DIALOGUE TREE GAME"""
 import pygame
 import json
 
