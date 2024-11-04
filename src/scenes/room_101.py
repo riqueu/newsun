@@ -1,9 +1,9 @@
 """PLACEHOLDER: Room 101 Scene"""
 
 import pygame
-import json
 
-from src.ui.interaction import DialogueManager, get_key_to_node
+from src.ui.interaction import load_scene_interactions #, DialogueManager, get_key_to_node
+
 
 class Room101:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -13,13 +13,17 @@ class Room101:
             screen (pygame.Surface): the screen
         """
         self.screen = screen
-        self.interactions = json.load(open('scripts/room_101.json'))
         self.background = pygame.image.load("assets/images/backgrounds/temp_bg.jpg")
-        self.key_to_node = get_key_to_node(self.interactions)
-        self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
+
+        scripts_path = 'scripts/room_101'
+        self.dialogue_managers = load_scene_interactions(scripts_path, self.screen)
+        # print(self.dialogue_managers['clock'].dialogue_data[0]['body'])
+
         self.objects = [
             {"name": "Sink", "rect": pygame.Rect(100, 100, 50, 50)},
-            {"name": "Mirror", "rect": pygame.Rect(200, 100, 50, 50)}
+            {"name": "Mirror", "rect": pygame.Rect(200, 100, 50, 50)},
+            {"name": "Clock", "rect": pygame.Rect(900, 400, 50, 50)},
+            {"name": "Door", "rect": pygame.Rect(900, 500, 50, 50)}
         ]
 
     # TODO: Handle Events on room 101

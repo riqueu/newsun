@@ -1,12 +1,49 @@
 """Module for handling dialogue interactions with the player."""
 
 import pygame
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+import os
+import json
 
+from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 from settings import WIDTH, HEIGHT
 
-def get_key_to_node(interactions):
+
+def get_key_to_node(interactions: dict) -> dict:
+    """Function that gets interactions and returns the key_to_node dict to handle dialogue options
+
+    Args:
+        interactions (dict): dict with interactions
+
+    Returns:
+        dict: dict with the keys that point to the next node when pressed
+    """
     return {interaction['title']: interaction['key'] for interaction in interactions if 'key' in interaction}
+
+
+def load_scene_interactions(scripts_path: str, screen: pygame.Surface) -> dict:
+    """Function that gets all the interactions in a scene
+
+    Args:
+        scripts_path (str): path to folder where the scene's interactions are stored
+        screen (pygame.Surface): the screen
+
+    Returns:
+        dict: dict with all dialogue managers for the scene
+    """
+    interactions = {}
+    key_to_node = {}
+    dialogue_managers = {}
+    for filename in os.listdir(scripts_path):
+        if filename.endswith('.json'):
+            file_path = os.path.join(scripts_path, filename)
+            with open(file_path, 'r') as file:
+                interaction = json.load(file)
+                key = filename.split('.')[0]
+                interactions[key] = interaction
+                key_to_node[key] = get_key_to_node(interaction)
+                dialogue_managers[key] = DialogueManager(screen, interaction, key_to_node[key])
+    return dialogue_managers
+
 
 class DialogueBox:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -129,6 +166,7 @@ class DialogueManager:
             self.dialogue_ended = True
         
         elif event.type == pygame.KEYDOWN:
+            # TODO: Implement Skill Checks
             pressed_key = event.unicode
             self.next_node_title = self.current_node['key'].get(pressed_key)
             if self.next_node_title:
@@ -144,6 +182,3 @@ class DialogueManager:
             self.dialogue_box.render_bg()
             self.dialogue_box.render_text(self.screen)
             pygame.display.flip()
-                
-
-            

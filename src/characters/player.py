@@ -2,7 +2,9 @@
 
 import pygame
 import numpy as np
+
 from settings import WIDTH, HEIGHT
+from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 
 class Player:
     def __init__(self, screen: pygame.Surface, position: list[int] = [50, 450]) -> None:
@@ -13,6 +15,8 @@ class Player:
             position (list[int], optional): Initial position of the player. Defaults to [50, 450].
         """
         self.screen = screen
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 20)
+        self.stats_bar = load_png_sequence('assets/ui/StatsBar')
         
         # Initial values
         self.position = position
@@ -143,5 +147,8 @@ class Player:
         self.experience += amount
         
     def draw(self) -> None:
-        """Draw the player on the screen."""
+        """Draw the player & their stats on the screen."""
         self.screen.blit(self.sprite, self.position)
+        self.screen.blit(sequence_current_frame(self.stats_bar), (0, 0))
+        self.screen.blit(self.font.render(f"Health: {self.health}", True, (255, 255, 255)), (10, 14))
+        self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (10, 42))

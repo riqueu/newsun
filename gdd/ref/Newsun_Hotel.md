@@ -11,7 +11,6 @@ Newsun has an eerie atmosphere, things just feel off: the inconsistent elevators
 The room in which the [Protagonist](Protagonist.md) wakes up is a medium-sized, slightly destroyed, relatively normal hotel room. There isn’t much to be done here, it seems empty, like no one has slept in it for a while, yet you just woke up on the bed furthest from the door.
 
 ##### *Interactions* 
-- Bathroom Light Switches
 - Bathroom Sink & Mirror
 - Old TV
 - Clock

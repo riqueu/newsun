@@ -1,0 +1,39 @@
+[
+    {
+      "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Touch your face (Resonance|50%)] \n[3]: [Leave the mirror alone]",
+      "key": {
+        "1": "WipeMirror",
+        "2": "TouchFaceCheck",
+        "3": "End"
+        },
+      "title": "Start"
+    },
+    {
+        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Touch your Face (Resonance|50%)] \n[2]: [Leave the mirror alone]",
+        "key": {
+            "1": "TouchFaceCheck",
+            "2": "End"
+            },
+        "title": "WipeMirror"
+    },
+    {
+        "title": "TouchFaceCheck"
+    },
+    {
+        "body": "[Resonance]: It's you. You can't exactly recall who you are, but that's you for sure. Always has been, always will be. You feel warmth despite the cold environment. (+1 Reason) \n\n[1]: [Leave the mirror alone]",
+        "key": {
+            "1": "End"
+            },
+        "title": "TouchFacePass"
+    },
+    {
+        "body": "[Resonance]: You feel nothing. It's almost alien, you recollect not what once was. \n\n[1]: [Leave the mirror alone]",
+        "key": {
+            "1": "End"
+            },
+        "title": "TouchFaceFail"
+    },
+    {
+        "title": "End"
+    }
+]

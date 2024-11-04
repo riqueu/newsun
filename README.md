@@ -22,4 +22,8 @@
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ❌
 - Write Dialogues ❌
+    - Room 101: ✔️
+    - Floor 1 Corridor: ❌
+    - Floor 0: ❌
+    - Floor -1: ❌
 - ... ❌

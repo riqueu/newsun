@@ -15,7 +15,7 @@ class NewGame:
             screen (pygame.Surface): The screen.
         """
         self.screen = screen
-        self.interactions = json.load(open('scripts/new_game.json'))
+        self.interactions = json.load(open('scripts/new_game/new_game.json'))
         self.key_to_node = get_key_to_node(self.interactions)
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)

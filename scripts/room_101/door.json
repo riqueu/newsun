@@ -1,0 +1,16 @@
+[
+    {
+        "body": "[Door]: You can't see what's behind it. That's what doors are for after all. \n\n[1]: [Leave the room] \n[2]: [Stay in the room for now]",
+        "key": {
+            "1": "GoToCorridor",
+            "2": "End"
+        },
+        "title": "Start"
+    },
+    {
+        "title": "GoToCorridor"
+    },
+    {
+        "title": "End"
+    }
+]
