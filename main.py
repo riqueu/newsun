@@ -1,8 +1,7 @@
-"""Main Module"""
+"""Main Module with Game Class"""
 
 import pygame
 import sys
-import json
 
 from settings import WIDTH, HEIGHT, FPS
 from src.scenes.main_menu import MainMenu
@@ -20,18 +19,14 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True  # Set a running flag for game control
-        
-        # Interactions
-        self.new_game_interactions = json.load(open('scripts/new_game.json'))
-        self.room_101_interactions = json.load(open('scripts/room_101.json'))
             
         # Scene initialization
         self.main_menu = MainMenu(self.screen)  # Initialize MainMenu
         self.options_menu = OptionsMenu(self.screen)  # Initialize OptionsMenu
         self.pause_menu = PauseMenu(self.screen)  # Initialize PauseMenu
         
-        self.new_game = NewGame(self.screen, self.new_game_interactions)  # Initialize NewGame
-        self.room_101 = Room101(self.screen, self.room_101_interactions)  # Initialize Room101
+        self.new_game = NewGame(self.screen)  # Initialize NewGame
+        self.room_101 = Room101(self.screen)  # Initialize Room101
         
         # Game variables
         self.menu_state = "main"
@@ -104,7 +99,6 @@ class Game:
                     self.player = self.new_game.player
                     pygame.mixer.music.load('assets/sounds/door_knock_angry.mp3')
                     pygame.mixer.music.play()
-            
             else:
                 pass
 

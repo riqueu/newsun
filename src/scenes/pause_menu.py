@@ -1,6 +1,7 @@
 """Pause Menu Scene"""
 
 import pygame
+from pygamevideo import Video
 
 class PauseMenu:
     def __init__(self, screen):
@@ -8,6 +9,7 @@ class PauseMenu:
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.options = ["Resume", "Options", "Exit"]
         self.selected_option = 0
+        self.black_bg = Video('assets/ui/BlackBG.mp4')
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -22,7 +24,9 @@ class PauseMenu:
         return None
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
+        #self.screen.fill((0, 0, 0))
+        self.black_bg.play(loop=True)
+        self.black_bg.draw_to(self.screen, (0, 0))
         
         keybinds = self.font.render("Z to Select | X to Cancel | Arrows to Move", True, (255, 255, 255))
         rect_keybinds = keybinds.get_rect(center=(self.screen.get_width() // 2, 500))

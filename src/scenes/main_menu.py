@@ -1,6 +1,7 @@
 """Main Menu Scene"""
 
 import pygame
+from pygamevideo import Video
 
 class MainMenu:
     def __init__(self, screen):
@@ -10,9 +11,12 @@ class MainMenu:
         self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 52)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.default_color = (255, 255, 255)
+        self.black_bg = Video('assets/ui/BlackBG.mp4')
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
+        # self.screen.fill((0, 0, 0))
+        self.black_bg.play(loop=True)
+        self.black_bg.draw_to(self.screen, (0, 0))
         # Display title and keybinds
         newsun = self.title_font.render("Newsun", True, self.default_color)
         rect_newsun = newsun.get_rect(center=(self.screen.get_width() // 2, 150))

@@ -6,9 +6,9 @@ from pygamevideo import Video
 
 from settings import WIDTH, HEIGHT
 
-def load_interactions(filename):
+"""def load_interactions(filename):
     with open(filename, 'r') as f:
-        return json.load(f)
+        return json.load(f)"""
 
 def get_key_to_node(interactions):
     return {interaction['title']: interaction['key'] for interaction in interactions if 'key' in interaction}

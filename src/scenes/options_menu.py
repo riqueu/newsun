@@ -1,6 +1,7 @@
 """Options Menu Scene"""
 
 import pygame
+from pygamevideo import Video
 
 class OptionsMenu:
     def __init__(self, screen):
@@ -10,6 +11,7 @@ class OptionsMenu:
         self.options = ["Volume", "Back"]
         self.selected_option = 0
         self.previous_screen = None
+        self.black_bg = Video('assets/ui/BlackBG.mp4')
         
 
     def handle_event(self, event):
@@ -32,7 +34,9 @@ class OptionsMenu:
         return None
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
+        #self.screen.fill((0, 0, 0))
+        self.black_bg.play(loop=True)
+        self.black_bg.draw_to(self.screen, (0, 0))
         for i, option in enumerate(self.options):
             color = (255, 255, 255) if i == self.selected_option else (100, 100, 100)
             text = self.font.render(option, True, color)

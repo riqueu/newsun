@@ -1,14 +1,17 @@
 """PLACEHOLDER: Room 101 Scene"""
 
 import pygame
+import json
+
 from src.ui.interaction import DialogueManager, get_key_to_node
 
 class Room101:
-    def __init__(self, screen, interactions):
+    def __init__(self, screen):
         self.screen = screen
+        self.interactions = json.load(open('scripts/room_101.json'))
         self.background = pygame.image.load("assets/images/backgrounds/temp_bg.jpg")
-        self.key_to_node = get_key_to_node(interactions)
-        self.dialogue_manager = DialogueManager(self.screen, interactions, self.key_to_node)
+        self.key_to_node = get_key_to_node(self.interactions)
+        self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.objects = [
             {"name": "Sink", "rect": pygame.Rect(100, 100, 50, 50)},
             {"name": "Mirror", "rect": pygame.Rect(200, 100, 50, 50)}
