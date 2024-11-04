@@ -27,7 +27,7 @@ The corridor is quite eerie, the lights flicker, it seems liminal, yet you feel 
 - Broken Elevator Door (Beyond Reparation on Floor 1)
 - Stairs to Floor 0
 - Stairs to Floor 2 (Blocked off)
-- Höst, The Uneasy Student
+- Camellia, The Uneasy Student
 - Tabastan, The Mindful Truant
 
 

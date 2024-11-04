@@ -35,7 +35,8 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 ## Development Software
 
 - Pygame
-- Aseprite
+- Aseprite *(for spriting)*
+- After Effects *(for ui/animation)*
 - Yarn Spinner *(for dialogue graphs)*
 
 ---

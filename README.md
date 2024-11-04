@@ -15,10 +15,11 @@
 - Pause Menu Structure: ✔️
 - Options Menu Structure: ✔️
 - Character Creator Structure: ✔️
+- Inventory(?): ❌
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - TODO: Skill Checks ❌
 - Player Movement: ✔️
-    - FIXME: Player Sprite Flickering ❌
+    - FIXME: Sprites Flickering on background ❌
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ❌
 - Write Dialogues ❌
@@ -26,4 +27,10 @@
     - Floor 1 Corridor: ❌
     - Floor 0: ❌
     - Floor -1: ❌
+- Animated UI:❌
+    - Dialogue Box: ✔️
+    - Character Creator: ✔️
+    - Menu Background: ✔️
+    - Character Status: ✔️
+    - ... ❌
 - ... ❌

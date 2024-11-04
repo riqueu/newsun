@@ -10,7 +10,7 @@ After you make your way through the room and find yourself opening the door, the
 
 ## Corridor
 By the corridor, you can enter conversations with two characters: 
-- [Höst, The Uneasy Student](npc_host.md)
+- [Camellia, The Uneasy Student](npc_camellia.md)
 - [Tabastan, The Mindful Truant](npc_tabastan.md)
 As well as enter interactions with the Elevator, which won’t work at Floor 1, the Stairs to the Second Floor, in which you are not athletic enough to make your way to, and the Stairs to Floor 0.
 

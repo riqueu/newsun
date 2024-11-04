@@ -1,6 +1,12 @@
-"""PLACEHOLDER: NPC class for creating non-player characters in the game."""
+"""PLACEHOLDER: Interactables class for creating non-player characters in the game."""
 
-class NPC:
+class Interactable:
+    pass
+
+class Object(Interactable): # e.g. Mirror
+    pass
+
+class NPC(Interactable): # e.g. Tabastan
     def __init__(self, name, dialogue_lines):
         """Initializes the NPC with a name and a list of dialogue lines."""
         self.name = name

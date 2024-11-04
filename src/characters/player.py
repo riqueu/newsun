@@ -150,5 +150,5 @@ class Player:
         """Draw the player & their stats on the screen."""
         self.screen.blit(self.sprite, self.position)
         self.screen.blit(sequence_current_frame(self.stats_bar), (0, 0))
-        self.screen.blit(self.font.render(f"Health: {self.health}", True, (255, 255, 255)), (10, 14))
-        self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (10, 42))
+        self.screen.blit(self.font.render(f"Health: {self.health}", True, (255, 255, 255)), (20, 18))
+        self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))

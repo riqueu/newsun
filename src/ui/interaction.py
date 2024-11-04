@@ -109,19 +109,32 @@ class DialogueBox:
     def render_bg(self) -> None:
         """Function that renders the background of the box
         """
-        #TODO: In and Out Animations
         self.screen.blit(sequence_current_frame(self.video), (self.box_x,self.box_y))
 
-    
-    def render_text(self, screen: pygame.Surface) -> None:
-        """Function that renders the text
-
-        Args:
-            screen (pygame.Surface): the screen
+    def render_text(self) -> None:
+        """Function that renders the text with animation
         """
-        for i, line in enumerate(self.lines):
-            text_surface = self.font.render(line, True, (255, 255, 255))
-            screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
+        
+        if not hasattr(self, 'animation_played'):
+            self.animation_played = False
+
+        # FIXME: Animation has a weird effect to it. See if fixable. 
+        if not self.animation_played:
+            max_chars = len(self.text)
+            char_index = 0
+            for i, line in enumerate(self.lines):
+                for j in range(len(line)):
+                    if char_index < max_chars:
+                        text_surface = self.font.render(line[:j+1], True, (255, 255, 255))
+                        self.screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
+                        char_index += 1
+                        pygame.display.flip()
+                        pygame.time.delay(5)  # Adjust delay for speed of animation
+            self.animation_played = True
+        else:
+            for i, line in enumerate(self.lines):
+                text_surface = self.font.render(line, True, (255, 255, 255))
+                self.screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
 
 
 class DialogueManager:
@@ -171,6 +184,7 @@ class DialogueManager:
             self.next_node_title = self.current_node['key'].get(pressed_key)
             if self.next_node_title:
                 self.current_node = self.find_node(self.next_node_title)
+                self.dialogue_box.animation_played = False
     
     def draw(self) -> None:
         """Function that draws the dialogue text and ui
@@ -178,7 +192,19 @@ class DialogueManager:
         if self.current_node['title'] != "End":
             self.screen.fill((0, 0, 0))
             self.dialogue_box.set_text(self.current_node['body'])
-            
-            self.dialogue_box.render_bg()
-            self.dialogue_box.render_text(self.screen)
-            pygame.display.flip()
+            if self.dialogue_started: # First time dialogue is shown, play box in animation
+                for frame in self.dialogue_box.video_in:
+                    self.screen.blit(frame, (self.dialogue_box.box_x, self.dialogue_box.box_y))
+                    pygame.display.flip()
+                    pygame.time.delay(60)  # Adjust delay for speed of animation
+                self.dialogue_started = False
+            elif self.dialogue_active: # Dialogue is active, render text and play box loop animation
+                self.dialogue_box.render_bg()
+                self.dialogue_box.render_text()
+                pygame.display.flip()
+        else: # Dialogue has ended, play box out animation
+            for frame in self.dialogue_box.video_out:
+                self.screen.fill((0, 0, 0))
+                self.screen.blit(frame, (self.dialogue_box.box_x, self.dialogue_box.box_y))
+                pygame.display.flip()
+                pygame.time.delay(60)  # Adjust delay for speed of animation

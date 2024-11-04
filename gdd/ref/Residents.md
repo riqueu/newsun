@@ -1,4 +1,4 @@
-- Höst, The Uneasy student
-    - Stays near the elevator’s door.
+- Camellia, The Uneasy student
+    - Lays by the stairs
 - Tabastan, The Mindful Truant
-    - Rests by Floor 01 Hall.
+    - Stays near the elevator’s door.
