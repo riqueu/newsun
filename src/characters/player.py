@@ -5,7 +5,13 @@ import numpy as np
 from settings import WIDTH, HEIGHT
 
 class Player:
-    def __init__(self, screen, position=[50, 450]):
+    def __init__(self, screen: pygame.Surface, position: list[int] = [50, 450]) -> None:
+        """Initialize the Player object.
+
+        Args:
+            screen (pygame.Surface): The screen where the player will be drawn.
+            position (list[int], optional): Initial position of the player. Defaults to [50, 450].
+        """
         self.screen = screen
         
         # Initial values
@@ -25,14 +31,23 @@ class Player:
         self.sprite = pygame.image.load('assets/images/protagonist/protagonist_frame_temp.png')
         self.sprite = pygame.transform.scale(self.sprite, (100, 100))  # Resize the sprite to 100x100 pixels
         
-        # Inventory
+        # PLACEHOLDER: Implement Inventory Object at ui/inventory.py
         self.inventory = []
     
-    def get_position(self):
+    def get_position(self) -> list[int]:
+        """Get the current position of the player.
+
+        Returns:
+            List[int]: The current position of the player.
+        """
         return self.position
     
-    def handle_movement(self, keys):
-        """Handles player movement based on key presses."""
+    def handle_movement(self, keys: pygame.key.ScancodeWrapper) -> None:
+        """Handle the movement of the player based on key presses.
+
+        Args:
+            keys (pygame.key.ScancodeWrapper): The keys that are currently pressed.
+        """
         if keys[pygame.K_UP]:
             self.position[1] -= self.speed
         if keys[pygame.K_DOWN]:
@@ -46,11 +61,21 @@ class Player:
         self.position[1] = max(0, min(self.position[1], HEIGHT - self.sprite.get_height()))
 
     
-    def get_skills(self):
+    def get_skills(self) -> dict[str, int]:
+        """Get the current skills of the player.
+
+        Returns:
+            Dict[str, int]: A dictionary of the player's skills.
+        """
         return {"Eloquence": self.eloquence, "Clairvoyance": self.clairvoyance,
                 "Forbearance": self.forbearance, "Resonance": self.resonance}
     
-    def get_skills_description(self):
+    def get_skills_description(self) -> dict[str, str]:
+        """Get the descriptions of the player's skills.
+
+        Returns:
+            Dict[str, str]: A dictionary of the player's skill descriptions.
+        """
         return {
             "Eloquence": "Your speech and persuasion\nskills to influence others.\n"
                  "Eloquence allows you to sway\nopinions, negotiate effectively,\n"
@@ -73,26 +98,50 @@ class Player:
                  "and relationship adds to\nthe richness of your experience."
         }
         
-    def set_skills(self, skills):
+    def set_skills(self, skills: dict[str, int]) -> None:
+        """
+        Set the player's skills.
+
+        Args:
+            skills (Dict[str, int]): A dictionary of the player's skills.
+        """
         self.eloquence = skills["Eloquence"]
         self.clairvoyance = skills["Clairvoyance"]
         self.forbearance = skills["Forbearance"]
         self.resonance = skills["Resonance"]
 
-    def roll_skill_check(self, skill_name, difficulty_class):
-        """Rolls a skill check based on the character's current stats."""
+    def roll_skill_check(self, skill_name: str, difficulty_class: int) -> bool:
+        """Roll a skill check based on the player's current stats.
+
+        Args:
+            skill_name (str): The name of the skill to check.
+            difficulty_class (int): The difficulty class to beat.
+
+        Returns:
+            bool: True if the skill check is successful, False otherwise.
+        """
         skill_value = getattr(self, skill_name, 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
         return roll + skill_value >= difficulty_class  # Simple pass/fail check
     
-    def reduce_attribute(self, attribute_name, amount):
-        """Reduces the value of an attribute by a specified amount."""
+    def reduce_attribute(self, attribute_name: str, amount: int) -> None:
+        """Reduce the value of an attribute by a specified amount.
+
+        Args:
+            attribute_name (str): The name of the attribute to reduce.
+            amount (int): The amount to reduce the attribute by.
+        """
         current_value = getattr(self, attribute_name, 0)
         setattr(self, attribute_name, current_value - amount)
     
-    def raise_experience(self, amount):
-        """Increases the player's experience by a specified amount."""
+    def raise_experience(self, amount: int) -> None:
+        """Increase the player's experience by a specified amount.
+
+        Args:
+            amount (int): The amount to increase the experience by.
+        """
         self.experience += amount
         
-    def draw(self):
+    def draw(self) -> None:
+        """Draw the player on the screen."""
         self.screen.blit(self.sprite, self.position)

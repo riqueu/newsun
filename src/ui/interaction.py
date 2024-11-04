@@ -1,20 +1,21 @@
 """Module for handling dialogue interactions with the player."""
 
 import pygame
-import json
-from pygamevideo import Video
+from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 
 from settings import WIDTH, HEIGHT
-
-"""def load_interactions(filename):
-    with open(filename, 'r') as f:
-        return json.load(f)"""
 
 def get_key_to_node(interactions):
     return {interaction['title']: interaction['key'] for interaction in interactions if 'key' in interaction}
 
 class DialogueBox:
-    def __init__(self):
+    def __init__(self, screen: pygame.Surface) -> None:
+        """Function that initializes the Dialogue Box object
+
+        Args:
+            screen (pygame.Surface): the screen
+        """
+        self.screen = screen
         self.box_width = 400
         self.box_height = 600
         self.box_x = (7 * (WIDTH - self.box_width)) // 8
@@ -22,15 +23,28 @@ class DialogueBox:
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 18)
         self.text = ""
         self.lines = []
-        self.video_in = Video('assets/ui/DialogueBoxIn.mp4')
-        self.video = Video('assets/ui/DialogueBox.mp4')
-        self.video_out = Video('assets/ui/DialogueBoxOut.mp4')
+        self.video_in = load_png_sequence('assets/ui/DialogueBoxIn')
+        self.video = load_png_sequence('assets/ui/DialogueBox')
+        self.video_out = load_png_sequence('assets/ui/DialogueBoxOut')
 
-    def set_text(self, text):
+    def set_text(self, text: str) -> None:
+        """Function that sets the text to be displayed
+
+        Args:
+            text (str): the text
+        """
         self.text = text
         self.lines = self.wrap_text(text)
 
-    def wrap_text(self, text):
+    def wrap_text(self, text: str) -> list:
+        """Function that wraps the text inside the box
+
+        Args:
+            text (str): the text
+
+        Returns:
+            list: list of strings fitting the box
+        """
         words = text.split(' ')
         lines = []
         current_line = ""
@@ -55,36 +69,62 @@ class DialogueBox:
             lines.append(current_line.strip())
         return lines
 
-    def render_bg(self, screen):
+    def render_bg(self) -> None:
+        """Function that renders the background of the box
+        """
         #TODO: In and Out Animations
-        self.video.play(loop=True)
-        self.video.draw_to(screen, (self.box_x, self.box_y))
+        self.screen.blit(sequence_current_frame(self.video), (self.box_x,self.box_y))
 
     
-    def render_text(self, screen):
+    def render_text(self, screen: pygame.Surface) -> None:
+        """Function that renders the text
+
+        Args:
+            screen (pygame.Surface): the screen
+        """
         for i, line in enumerate(self.lines):
             text_surface = self.font.render(line, True, (255, 255, 255))
             screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
 
 
 class DialogueManager:
-    def __init__(self, screen, dialogue_data, key_to_node):
+    def __init__(self, screen: pygame.Surface, dialogue_data: list, key_to_node: dict) -> None:
+        """Function that initializes the dialogue manager
+
+        Args:
+            screen (pygame.Surface): the screen
+            dialogue_data (list): dialogue data
+            key_to_node (dict): keys that point to the next node when pressed
+        """
         self.screen = screen
         self.key_to_node = key_to_node
         self.dialogue_data = dialogue_data
         self.current_node = self.find_node("Start")
-        self.dialogue_box = DialogueBox()
+        self.dialogue_box = DialogueBox(screen)
         self.dialogue_started = False
         self.dialogue_active = False
         self.dialogue_ended = False
     
-    def find_node(self, title):
+    def find_node(self, title: str) -> dict|None:
+        """Function that finds the next node
+
+        Args:
+            title (str): node to find
+
+        Returns:
+            dict|None: node or None if not found
+        """
         for node in self.dialogue_data:
             if node['title'] == title:
                 return node
         return None
 
-    def handle_event(self, event):    
+    def handle_event(self, event: pygame.event.Event) -> None:
+        """Function that handles dialogue/interaction events
+
+        Args:
+            event (pygame.event.Event): current event
+        """
         if self.current_node['title'] == "End":
             self.dialogue_ended = True
         
@@ -94,12 +134,14 @@ class DialogueManager:
             if self.next_node_title:
                 self.current_node = self.find_node(self.next_node_title)
     
-    def draw(self):
+    def draw(self) -> None:
+        """Function that draws the dialogue text and ui
+        """
         if self.current_node['title'] != "End":
             self.screen.fill((0, 0, 0))
             self.dialogue_box.set_text(self.current_node['body'])
             
-            self.dialogue_box.render_bg(self.screen)
+            self.dialogue_box.render_bg()
             self.dialogue_box.render_text(self.screen)
             pygame.display.flip()
                 

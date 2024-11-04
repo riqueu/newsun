@@ -1,20 +1,33 @@
 """Options Menu Scene"""
 
 import pygame
-from pygamevideo import Video
+from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 
 class OptionsMenu:
-    def __init__(self, screen):
+    def __init__(self, screen: pygame.Surface) -> None:
+        """Function that initializes the options menu object scene
+
+        Args:
+            screen (pygame.Surface): the screen.
+        """
         self.screen = screen
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.volume = 0.5  # Initial volume level (50%)
         self.options = ["Volume", "Back"]
         self.selected_option = 0
         self.previous_screen = None
-        self.black_bg = Video('assets/ui/BlackBG.mp4')
+        self.black_bg = load_png_sequence('assets/ui/BlackBG')
         
 
-    def handle_event(self, event):
+    def handle_event(self, event: pygame.event.Event) -> str|None:
+        """Function that handles the menu interaction
+
+        Args:
+            event (pygame.event.Event): current event
+
+        Returns:
+            str|None: key pressed or nothing
+        """
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 self.selected_option = (self.selected_option - 1) % len(self.options)
@@ -33,10 +46,11 @@ class OptionsMenu:
                 return "Back"
         return None
 
-    def draw(self):
+    def draw(self) -> None:
+        """Function that draws the options menu
+        """
         #self.screen.fill((0, 0, 0))
-        self.black_bg.play(loop=True)
-        self.black_bg.draw_to(self.screen, (0, 0))
+        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
         for i, option in enumerate(self.options):
             color = (255, 255, 255) if i == self.selected_option else (100, 100, 100)
             text = self.font.render(option, True, color)
@@ -54,7 +68,7 @@ class OptionsMenu:
             handle_y = slider_y - 5
             handle_width = 10
             handle_height = 20
-            pygame.draw.rect(self.screen, (255, 0, 0), (handle_x, handle_y, handle_width, handle_height))
+            pygame.draw.rect(self.screen, (162, 0, 220), (handle_x, handle_y, handle_width, handle_height))
             
         # Update the volume option text
         self.options[0] = f"Volume: {int(self.volume * 100)}%"

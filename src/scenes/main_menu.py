@@ -1,22 +1,28 @@
 """Main Menu Scene"""
 
 import pygame
-from pygamevideo import Video
+from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 
 class MainMenu:
-    def __init__(self, screen):
+    def __init__(self, screen: pygame.Surface) -> None:
+        """Initializes the MainMenu object
+
+        Args:
+            screen (pygame.Surface): The screen.
+        """
         self.screen = screen
         self.options = ["Start Game", "Options", "Exit"]
         self.selected_option = 0
         self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 52)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.default_color = (255, 255, 255)
-        self.black_bg = Video('assets/ui/BlackBG.mp4')
+        self.black_bg = load_png_sequence('assets/ui/BlackBG')
 
-    def draw(self):
+    def draw(self) -> None:
+        """Functions that draws the main menu
+        """
         # self.screen.fill((0, 0, 0))
-        self.black_bg.play(loop=True)
-        self.black_bg.draw_to(self.screen, (0, 0))
+        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
         # Display title and keybinds
         newsun = self.title_font.render("Newsun", True, self.default_color)
         rect_newsun = newsun.get_rect(center=(self.screen.get_width() // 2, 150))
@@ -36,8 +42,15 @@ class MainMenu:
         
         pygame.display.flip()
 
-    def handle_event(self, event):
-        # Menu Navigation
+    def handle_event(self, event: pygame.event.Event) -> str|None:
+        """Function that handles menu interaction
+
+        Args:
+            event (pygame.event.Event): current event
+
+        Returns:
+            str|None: key pressed or nothing if no key is pressed
+        """
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 self.selected_option = (self.selected_option - 1) % len(self.options)

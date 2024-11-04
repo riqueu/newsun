@@ -21,12 +21,12 @@ class Game:
         self.running = True  # Set a running flag for game control
             
         # Scene initialization
-        self.main_menu = MainMenu(self.screen)  # Initialize MainMenu
-        self.options_menu = OptionsMenu(self.screen)  # Initialize OptionsMenu
-        self.pause_menu = PauseMenu(self.screen)  # Initialize PauseMenu
+        self.main_menu = MainMenu(self.screen) 
+        self.options_menu = OptionsMenu(self.screen)
+        self.pause_menu = PauseMenu(self.screen)
         
-        self.new_game = NewGame(self.screen)  # Initialize NewGame
-        self.room_101 = Room101(self.screen)  # Initialize Room101
+        self.new_game = NewGame(self.screen)
+        self.room_101 = Room101(self.screen)
         
         # Game variables
         self.menu_state = "main"

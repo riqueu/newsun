@@ -1,17 +1,0 @@
-Adobe After Effects v24.3 Windows 64 render log for project “UI.aep”
-
-Rendering started on 03/11/2024 at 11:50:51
-
-  03/11/2024 11:50:51: Starting composition “DialogueBoxIn”.
-
-  Output To: D:\Stuff\obsidian\01 - FGV\2o Período\Linguagens de Programação\newsun\assets\ui\DialogueBoxIn.mp4    03/11/2024 11:50:52: Finished composition “DialogueBoxIn”.
-
-
-  03/11/2024 11:50:52: Starting composition “DialogueBoxOut”.
-
-  Output To: D:\Stuff\obsidian\01 - FGV\2o Período\Linguagens de Programação\newsun\assets\ui\DialogueBoxOut.mp4    03/11/2024 11:50:54: Finished composition “DialogueBoxOut”.
-
-
-  Total Time Elapsed: 3 Seconds
-Log closed on 03/11/2024 at 11:50:54
-
