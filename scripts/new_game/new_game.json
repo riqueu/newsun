@@ -1,6 +1,6 @@
 [
     {
-      "body": "[???]: The car's on fire and there's no driver at the wheel. \n\n[1]: What's going on? \n[2]: Who are you? \n[3]: A dark wind blows.",
+      "body": "[???]: \"The car's on fire and there's no driver at the wheel.\" \n\n[1]: \"What's going on?\" \n[2]: \"Who are you?\" \n[3]: \"A dark wind blows.\"",
       "key": {
         "1": "Questions",
         "2": "Questions",
@@ -9,14 +9,14 @@
       "title": "Start"
     },
     {
-      "body": "[???]: There are more questions than answers, and the more you find out, the less you know. \n\n[1]: What do you mean?",
+      "body": "[???]: \"There are more questions than answers, and the more you find out, the less you know.\" \n\n[1]: \"What do you mean?\"",
       "key": {
         "1": "Next"
         },
       "title": "Questions"
     },
     {
-      "body": "[???]: You're pathetic... You don't even know who you are... You're nothing. \n\n[1]: Quit talking nonsense and tell me what's going on! \n[2]: I'm sorry...",
+      "body": "[???]: \"You're pathetic... You don't even know who you are... You're nothing.\" \n\n[1]: \"Quit talking nonsense and tell me what's going on!\" \n[2]: \"I'm sorry...\"",
       "key": {
         "1": "Next2",
         "2": "Sorry"
@@ -24,52 +24,52 @@
       "title": "Next"
     },
     {
-      "body": "[???]: There's no time for that. \n\n[1]: What's going on?",
+      "body": "[???]: \"There's no time for that.\" \n\n[1]: \"What's going on?\"",
       "key": {
         "1": "Next2"
         },
       "title": "Sorry"
     },
     {
-      "body": "[???]: Soon you'll see. \n\n[1]: I guess?",
+      "body": "[???]: \"Soon you'll see.\" \n\n[1]: \"I guess?\"",
       "key": {
         "1": "Tutorial_Hello"
         },
       "title": "Next2"
     },
     {
-      "body": "[Tutorial Agent]: Hey there! I'm here to help you learn how to navigate this journey. \n\n[Press 1 to Continue]",
+      "body": "[Tutorial Agent]: \"Hey there! I'm here to help you learn how to navigate this journey.\" \n\n[Press 1 to Continue]",
       "key": {
         "1": "Tutorial"
         },
       "title": "Tutorial_Hello"
     },
     {
-      "body": "[Tutorial Agent]: You can move around and interact with others to gain experience. Try to collect as many items as you can; once collected they'll be stored in your inventory. The skills you just chose will determine how well you do on skill checks. Furthermore... \n\n[1]: What are you even talking about? Who was that before you? What's going on? \n[2]: What's a skill check? \n[3]: Sure Sure, just let me play the game!",
+      "body": "[Tutorial Agent]: \"You can move around and interact with others to gain experience. Try to collect as many items as you can; once collected they'll be stored in your inventory. The skills you just chose will determine how well you do on skill checks. Furthermore...\" \n\n[1]: \"What are you even talking about? Who was that before you? What's going on?\" \n[2]: \"What's a skill check?\" \n[3]: \"Sure Sure, just let me play the game!\"",
       "key": {
         "1": "Tutorial_Confusion",
-        "2": "Tutorial_SkillCheck",
+        "2": "Tutorial_SkillRolls",
         "3": "Begin"
         },
       "title": "Tutorial"
     },
     {
-      "body": "[Tutorial Agent]: Skill Checks are used to determine the outcome of an action. Each Check is linked to a certain *part* of you. The stronger that inner part of yourself is, the higher will your odds be. For example, if you're trying to persuade someone, you'll need a high *Eloquence* to make your odds better. Got it? \n\n[1]: Can you repeat the whole thing one more time? \n[2]: Got it, let's get this over with.",
+      "body": "[Tutorial Agent]: \"Skill Checks are used to determine the outcome of an action. Each Check is linked to a certain *part* of you. The stronger that inner part of yourself is, the higher will your odds be. For example, if you're trying to persuade someone, you'll need a high *Eloquence* to make your odds better. Got it?\" \n\n[1]: \"Can you repeat the whole thing one more time?\" \n[2]: \"Got it, let's get this over with.\"",
       "key": {
         "1": "Tutorial_Again",
         "2": "Begin"
         },
-      "title": "Tutorial_SkillCheck"
+      "title": "Tutorial_SkillRolls"
     },
     {
-      "body": "[Tutorial Agent]: Sure! \n\n[Press 1 do Continue]",
+      "body": "[Tutorial Agent]: \"Sure!\" \n\n[Press 1 do Continue]",
       "key": {
         "1": "Tutorial"
         },
       "title": "Tutorial_Again"
     },
     {
-      "body": "[Tutorial Agent]: I'm sorry, I can't answer that. There are some things you have to figure out on your own. \n\n[1]: Can you repeat those instructions again? \n[2]: Whatever you say, can we just get started?",
+      "body": "[Tutorial Agent]: \"I'm sorry, I can't answer that. There are some things you have to figure out on your own.\" \n\n[1]: \"Can you repeat those instructions again?\" \n[2]: \"Whatever you say, can we just get started?\"",
       "key": {
         "1": "Tutorial_Again",
         "2": "Begin"
@@ -77,7 +77,7 @@
       "title": "Tutorial_Confusion"
     },
     {
-      "body": "[Tutorial Agent]: Great! Let's get started. But remember, beware of time. \n\n[Press 1 to Begin]",
+      "body": "[Tutorial Agent]: \"Great! Let's get started. But remember, beware of time.\" \n\n[Press 1 to Begin]",
       "key": {
         "1": "End"
         },

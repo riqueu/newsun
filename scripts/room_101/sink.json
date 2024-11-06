@@ -18,7 +18,7 @@
         "title": "InspectSink"
     },
     {
-        "body": "[You]: 'You old colonial sink, I hope you break one day!'\n[Sink] The old sink does not react, but you feel proud of what you have just done. \n\n[1]: [Wash your face] \n[2]: [Leave the sink alone]",
+        "body": "[You]: \"You old colonial sink, I hope you break one day!\"\n[Sink] The old sink does not react, but you feel proud of what you have just done. \n\n[1]: [Wash your face] \n[2]: [Leave the sink alone]",
         "key": {
             "1": "WashFace",
             "2": "End"

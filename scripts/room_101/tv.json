@@ -9,14 +9,16 @@
       "title": "Start"
     },
     {
-        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check the cables (Forbearance|70%)] \n[2]: [Let the Old TV rest]",
+        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check the cables (Forbearance|60%)] \n[2]: [Let the Old TV rest]",
         "title": "TVOn"
     },
     {
-        "title": "TVCablesCheck"
+        "title": "TVCablesCheck",
+        "check_skill": "Forbearance",
+        "check_minpass": 12
     },
     {
-        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV. \n\n[1]: [Let the Old TV rest]",
+        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV, but you're pretty sure you cannot fix such complex thing. \n\n[1]: [Let the Old TV rest]",
         "key": {
             "1": "End"
             },
@@ -27,6 +29,7 @@
         "key": {
             "1": "End"
             },
+        "health": -1,
         "title": "TVCablesFail"
     },
     {

@@ -1,6 +1,6 @@
 [
     {
-        "body": "[Clock]: 'It's morning.' \n\n[1] 'Did you just talk?' \n[2] 'Thanks Mr. Clock.' \n[3] 'I'm not sure if I'm ready for this.' [LEAVE]",
+        "body": "[Unreliable Clock]: \"It's morning.\" \n\n[1] \"Did you just talk?\" \n[2] \"Thanks Mr. Clock.\" \n[3] \"I'm not sure if I'm ready for this.\" [LEAVE]",
         "key": {
             "1": "DidTalk",
             "2": "Thanks",
@@ -9,7 +9,7 @@
         "title": "Start"
     },
     {
-        "body": "[Clock]: 'Of course not, I'm a clock.' \n\n[1] 'Get out of my head.' \n[2] 'Bye then.' [LEAVE]",
+        "body": "[Unreliable Clock]: \"Of course not, I'm a clock.\" \n\n[1] \"Get out of my head.\" \n[2] \"Bye then.\" [LEAVE]",
         "key": {
             "1": "GetOut",
             "2": "End"
@@ -17,7 +17,7 @@
         "title": "DidTalk"
     },
     {
-        "body": "[Clock]: 'You're welcome.' \n\n[1] 'Please, get out of my head.' \n[2] 'You're welcome.' \n[3] [Forget what just happened for the sake of your sanity and LEAVE]",
+        "body": "[Unreliable Clock]: \"You're welcome.\" \n\n[1] \"Please, get out of my head.\" \n[2] \"You're welcome!\" \n[3] [Forget what just happened for the sake of your sanity and LEAVE]",
         "key": {
             "1": "GetOut",
             "2": "End",
@@ -26,7 +26,7 @@
         "title": "Thanks"
     },
     {
-        "body": "[Clock]: The clock ticks, but you're not sure if it's real or just in your head. \n[You]: You now understand what the Tutorial Agent meant with 'Remember, beware of time'. '\n\n[1] [Leave this cursed place and never come back]",
+        "body": "[Unreliable Clock]: The clock ticks, but you're not sure if it's real or just in your head. \n\n[You]: You now understand what the Tutorial Agent meant with \"Remember, beware of time\". '\n\n[1] [Leave this cursed place and never come back]",
         "key": {
             "1": "End"
         },

@@ -1,10 +1,18 @@
 [
     {
-        "body": "",
+        "body": "[Elevator]: That does not look safe. \n\n[1]: [Inspect further] \n[2]: [Leave the elevator be]",
         "key": {
-            "1": "Start"
+            "1": "Inspect",
+            "2": "End"
         },
         "title": "Start"
+    },
+    {
+        "body": "[Elevator]: The door looks broken, you can't see anything inside. Maybe it'll work on another floor, but the door is beyond reparation, as least on this floor. \n\n[1]: [Leave the elevator be]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Inspect"
     },
     {
         "title": "End"

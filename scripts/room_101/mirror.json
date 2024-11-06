@@ -17,13 +17,16 @@
         "title": "WipeMirror"
     },
     {
-        "title": "TouchFaceCheck"
+        "title": "TouchFaceCheck",
+        "check_skill": "Resonance",
+        "check_minpass": 10
     },
     {
         "body": "[Resonance]: It's you. You can't exactly recall who you are, but that's you for sure. Always has been, always will be. You feel warmth despite the cold environment. (+1 Reason) \n\n[1]: [Leave the mirror alone]",
         "key": {
             "1": "End"
             },
+        "reason": 1,
         "title": "TouchFacePass"
     },
     {

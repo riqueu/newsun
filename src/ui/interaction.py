@@ -179,7 +179,7 @@ class DialogueManager:
             self.dialogue_ended = True
         
         elif event.type == pygame.KEYDOWN:
-            # TODO: Implement Skill Checks
+            # TODO: Implement Skill Checks (check Player.roll_skill_check(self, skill_name: str, difficulty_class: int))
             pressed_key = event.unicode
             self.next_node_title = self.current_node['key'].get(pressed_key)
             if self.next_node_title:
