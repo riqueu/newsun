@@ -1,5 +1,5 @@
 # Screen dimensions
-WIDTH = 1050
+WIDTH = 1440
 HEIGHT = 600
 
 # Frames per second

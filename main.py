@@ -19,7 +19,7 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
         self.running = True  # Set a running flag for game control
-            
+
         # Scene initialization
         self.main_menu = MainMenu(self.screen) 
         self.options_menu = OptionsMenu(self.screen)
@@ -27,11 +27,11 @@ class Game:
         
         self.new_game = NewGame(self.screen)
         self.room_101 = Room101(self.screen)
-        
+
         # Game variables
         self.menu_state = "main"
         self.interaction_state = False
-        
+
         # TODO: Implement Fade in/out effect between scenes
         self.fade = pygame.Surface((WIDTH, HEIGHT)).convert_alpha()
         self.fade.fill((0, 0, 0, 0))
@@ -40,6 +40,7 @@ class Game:
     def handle_events(self):
         # outside event loop to allow for continuous movement
         if self.menu_state == "game" and not self.interaction_state:
+            # keyboard pressed
             keys = pygame.key.get_pressed()
             self.player.handle_movement(keys)
         
