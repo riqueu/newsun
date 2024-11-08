@@ -14,8 +14,8 @@ class Game:
 
     
     def draw_player(self):
-        Quarto(self, (WIN_WIDTH-ROOM_WIDHT)//(2*TILESIZE), (WIN_HEIGHT-ROOM_HEIGH)//(2*TILESIZE))
-        Player(self, (WIN_WIDTH-ROOM_WIDHT)//(2*TILESIZE) + 4, (WIN_HEIGHT-ROOM_HEIGH)//(2*TILESIZE) + 7)
+        Quarto(self, (WIN_WIDTH-ROOM_WIDHT)//2, (WIN_HEIGHT-ROOM_HEIGH)//2)
+        Player(self, (WIN_WIDTH-ROOM_WIDHT)//2 + 100, (WIN_HEIGHT-ROOM_HEIGH)//2 + 200)
 
     def new(self):
         self.playing = True
@@ -40,7 +40,7 @@ class Game:
 
     def draw(self):
         # game loop draw
-        self.screen.fill(BLACK)
+        self.screen.fill((35, 14, 13))
         self.all_sprites.draw(self.screen)
         self.clock.tick(FPS)
         pygame.display.update()
