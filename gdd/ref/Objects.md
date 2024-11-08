@@ -1,1 +1,0 @@
-There are some objects that are [interactable](Interaction.md). Their sprites are highlighted.

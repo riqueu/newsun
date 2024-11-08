@@ -1,6 +1,0 @@
-1: https://tallbeard.itch.io/music-loop-bundle
-main.ogg
-new_game_conversation.ogg
-newsun_hotel.ogg
-
-2:

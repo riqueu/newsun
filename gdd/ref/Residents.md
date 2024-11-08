@@ -1,4 +1,0 @@
-- Camellia, The Uneasy student
-    - Lays by the stairs
-- Tabastan, The Mindful Truant
-    - Stays near the elevator’s door.

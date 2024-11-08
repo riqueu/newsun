@@ -1,1 +1,0 @@
-You can take damage and lower your health by failing specific checks that would wound you.

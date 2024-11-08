@@ -1,1 +1,0 @@
-Basically your inventory. You can check the items you have to see if they’re enough to fix the elevator door.

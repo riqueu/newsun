@@ -1,143 +1,126 @@
-"""Main Module with Game Class"""
-
 import pygame
 import sys
-
-from settings import WIDTH, HEIGHT, FPS
-from src.scenes.main_menu import MainMenu
-from src.scenes.options_menu import OptionsMenu
-from src.scenes.pause_menu import PauseMenu
-
-from src.scenes.room_101 import Room101
-from src.scenes.new_game import NewGame
+import random
+import json
 
 
-class Game:
-    def __init__(self):
-        pygame.init()
-        pygame.display.set_caption("Newsun")
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.clock = pygame.time.Clock()
-        self.running = True  # Set a running flag for game control
+# Inicialização
+pygame.init()
+screen_width, screen_height = 900, 500
+screen = pygame.display.set_mode((screen_width, screen_height))
+clock = pygame.time.Clock()
 
-        # Scene initialization
-        self.main_menu = MainMenu(self.screen) 
-        self.options_menu = OptionsMenu(self.screen)
-        self.pause_menu = PauseMenu(self.screen)
-        
-        self.new_game = NewGame(self.screen)
-        self.room_101 = Room101(self.screen)
+# Game
+COLLISION = False
 
-        # Game variables
-        self.menu_state = "main"
-        self.interaction_state = False
+# Jogador
+player_size = 50
+player_color = (255, 0, 0)
+player_pos = [screen_width // 2, screen_height // 2]  # Começa no centro da tela
+speed = 1.5
+player_word = [800,400]
 
-        # TODO: Implement Fade in/out effect between scenes
-        self.fade = pygame.Surface((WIDTH, HEIGHT)).convert_alpha()
-        self.fade.fill((0, 0, 0, 0))
-        self.fade_alpha = 255
+# Read json maps
+with open('mapas.json', 'r') as arquivo:
+	mapas = json.load(arquivo)
+	
+# player
+player_import = pygame.image.load("player.png")
+palyer = pygame.transform.scale(player_import, (player_size, player_size))
+# mapa
+background_import = pygame.image.load(mapas["quarto"]["img"])
+background = pygame.transform.scale(background_import, (900, 500))
 
-    def handle_events(self):
-        # outside event loop to allow for continuous movement
-        if self.menu_state == "game" and not self.interaction_state:
-            # keyboard pressed
-            keys = pygame.key.get_pressed()
-            self.player.handle_movement(keys)
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-            
-            if self.menu_state == "game":
-                if not pygame.mixer.music.get_busy():
-                    pygame.mixer.music.load('assets/music/newsun_hotel.ogg')
-                    pygame.mixer.music.play(-1)  # Loop the music indefinitely
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        self.menu_state = "pause"
-                        pygame.mixer.music.pause()
-            
-            if self.menu_state == "main":
-                if not pygame.mixer.music.get_busy():
-                    pygame.mixer.music.load('assets/music/main.ogg')
-                    pygame.mixer.music.play(-1)  # Loop the music indefinitely
-            
-                selected_option = self.main_menu.handle_event(event)
-                if selected_option == "Start Game":
-                    self.menu_state = "new_game"
-                    
-                elif selected_option == "Options":
-                    self.options_menu.previous_screen = "main"
-                    self.menu_state = "options" 
-                elif selected_option == "Exit":
-                    self.running = False  # Exit the game
-            
-            elif self.menu_state == "pause":
-                selected_option = self.pause_menu.handle_event(event)
-                if selected_option == "Resume":
-                    self.screen.fill((0, 0, 0))
-                    self.menu_state = "game"
-                    pygame.mixer.music.unpause()
-                elif selected_option == "Options":
-                    self.options_menu.previous_screen = "pause"
-                    self.menu_state = "options"
-                elif selected_option == "Exit":
-                    self.running = False
-            
-            elif self.menu_state == "options":
-                selected_option = self.options_menu.handle_event(event)
-                if selected_option == "Back":
-                    self.menu_state = self.options_menu.previous_screen # main menu/pause menu
-                
-            elif self.menu_state == "new_game":
-                self.new_game.handle_event(event)
-                if self.new_game.dialogue_manager.dialogue_active and not pygame.mixer.music.get_busy():
-                    pygame.mixer.music.load('assets/music/new_game_conversation.ogg')
-                    pygame.mixer.music.play(-1)
-                if self.new_game.game_begin:
-                    self.screen.fill((0, 0, 0))
-                    self.menu_state = "game"
-                    self.player = self.new_game.player
-                    pygame.mixer.music.load('assets/sounds/door_knock_angry.mp3')
-                    pygame.mixer.music.play()
-            else:
-                pass
+# # Função de detecção de colisão
+def check_collision(player_rect, obstacles):
+	for obstacle in obstacles:
+		if player_rect.colliderect(obstacle["rect"]):
+			return True
+	return False
+
+# Função para adicionar obstáculos
+def add_square(position, dimension):
+	return pygame.Rect(position["x"], position["y"], dimension[0], dimension[1])
+
+quarto_obstacles = mapas["quarto"]["obstacles"]
+
+# Adiciona obstáculos a partir do JSON
+obstacles = []
+
+for obstacles_type in quarto_obstacles:
+	print("obstacles_type: ", obstacles_type)
+	for obstacle in quarto_obstacles[obstacles_type]:
+		print("obstacle: ", obstacle)
+		rect = add_square(obstacle["position"], (obstacle["width"], obstacle["height"]))
+		
+		obs = {
+			"type": obstacles_type,
+			"rect": rect,
+		}
+
+		if "border_radius" in obstacle:
+			obs["border_radius"] = obstacle["border_radius"]
+
+		obstacles.append(obs)
+
+# Loop principal
+running = True
+while running:
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			pygame.quit()
+			sys.exit()	
+
+	# Controle do Jogador
+	keys = pygame.key.get_pressed()
+	player_movement = [0, 0]
+
+	if keys[pygame.K_LEFT]:
+		player_movement[0] -= speed
+	if keys[pygame.K_RIGHT]:
+		player_movement[0] += speed
+	if keys[pygame.K_UP]:
+		player_movement[1] -= speed
+	if keys[pygame.K_DOWN]:
+		player_movement[1] += speed
+
+	# Calcular nova posição do jogador no mundo
+	player_word_test = [player_word[0] + player_movement[0], player_word[1] + player_movement[1]]
+	player_rect_test = pygame.Rect(player_word_test[0]+7, player_word_test[1]+32, player_size-20, player_size-30)
+
+	
+	# Verificar colisão
+	if check_collision(player_rect_test, obstacles):
+		continue
+	
+	# Seta a nova posição do jogador no mundo
+	player_word = [player_word[0] + player_movement[0], player_word[1] + player_movement[1]]
+
+	# Desenhar retângulo ao redor do jogador para mostrar a área de colisão
+	player_rect = pygame.Rect(player_word[0], player_word[1], player_size, player_size)
+	pygame.draw.rect(screen, (0, 0, 255), player_rect, 2)  # Borda azul ao redor do jogador
+
+	# Limpar a tela
+	# screen.fill(mapas.quarto.src)  # Verde para o fundo
+	screen.blit(background, (0,0))
+		
+	screen.blit(palyer, player_word)
+	
+	if COLLISION:
+		for obstacle in obstacles:
+			# print(obstacle)
+			if obstacle["type"] == "wall":
+				if "border_radius" in obstacle:
+					pygame.draw.rect(screen, (255, 0, 0), obstacle["rect"], 3, border_radius=obstacle["border_radius"])
+				else:
+					pygame.draw.rect(screen, (255, 0, 0), obstacle["rect"], 3)
+				
+			elif obstacle["type"] == "object":
+				pygame.draw.rect(screen, (255, 255, 0), obstacle["rect"], 3, border_radius=5)
+
+		pygame.draw.rect(screen, player_color, player_rect_test, 1, border_radius=10)
 
 
-    def update(self):
-        # Placeholder for updating game logic
-        pygame.display.update()
-
-    def draw(self):
-        if self.menu_state == "main":
-            self.main_menu.draw()
-        elif self.menu_state == "options":
-            self.options_menu.draw()
-        elif self.menu_state == "new_game" and self.new_game.character_creator_active:
-            self.new_game.draw_character_creator()
-        elif self.menu_state == "new_game" and self.new_game.dialogue_manager.dialogue_active:
-            self.new_game.dialogue_manager.draw()
-        elif self.menu_state == "game":
-            # FIXME: Fix Player Sprite Flickering
-            self.room_101.draw()
-            self.player.draw()
-        elif self.menu_state == "pause":
-            self.pause_menu.draw()
-        else:
-            pass
-        
-        pygame.display.flip()  # Update the entire screen
-
-    def run(self):
-        while self.running:
-            self.handle_events()
-            self.update()
-            self.draw()
-            self.clock.tick(FPS)
-
-        pygame.quit()
-        sys.exit()
-
-if __name__ == "__main__":
-    game = Game()
-    game.run()
+	# Atualizar a tela
+	pygame.display.flip()
+	clock.tick(60)  # 60 FPS

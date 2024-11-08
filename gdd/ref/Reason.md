@@ -1,1 +1,0 @@
-You can damage your sanity and lower your reason by failing specific checks that would wound you mentally.

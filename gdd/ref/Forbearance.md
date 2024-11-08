@@ -1,1 +1,0 @@
-Patience and endurance in the face of adversity. Forbearance is your inner strength, allowing you to withstand hardships, remain calm under pressure, and persist through challenges. It is the quiet resilience that keeps you moving forward, no matter the obstacles in your path.
