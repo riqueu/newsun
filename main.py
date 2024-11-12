@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 clock = pygame.time.Clock()
 
 # Game
-COLLISION = False
+COLLISION = True
 
 # Jogador
 player_size = 50
