@@ -34,7 +34,7 @@ class Player(pygame.sprite.Sprite):
 
         self.image = self.game.character_spritesheet.get_sprite(3, 2, self.width, self.height)
         
-        self.image_hitbox = pygame.image.load('img/player_hitbox.png').convert_alpha()
+        self.image_hitbox = pygame.image.load('C:\\Users\\guguo\\OneDrive\\Área de Trabalho\\FGV\\LP\\pygame\\newsun\\img\\player_hitbox.png').convert_alpha()
 
         self.mask = pygame.mask.from_surface(self.image_hitbox)
 
@@ -172,11 +172,11 @@ class Quarto(pygame.sprite.Sprite):
         self.width = ROOM_WIDHT
         self.height = ROOM_HEIGH
 
-        self.image = pygame.image.load('img/room.png').convert_alpha()
+        self.image = pygame.image.load('C:\\Users\\guguo\\OneDrive\\Área de Trabalho\\FGV\\LP\\pygame\\newsun\\img\\corridor_full.png').convert_alpha()
         self.image.set_colorkey(BLUE)
 
-        self.image_colision = pygame.image.load('img/room_colision.png').convert_alpha()
-        self.image_colision.set_colorkey(BLUE)
+        #self.image_colision = pygame.image.load('C:\\Users\\guguo\\OneDrive\\Área de Trabalho\\FGV\\LP\\pygame\\newsun\\img\\room_colision.png').convert_alpha()
+        #self.image_colision.set_colorkey(BLUE)
 
         self.mask = pygame.mask.from_surface(self.image_colision)
 
