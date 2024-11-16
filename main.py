@@ -31,38 +31,6 @@ class Game:
 
         self.draw_player()
     
-    def interact_with_door(self, door):
-        if self.player.door_side == "top":
-            # Posiciona o jogador abaixo da porta e altera o estado para "bottom"
-            self.player.rect.x = door.rect.centerx - self.player.rect.width // 2  # Centraliza o jogador na porta
-            self.player.rect.y = door.rect.bottom + 10  # Coloca o jogador logo abaixo da porta
-            self.player.door_side = "bottom"  # Muda o estado do jogador para "bottom"
-
-            # Cria e desenha o Hall
-            self.hall = Hall(self, self.room.rect.topleft[0], self.room.rect.topleft[1] + 220)  # Coloca o Hall abaixo do Room
-            self.all_sprites.add(self.hall)  # Adiciona o novo ambiente (Hall) aos sprites
-
-            # Muda o quarto atual de Room para Hall
-            if hasattr(self, 'room'):  # Verifica se a Room ainda existe
-                self.all_sprites.remove(self.room)  # Remove o quarto atual
-                self.room = None  # Limpa a referência à sala atual
-
-
-        elif self.player.door_side == "bottom":
-            # Posiciona o jogador acima da porta e altera o estado para "top"
-            self.player.rect.x = door.rect.centerx - self.player.rect.width // 2  # Centraliza o jogador na porta
-            self.player.rect.y = door.rect.top - self.player.rect.height - 10  # Coloca o jogador logo acima da porta
-            self.player.door_side = "top"  # Muda o estado do jogador para "top"
-
-            # Muda de volta para o Room
-            if hasattr(self, 'hall'):  # Verifica se o Hall existe
-                self.all_sprites.remove(self.hall)  # Remove o corredor
-                self.hall = None  # Limpa a referência ao corredor
-
-            # Cria e desenha o Room
-            self.room = Room(self, (WIN_WIDTH - ROOM_WIDHT) // 2, (WIN_HEIGHT - ROOM_HEIGHT) // 2)
-            self.all_sprites.add(self.room)  # Adiciona o novo ambiente (Room) aos sprites
-    
     def events(self):
         # game loop events
         for event in pygame.event.get():
@@ -75,10 +43,8 @@ class Game:
                     # Verifica se o jogador está perto de alguma porta
                     for door in self.doors:
                         if door.rect.colliderect(self.player.rect):  # Verifica se o jogador está dentro do alcance da porta
-                            self.interact_with_door(door)
+                            door.interact_with_door()
             
-
-
     def update(self):
         # game loop updates
         self.all_sprites.update()

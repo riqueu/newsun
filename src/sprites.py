@@ -225,6 +225,38 @@ class RoomDoor(pygame.sprite.Sprite):
 
         self.destination_side = destination_direction  # Direção para o outro lado da porta (ex: "esquerda" ou "direita")
 
+    def interact_with_door(self):
+        if self.game.player.door_side == "top":
+            # Posiciona o jogador abaixo da porta e altera o estado para "bottom"
+            self.game.player.rect.x = self.rect.centerx - self.game.player.rect.width // 2  # Centraliza o jogador na porta
+            self.game.player.rect.y = self.rect.bottom + 10  # Coloca o jogador logo abaixo da porta
+            self.game.player.door_side = "bottom"  # Muda o estado do jogador para "bottom"
+
+            # Cria e desenha o Hall
+            self.game.hall = Hall(self.game, self.game.room.rect.topleft[0], self.game.room.rect.topleft[1] + 220)  # Coloca o Hall abaixo do Room
+            self.game.all_sprites.add(self.game.hall)  # Adiciona o novo ambiente (Hall) aos sprites
+
+            # Muda o quarto atual de Room para Hall
+            if hasattr(self.game, 'room'):  # Verifica se a Room ainda existe
+                self.game.all_sprites.remove(self.game.room)  # Remove o quarto atual
+                self.game.room = None  # Limpa a referência à sala atual
+
+
+        elif self.game.player.door_side == "bottom":
+            # Posiciona o jogador acima da porta e altera o estado para "top"
+            self.game.player.rect.x = self.rect.centerx - self.game.player.rect.width // 2  # Centraliza o jogador na porta
+            self.game.player.rect.y = self.rect.top - self.game.player.rect.height - 10  # Coloca o jogador logo acima da porta
+            self.game.player.door_side = "top"  # Muda o estado do jogador para "top"
+
+            # Muda de volta para o Room
+            if hasattr(self.game, 'hall'):  # Verifica se o Hall existe
+                self.game.all_sprites.remove(self.game.hall)  # Remove o corredor
+                self.game.hall = None  # Limpa a referência ao corredor
+
+            # Cria e desenha o Room
+            self.game.room = Room(self.game, (WIN_WIDTH - ROOM_WIDHT) // 2, (WIN_HEIGHT - ROOM_HEIGHT) // 2)
+            self.game.all_sprites.add(self.game.room)  # Adiciona o novo ambiente (Room) aos sprites
+
     def update(self):
         # Aqui podemos atualizar algo relacionado à porta, se necessário
         pass
