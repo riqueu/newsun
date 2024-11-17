@@ -10,7 +10,7 @@ class SpriteSheet():
     def get_sprite(self, x, y, widht, height):
         sprite = pygame.Surface([widht, height])
         sprite.blit(self.sheet, (0,0), (x*widht, y*height, widht, height))
-        sprite.set_colorkey(BLACK)
+        sprite.set_colorkey(BLUE)
         return sprite
 
 class Player(pygame.sprite.Sprite):
@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.x = x
         self.y = y
         self.width = 48
-        self.height = 57
+        self.height = 72
 
         self.x_change = 0
         self.y_change = 0
@@ -71,17 +71,17 @@ class Player(pygame.sprite.Sprite):
                            self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(2, 0, self.width, self.height)]
 
-        up_animations = [self.game.character_spritesheet.get_sprite(1, 3+1/self.height, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(0, 3+1/self.height, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(2, 3+1/self.height, self.width, self.height)]
+        up_animations = [self.game.character_spritesheet.get_sprite(1, 3, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 3, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 3, self.width, self.height)]
 
         left_animations = [self.game.character_spritesheet.get_sprite(1, 1, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(0, 1, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(2, 1, self.width, self.height)]
 
-        right_animations = [self.game.character_spritesheet.get_sprite(1, 2+1/self.height, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(0, 2+1/self.height, self.width, self.height),
-                           self.game.character_spritesheet.get_sprite(2, 2+1/self.height, self.width, self.height)]
+        right_animations = [self.game.character_spritesheet.get_sprite(1, 2, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 2, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 2, self.width, self.height)]
         
         if self.facing == 'down':
             if self.y_change == 0:
@@ -94,7 +94,7 @@ class Player(pygame.sprite.Sprite):
         
         if self.facing == 'up':
             if self.y_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(1, 3+1/self.height, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 3, self.width, self.height)
             else:
                 self.image = up_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -112,7 +112,7 @@ class Player(pygame.sprite.Sprite):
         
         if self.facing == 'right':
             if self.x_change == 0:
-                self.image = self.game.character_spritesheet.get_sprite(1, 2+1/self.height, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 2, self.width, self.height)
             else:
                 self.image = right_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
