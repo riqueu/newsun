@@ -9,10 +9,12 @@ The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsu
 ---
 ## Inspiration
 
-- Disco Elysium (No shit)
+- Disco Elysium
     - like everything lol
 - Pathologic 2
     - it’s themes/relationship with time
+- Rue Valley
+    - gameplay/dialogues
 - Half-Life: Alyx
     - simplicity of interaction
 - Night in the Woods
@@ -23,7 +25,7 @@ The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsu
 ---
 ## Player Experience
 
-The [Story](ref/Story.md) starts with the player waking up clueless in room 101 with one single objective: get a grip on what the hell is going on! Who they are? Where the fuck they are? Why is everyone crazy? As you connect with the guests, you start to uncover the mysteries that lie within Newsun.
+The [Story](ref/Story.md) starts with the player waking up clueless in room 101 with one single objective: get a grip on what the hell is going on! Who they are? Where they are? Why is everyone crazy? As you connect with the guests, you start to uncover the mysteries that lie within Newsun.
 
 [Time](ref/Time.md) is a precious gift, make sure you use it wisely. You must investigate the objects and interact with guests who might or might not know you. Each interaction costs time.
 

@@ -1,5 +1,8 @@
 [
     {
+        "title": "Start"
+    },
+    {
         "body": "[Tabastan, the Mindful Truant]: There's a tall person standing by the elevator. Unlike the broken elevator, he seem to be in a hurry. \n\n [1]: \"Hello fellow human, do you know my name or where I am?\" \n [2]: \"Were you the one who knocked on my door?\" \n [3]: \"I don't think that elevator will work.\" \n[4] [Leave the person alone]",
         "key": {
             "1": "Hey",
@@ -7,7 +10,7 @@
             "3": "Elevator",
             "4": "End"
         },
-        "title": "Start"
+        "title": "Start1"
     },
     {
         "body": "[Tabastan, the Mindful Truant]: \"Maybe I did. Maybe I didn't. What's it to you?\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
@@ -146,5 +149,9 @@
     },
     {
         "title": "End"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: Tabastan stands by the elevator, he's not up for talking right now. \n\n[1]: [Leave him alone]",
+        "title": "Start2"
     }
 ]
