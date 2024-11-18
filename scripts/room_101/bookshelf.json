@@ -1,0 +1,33 @@
+[
+    {
+        "body": "[bookshelf]: it's stacked with old, dusty books. \n\n[1]: [Inspect them] \n[2]: [Leave the books alone]",
+        "key": {
+            "1": "Inspect",
+            "2": "End"
+        },
+        "title": "Start"
+    },
+
+    {
+        "body": "[bookshelf]: The books are all really old, but some of them are less dusty - probably recently used \n\n[1]: [pick some books] \n\n[1]: [leave them be]",
+        "key": {
+            "1": "PickTheBooks",
+            "2": "End"
+        },
+        "title": "Inspect"
+    },
+
+        {
+            "body": "[Forbearance]: \"taking the dustier books could kill you, .\n\n[1]: [pick the cleaner ones] \n[2]: [try to take a dirt book (Resonance|25%)] \n[3]: [Leave the books alone]",
+            "key": {
+                "1": "PickClean",
+                "2": "PickOldCheck"
+            },
+            "title": "Inspect"
+
+        },
+
+    {
+        "title": "End"
+    }
+]
