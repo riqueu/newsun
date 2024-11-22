@@ -15,7 +15,8 @@ class NewGame:
             screen (pygame.Surface): The screen.
         """
         self.screen = screen
-        self.interactions = json.load(open('scripts/new_game/new_game.json'))
+        # self.interactions = json.load(open('scripts/new_game/new_game.json'))
+        self.interactions = json.load(open('scripts/room_101/mirror.json'))
         self.key_to_node = get_key_to_node(self.interactions)
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)
@@ -76,10 +77,10 @@ class NewGame:
         skill_names = list(stats.keys())
         selected_skill = 0
 
-        begin = False
+        leave_creator = False
         
         while True:
-            if begin:
+            if leave_creator:
                 break
         
             confirm_text = self.font.render("Press Z to confirm", True, (255, 255, 255))
@@ -101,7 +102,7 @@ class NewGame:
                         stats[skill_names[selected_skill]] -= 1
                         points += 1
                     elif event.key == pygame.K_z:
-                        begin = True
+                        leave_creator = True
 
             # Redraw the screen
             # self.screen.fill((0, 0, 0))
@@ -131,6 +132,6 @@ class NewGame:
         self.dialogue_manager.dialogue_active = True
         self.character_creator_active = False
         pygame.mixer.music.stop()
-        # self.screen.fill((0, 0, 0))
-        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+        self.screen.fill((0, 0, 0))
+        # self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
         self.player.set_skills(stats)

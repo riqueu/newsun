@@ -29,6 +29,7 @@ class Room101:
     # TODO: Handle Events on room 101
     def handle_event(self, event: pygame.event.Event) -> None:
         pass
+
     
     def draw(self) -> None:
         """Function that draws the room
@@ -37,4 +38,3 @@ class Room101:
         for obj in self.objects:
             pygame.draw.rect(self.screen, (255, 0, 0), obj["rect"], 2)
 
-        pygame.display.flip()

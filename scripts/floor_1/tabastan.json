@@ -72,7 +72,7 @@
     {
         "title": "NewsunCheck",
         "check_skill": "Resonance",
-        "check_minpass": 10
+        "difficulty_class": 10
     },
     {
         "body": "[Resonance]: \"He's clearly joking with you. You can tell by the way he's smiling.\" \n\n[1]: \"I lost my memory but I'm not stupid. Can you please not blatantly lie?\" \n[2]: \"You are not the best liar. If you won't help, at least don't get in my way.\" [Leave]",

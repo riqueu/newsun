@@ -16,8 +16,10 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("Newsun")
+        pygame.display.set_icon(pygame.image.load('assets/images/newsun.jpg'))
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
+        self.time=pygame.time.get_ticks()
         self.running = True  # Set a running flag for game control
             
         # Scene initialization
@@ -97,8 +99,8 @@ class Game:
                     self.screen.fill((0, 0, 0))
                     self.menu_state = "game"
                     self.player = self.new_game.player
-                    pygame.mixer.music.load('assets/sounds/door_knock_angry.mp3')
-                    pygame.mixer.music.play()
+                    pygame.mixer.music.stop()
+                    pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
             else:
                 pass
 
@@ -108,6 +110,7 @@ class Game:
         pygame.display.update()
 
     def draw(self):
+        self.screen.fill((0, 0, 0))
         if self.menu_state == "main":
             self.main_menu.draw()
         elif self.menu_state == "options":
