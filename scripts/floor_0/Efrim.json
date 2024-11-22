@@ -1,0 +1,26 @@
+[
+    {
+        "body": "[Efrim, Coffee Grinder]: A strong aroma of coffee is filling the room. It seems to be coming from this guy and his weird contramption \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
+        "key": {
+            "1": "Hey",
+            "2": "Smell",
+            "3": "Coffee",
+            "4": "thing",
+            "5": "End"
+        },
+        "title": "Start"
+    },
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Maybe I did. Maybe I didn't. What's it to you?\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
+        "key": {
+            "1": "Hey",
+            "2": "Hey",
+            "3": "End"
+        },
+        "title": "Hey"
+    },
+    
+    {
+        "title": "End"
+    }
+]
