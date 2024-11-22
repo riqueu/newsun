@@ -119,10 +119,8 @@ class Game:
             self.main_menu.draw()
         elif self.menu_state == "options":
             self.options_menu.draw()
-        elif self.menu_state == "new_game" and self.new_game.character_creator_active:
-            self.new_game.draw_character_creator()
-        elif self.menu_state == "new_game" and self.new_game.dialogue_manager.dialogue_active:
-            self.new_game.dialogue_manager.draw()
+        elif self.menu_state == "new_game":
+            self.new_game.draw()
         elif self.menu_state == "game":
             self.room_101.draw()
             self.player.draw()

@@ -100,7 +100,7 @@
         "title": "SnapBack"
     },
     {
-        "body": "[Vorakh, the Emshen]: \"Oh, right! The items! You'll need a *tool box*, a *douasdjasmo*, and a cup of *coffee*. \" \n\n [1]: \"Is the cup of coffee really necessary?\"\n[2]: \"Okay. I'll be back!\"",
+        "body": "[Vorakh, the Emshen]: \"Oh, right! The items! You'll need a *tool box*, a *zip tie*, and a cup of *coffee*. \" \n\n [1]: \"Is the cup of coffee really necessary?\"\n[2]: \"Okay. I'll be back!\"",
         "keys": {
             "1": "Coffee",
             "2": "End"
