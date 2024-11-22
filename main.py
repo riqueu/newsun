@@ -21,14 +21,11 @@ class Game:
         self.clock = pygame.time.Clock()
         self.time=pygame.time.get_ticks()
         self.running = True  # Set a running flag for game control
-            
+        
         # Scene initialization
         self.main_menu = MainMenu(self.screen) 
         self.options_menu = OptionsMenu(self.screen)
         self.pause_menu = PauseMenu(self.screen)
-        
-        self.new_game = NewGame(self.screen)
-        self.room_101 = Room101(self.screen)
         
         # Game variables
         self.menu_state = "main"
@@ -65,6 +62,7 @@ class Game:
             
                 selected_option = self.main_menu.handle_event(event)
                 if selected_option == "Start Game":
+                    self.new_game = NewGame(self.screen)
                     self.menu_state = "new_game"
                     
                 elif selected_option == "Options":
@@ -97,6 +95,7 @@ class Game:
                     pygame.mixer.music.play(-1)
                 if self.new_game.game_begin:
                     self.screen.fill((0, 0, 0))
+                    self.load_map()
                     self.menu_state = "game"
                     self.player = self.new_game.player
                     pygame.mixer.music.stop()
@@ -105,6 +104,11 @@ class Game:
                 pass
 
 
+    def load_map(self):
+        """Method that creates the map
+        """
+        self.room_101 = Room101(self.screen)
+        
     def update(self):
         # Placeholder for updating game logic
         pygame.display.update()
@@ -120,7 +124,6 @@ class Game:
         elif self.menu_state == "new_game" and self.new_game.dialogue_manager.dialogue_active:
             self.new_game.dialogue_manager.draw()
         elif self.menu_state == "game":
-            # FIXME: Fix Player Sprite Flickering
             self.room_101.draw()
             self.player.draw()
         elif self.menu_state == "pause":

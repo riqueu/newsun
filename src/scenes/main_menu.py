@@ -1,7 +1,7 @@
 """Main Menu Scene"""
 
 import pygame
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import black_bg
 
 class MainMenu:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -16,13 +16,13 @@ class MainMenu:
         self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 52)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.default_color = (255, 255, 255)
-        self.black_bg = load_png_sequence('assets/ui/BlackBG')
 
     def draw(self) -> None:
         """Functions that draws the main menu
         """
-        # self.screen.fill((0, 0, 0))
-        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+        black_bg.draw(self.screen)
+        black_bg.animate()
+        
         # Display title and keybinds
         newsun = self.title_font.render("Newsun", True, self.default_color)
         rect_newsun = newsun.get_rect(center=(self.screen.get_width() // 2, 150))

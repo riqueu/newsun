@@ -4,7 +4,7 @@ import pygame
 import json
 
 from src.ui.interaction import DialogueManager, get_key_to_node
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import black_bg, dialogue_box_left, skill_desc
 from src.characters.player import Player
 
 class NewGame:
@@ -21,10 +21,6 @@ class NewGame:
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)
         self.player = Player(self.screen)  # Initialize the Player object
-        
-        self.skills_bg = load_png_sequence('assets/ui/DialogueBox')
-        self.desc_bg = load_png_sequence('assets/ui/SkillDesc')
-        self.black_bg = load_png_sequence('assets/ui/BlackBG')
         
         self.character_creator_active = True
         self.game_begin = False
@@ -44,16 +40,15 @@ class NewGame:
     def draw_ui(self) -> None:
         """Function that draws the png sequence of the UI
         """
-        self.screen.blit(sequence_current_frame(self.desc_bg), (450,100))
-        self.screen.blit(sequence_current_frame(self.skills_bg), (0,0))
+        dialogue_box_left.draw(self.screen)
+        dialogue_box_left.animate()
+        
+        skill_desc.draw(self.screen)
+        skill_desc.animate()
             
     def draw_character_creator(self) -> None:
         """Function that handles the character creator part of the new game scene
-        """
-        # self.screen.fill((0, 0, 0))
-        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
-        pygame.display.flip()
-        
+        """        
         # Display player stats selection screen (8 points to distribute)
         points = 8
         text = self.font.render("Choose your stats:", True, (255, 255, 255))
@@ -71,8 +66,6 @@ class NewGame:
             self.screen.blit(stat_text, (50, y_offset))
             y_offset += 50
 
-        # Update the display
-        pygame.display.flip()
         # Allow the player to distribute points among skills
         skill_names = list(stats.keys())
         selected_skill = 0
@@ -105,8 +98,9 @@ class NewGame:
                         leave_creator = True
 
             # Redraw the screen
-            # self.screen.fill((0, 0, 0))
-            self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+            black_bg.draw(self.screen)
+            black_bg.animate()
+            
             self.draw_ui()
             self.screen.blit(text, (50, 50))
             self.screen.blit(self.font.render(f"Available Points: {points}", True, (255, 255, 255)), (50, 100))
@@ -132,6 +126,5 @@ class NewGame:
         self.dialogue_manager.dialogue_active = True
         self.character_creator_active = False
         pygame.mixer.music.stop()
-        self.screen.fill((0, 0, 0))
-        # self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+
         self.player.set_skills(stats)
