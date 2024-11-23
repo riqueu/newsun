@@ -1,5 +1,9 @@
 [
     {
+        "title": "Start"
+    },   
+
+    {
         "body": "[Efrim, Coffee Grinder]: A strong aroma of coffee is filling the room. It seems to be coming from this guy and his weird contramption \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
         "key": {
             "1": "Hey",
@@ -8,10 +12,10 @@
             "4": "thing",
             "5": "End"
         },
-        "title": "Start"
+        "title": "Start1"
     },
     {
-        "body": "[Efrim, Coffee Grinder]: \"Maybe I did. Maybe I didn't. What's it to you?\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
+        "body": "[Efrim, Coffee Grinder]: \"Oh, hello\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
         "key": {
             "1": "Hey",
             "2": "Hey",
@@ -20,6 +24,26 @@
         "title": "Hey"
     },
     
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Oh, yeah, i was grinding some coffee. it turned out really good, but i've used my last *beans*...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "Beans",
+            "3": "End"
+        },
+        "title": "smell"
+    },
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Ah, sorry, not only i'm all out of coffee beans, but i've just drunk my last cup as well\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "Beans",
+            "3": "End"
+        },
+        "title": "coffee"
+    },
+
     {
         "title": "End"
     }
