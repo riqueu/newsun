@@ -17,7 +17,7 @@
     {
         "body": "[Efrim, Coffee Grinder]: \"Oh, hello\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
         "key": {
-            "1": "Hey",
+            "1": "Coffee",
             "2": "Hey",
             "3": "End"
         },
@@ -45,6 +45,35 @@
     },
 
     {
+        "body": "[Efrim, Coffee Grinder]: \"Ah, sorry, not only i'm all out of coffee beans, but i've just drunk my last cup as well\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "Beans",
+            "3": "End"
+        },
+        "title": "coffee"
+    },
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Yeah, sure, a bunch of other students have as well. I think Camelia or Ersilia could give your some\" \n\n[1] \"Sorry, but who?\" \n[2] \"kay, thanks \" [Leave]",
+        "key": {
+            "1": "Who",
+            "2": "End"
+        },
+        "title": "coffee"
+    },
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"I thought you knew them, Camelia is the red-haired\" \n\n[1] \"Sorry, but who?\" \n[2] \"kay, thanks \" [Leave]",
+        "key": {
+            "1": "Who",
+            "2": "End"
+        },
+        "title": "who"
+    },
+
+    {
+        "body":"",
         "title": "End"
     }
 ]
