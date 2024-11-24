@@ -1,7 +1,7 @@
 """Pause Menu Scene"""
 
 import pygame
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import black_bg
 
 class PauseMenu:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -14,7 +14,6 @@ class PauseMenu:
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
         self.options = ["Resume", "Options", "Exit"]
         self.selected_option = 0
-        self.black_bg = load_png_sequence('assets/ui/BlackBG')
 
     def handle_event(self, event: pygame.event.Event) -> str|None:
         """Function that handles ui interaction on the pause menu
@@ -39,8 +38,8 @@ class PauseMenu:
     def draw(self) -> None:
         """Function that draws the pause menu
         """
-        #self.screen.fill((0, 0, 0))
-        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+        black_bg.draw(self.screen)
+        black_bg.animate()
         
         keybinds = self.font.render("Z to Select | X to Cancel | Arrows to Move", True, (255, 255, 255))
         rect_keybinds = keybinds.get_rect(center=(self.screen.get_width() // 2, 500))

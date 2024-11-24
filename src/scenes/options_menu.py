@@ -1,7 +1,7 @@
 """Options Menu Scene"""
 
 import pygame
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import black_bg
 
 class OptionsMenu:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -12,12 +12,10 @@ class OptionsMenu:
         """
         self.screen = screen
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 26)
-        self.volume = 0.5  # Initial volume level (50%)
+        self.volume = 0.3  # Initial volume level (30%)
         self.options = ["Volume", "Back"]
         self.selected_option = 0
         self.previous_screen = None
-        self.black_bg = load_png_sequence('assets/ui/BlackBG')
-        
 
     def handle_event(self, event: pygame.event.Event) -> str|None:
         """Function that handles the menu interaction
@@ -36,9 +34,13 @@ class OptionsMenu:
             elif event.key == pygame.K_LEFT and self.selected_option == 0:
                 self.volume = max(0.0, self.volume - 0.1)  # Decrease volume
                 pygame.mixer.music.set_volume(self.volume)
+                pygame.mixer.Channel(0).set_volume(self.volume)
+                pygame.mixer.Channel(1).set_volume(self.volume)
             elif event.key == pygame.K_RIGHT and self.selected_option == 0:
                 self.volume = min(1.0, self.volume + 0.1)  # Increase volume
                 pygame.mixer.music.set_volume(self.volume)
+                pygame.mixer.Channel(0).set_volume(self.volume)
+                pygame.mixer.Channel(1).set_volume(self.volume)
             elif event.key == pygame.K_z:
                 if self.options[self.selected_option] == "Back":
                     return "Back"
@@ -49,8 +51,9 @@ class OptionsMenu:
     def draw(self) -> None:
         """Function that draws the options menu
         """
-        #self.screen.fill((0, 0, 0))
-        self.screen.blit(sequence_current_frame(self.black_bg), (0,0))
+        black_bg.draw(self.screen)
+        black_bg.animate()
+        
         for i, option in enumerate(self.options):
             color = (255, 255, 255) if i == self.selected_option else (100, 100, 100)
             text = self.font.render(option, True, color)
@@ -72,5 +75,3 @@ class OptionsMenu:
             
         # Update the volume option text
         self.options[0] = f"Volume: {int(self.volume * 100)}%"
-
-        pygame.display.flip()
