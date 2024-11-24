@@ -65,7 +65,7 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 
 The main component of the gameplay are [interactions](ref/Interaction.md). Through passed [checks](ref/Checks.md) during interactions, you can gather experience, however, failed [checks](ref/Checks.md) might damage your [health](ref/Health.md) or your [reason](ref/Reason.md). The points distribuited to your [skills](ref/Skills.md) might give you an advantage on your [rolls/skill checks](ref/Checks.md).
 
-You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to fix the elevator and get to Floor -1, where you trigger one of the endings. If you fail to fix the elevator before midnight, [Han](ref/Han.md) consumes the hotel and you lose the game. If you fix the elevator, [Han](ref/Han.md) might or might not enlight you with your lost memories. Your experience will be of help on that final skill check, the more experience you have, the higher your odds are.
+You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to fix the elevator and get to Floor -1, where you trigger one of the endings. If you fail to fix the elevator before midnight, [Matilda](ref/Matilda.md) consumes the hotel and you lose the game. If you fix the elevator, [Matilda](ref/Matilda.md) might or might not enlight you with your lost memories. Your experience will be of help on that final skill check, the more experience you have, the higher your odds are.
 
 ---
 ## Theme Interpretation

@@ -3,7 +3,7 @@
         "title": "Start"
     },
     {
-      "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Touch your face (Resonance|DC 10)] \n[3]: [Leave the mirror alone]",
+      "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Touch your face (Resonance | DC 10)] \n[3]: [Leave the mirror alone]",
       "key": {
         "1": "WipeMirror",
         "2": "TouchFaceCheck",
@@ -12,7 +12,7 @@
       "title": "Start1"
     },
     {
-        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Touch your Face (Resonance|DC 10)] \n[2]: [Leave the mirror alone]",
+        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Touch your Face (Resonance | DC 10)] \n[2]: [Leave the mirror alone]",
         "key": {
             "1": "TouchFaceCheck",
             "2": "End"
@@ -40,6 +40,7 @@
         "title": "TouchFaceFail"
     },
     {
+        "body": "",
         "title": "End"
     },
     {

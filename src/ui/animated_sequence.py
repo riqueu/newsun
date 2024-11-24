@@ -2,7 +2,7 @@
 
 import os
 import pygame
-from settings import WIDTH, HEIGHT
+WIDTH, HEIGHT = 1050, 600
 
 def load_png_sequence(folder: str) -> list[pygame.surface.Surface]:
     """Function that loads a png sequence
@@ -106,13 +106,12 @@ box_y = (HEIGHT - 600) // 2
 video_in = Video(screen, box_x, box_y, 'assets/ui/DialogueBoxIn', status=True) # In animation
 video = Video(screen, box_x, box_y, 'assets/ui/DialogueBox', status=True, loop=True) # Loop animation
 video_out = Video(screen, box_x, box_y, 'assets/ui/DialogueBoxOut') # Out animation
-
         
-vid_roll = Video(screen, 0, 0, 'assets/ui/Check', 50)
-vid_pass = Video(screen, 0, 0, 'assets/ui/Pass', 30, 50)
-vid_fail = Video(screen, 0, 0, 'assets/ui/Fail', 50, 50)
+vid_roll = Video(screen, 0, 0, 'assets/ui/Check', 60)
+vid_pass = Video(screen, 0, 0, 'assets/ui/Pass', 60, 50)
+vid_fail = Video(screen, 0, 0, 'assets/ui/Fail', 100, 50)
 
-black_bg = Video(screen, 0, 0, 'assets/ui/BlackBG', status=True, loop=True)
+black_bg = Video(screen, 0, 0, 'assets/ui/BlackBG', delay=240, status=True, loop=True)
 
 skill_desc = Video(screen, 450, 100, 'assets/ui/SkillDesc', status=True, loop=True)
 dialogue_box_left = Video(screen, 0, 0, 'assets/ui/DialogueBox', status=True, loop=True)
@@ -123,13 +122,6 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
 
     screen = pygame.display.set_mode((1050, 600))
-    video = Video(screen, 0, 0, 'assets/ui/DialogueBox', status=True, loop=True)
-    video_in = Video(screen, 0, 0, 'assets/ui/DialogueBoxIn', status=True)
-    video_out = Video(screen, 0, 0, 'assets/ui/DialogueBoxOut')
-    
-    roll_vid = Video(screen, 0, 0, 'assets/ui/Check', 50)
-    pass_vid = Video(screen, 0, 0, 'assets/ui/Pass', 30, 50)
-    fail_vid = Video(screen, 0, 0, 'assets/ui/Fail', 50, 50)
     
     running = True
     start_time = pygame.time.get_ticks()
@@ -140,9 +132,8 @@ if __name__ == "__main__":
             video_out.draw(screen)
             video_out.animate()
             if video_out.count == len(video_out.sequence) - 1:
-
                 video_in.status = True
-
+                
         elif video_in.status:
             video_in.draw(screen)
 
@@ -175,15 +166,15 @@ if __name__ == "__main__":
         
         screen.blit(text_surface, (0, 0))
         
-        if roll_vid.status:
-            roll_vid.draw(screen)
-            roll_vid.animate()
-        if pass_vid.status:
-            pass_vid.draw(screen)
-            pass_vid.animate()
-        if fail_vid.status:
-            fail_vid.draw(screen)
-            fail_vid.animate()
+        if vid_roll.status:
+            vid_roll.draw(screen)
+            vid_roll.animate()
+        if vid_pass.status:
+            vid_pass.draw(screen)
+            vid_pass.animate()
+        if vid_fail.status:
+            vid_fail.draw(screen)
+            vid_fail.animate()
             
         pygame.display.flip()
         for event in pygame.event.get():
@@ -195,13 +186,13 @@ if __name__ == "__main__":
                     video_out.status = True
                 
                 if event.key == pygame.K_c:
-                    roll_vid.status = True
+                    vid_roll.status = True
                     
                 if event.key == pygame.K_v:
-                    pass_vid.status = True
+                    vid_pass.status = True
                     
                 if event.key == pygame.K_b:
-                    fail_vid.status = True
+                    vid_fail.status = True
                     
         clock.tick(60)
     pygame.quit()

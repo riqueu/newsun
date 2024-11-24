@@ -7,13 +7,14 @@ from settings import WIDTH, HEIGHT, FPS
 from src.scenes.main_menu import MainMenu
 from src.scenes.options_menu import OptionsMenu
 from src.scenes.pause_menu import PauseMenu
-
-from src.scenes.room_101 import Room101
 from src.scenes.new_game import NewGame
+from src.scenes.hotel_scenes import *
 
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize the Game
+        """
         pygame.init()
         pygame.display.set_caption("Newsun")
         pygame.display.set_icon(pygame.image.load('assets/images/newsun.jpg'))
@@ -27,18 +28,23 @@ class Game:
         self.options_menu = OptionsMenu(self.screen)
         self.pause_menu = PauseMenu(self.screen)
         
+        self.game_scenes = []
+        
         # Game variables
         self.menu_state = "main"
         self.interaction_state = False
+        self.current_scene = None
         
         # TODO: Implement Fade in/out effect between scenes
         self.fade = pygame.Surface((WIDTH, HEIGHT)).convert_alpha()
         self.fade.fill((0, 0, 0, 0))
         self.fade_alpha = 255
 
-    def handle_events(self):
+    def handle_events(self) -> None:
+        """Handles events in the game
+        """
         # outside event loop to allow for continuous movement
-        if self.menu_state == "game" and not self.interaction_state:
+        if self.menu_state == "game":
             keys = pygame.key.get_pressed()
             self.player.handle_movement(keys)
         
@@ -54,6 +60,15 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         self.menu_state = "pause"
                         pygame.mixer.music.pause()
+                        
+                if self.current_scene == "room_101":
+                    self.room_101.handle_event(event)
+                elif self.current_scene == "floor_1":
+                    self.floor_1.handle_event(event)
+                elif self.current_scene == "floor_0":
+                    self.floor_0.handle_event(event)
+                elif self.current_scene == "underground":
+                    self.underground.handle_event(event)
             
             if self.menu_state == "main":
                 if not pygame.mixer.music.get_busy():
@@ -97,23 +112,21 @@ class Game:
                     self.screen.fill((0, 0, 0))
                     self.load_map()
                     self.menu_state = "game"
+                    self.current_scene = "room_101"
                     self.player = self.new_game.player
                     pygame.mixer.music.stop()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
             else:
                 pass
 
-
-    def load_map(self):
+    def load_map(self) -> None:
         """Method that creates the map
         """
         self.room_101 = Room101(self.screen)
-        
-    def update(self):
-        # Placeholder for updating game logic
-        pygame.display.update()
 
-    def draw(self):
+    def draw(self) -> None:
+        """Method that renders the game
+        """
         self.screen.fill((0, 0, 0))
         if self.menu_state == "main":
             self.main_menu.draw()
@@ -122,7 +135,8 @@ class Game:
         elif self.menu_state == "new_game":
             self.new_game.draw()
         elif self.menu_state == "game":
-            self.room_101.draw()
+            if self.current_scene == "room_101":
+                self.room_101.draw()
             self.player.draw()
         elif self.menu_state == "pause":
             self.pause_menu.draw()
@@ -131,7 +145,9 @@ class Game:
         
         pygame.display.flip()  # Update the entire screen
 
-    def run(self):
+    def run(self) -> None:
+        """Method to run through the game loop
+        """
         while self.running:
             self.handle_events()
             self.update()

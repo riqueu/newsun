@@ -108,13 +108,13 @@ class DialogueBox:
     def render_bg(self) -> None:
         """Function that renders the background of the box & its animations
         """
-        if video_out.status:
-            video_out.draw(self.screen)
-            video_out.animate()
-
-        elif video_in.status:
+        if video_in.status:
             video_in.draw(self.screen)
             video_in.animate()
+            
+        elif video_out.status:
+            video_out.draw(self.screen)
+            video_out.animate()
 
         else:
             video.draw(self.screen)
@@ -172,7 +172,6 @@ class DialogueManager:
         self.current_node = self.find_node("Start")
         self.dialogue_box = DialogueBox(screen)
         
-        self.dialogue_started = False
         self.dialogue_active = False
         self.dialogue_ended = False
         self.check_done = False
@@ -202,13 +201,17 @@ class DialogueManager:
         Args:
             event (pygame.event.Event): current event
         """
-        if self.current_node['title'] == "Start" and self.start_count > 1:
+        if self.current_node['title'] == "Start":
+            if self.start_count > 1:
             # TODO: Either go to start 1 or 2 depending on conditions, default to start 1 for now
-            self.current_node = self.find_node("Start1")
+                self.current_node = self.find_node("Start1")
+            video_in.status = True
+            video_out.status = False
         
         elif self.current_node['title'] == "End":
             video_out.status = True
             self.dialogue_ended = True
+            self.dialogue_active = False
         
         # Check if the current node is a check node
         elif "Check" in self.current_node['title']:
@@ -253,8 +256,13 @@ class DialogueManager:
         """
         if self.current_node in self.nodes_with_body:
             self.dialogue_box.set_text(self.current_node['body'])
-            if self.dialogue_active: # Dialogue is active, render text and play box loop animation
+            # Dialogue is active, render text and play box loop animation
+            if not self.dialogue_ended or video_out.status:
                 self.dialogue_box.draw()
+            else:
+                # Resets dialogue manager to start when dialogue ends
+                self.current_node = self.find_node("Start")
+                self.dialogue_ended = False
                 
         if vid_roll.status:
             vid_roll.draw(self.screen)

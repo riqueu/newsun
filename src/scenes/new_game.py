@@ -15,8 +15,8 @@ class NewGame:
             screen (pygame.Surface): The screen.
         """
         self.screen = screen
-        # self.interactions = json.load(open('scripts/new_game/new_game.json'))
-        self.interactions = json.load(open('scripts/room_101/mirror.json'))
+        self.interactions = json.load(open('scripts/new_game/new_game.json'))
+        # self.interactions = json.load(open('scripts/room_101/tv.json'))
         self.key_to_node = get_key_to_node(self.interactions)
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)
@@ -30,7 +30,7 @@ class NewGame:
         
         self.character_creator_active = True
         self.game_begin = False
-    
+
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that calls and handles dialogue interaction and character creation events for this scene
 
@@ -50,7 +50,6 @@ class NewGame:
                 self.points += 1
             elif event.key == pygame.K_z:
                 self.character_creator_active = False
-                self.dialogue_manager.dialogue_started = True
                 self.dialogue_manager.dialogue_active = True
                 pygame.mixer.music.stop()
                 self.player.set_skills(self.stats)
@@ -62,15 +61,6 @@ class NewGame:
             self.game_begin = True
             pygame.mixer.music.stop()
 
-    """def draw_ui(self) -> None:
-        Function that draws the png sequence of the UI
-        
-        dialogue_box_left.draw(self.screen)
-        dialogue_box_left.animate()
-        
-        skill_desc.draw(self.screen)
-        skill_desc.animate()"""
-            
     def draw(self) -> None:
         """Function that handles the character creator part of the new game scene
         """      

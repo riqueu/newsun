@@ -3,7 +3,7 @@
         "title": "Start"
     },
     {
-      "body": "[Old TV]: That was once a brand new TV model from a great company. Now it's just a piece of junk covered in dust. \n\n[1]: [Try to turn the TV on] \n[2]: [Check the cables (Forbearance|DC 12)] \n[3]: [Let the Old TV rest]",
+      "body": "[Old TV]: That was once a brand new TV model from a great company. Now it's just a piece of junk covered in dust. \n\n[1]: [Try to turn the TV on] \n[2]: [Check cables (Forbearance | DC 12)] \n[3]: [Let the Old TV rest]",
       "key": {
         "1": "TVOn",
         "2": "TVCablesCheck",
@@ -12,7 +12,7 @@
       "title": "Start1"
     },
     {
-        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check the cables (Forbearance|DC 12)] \n[2]: [Let the Old TV rest]",
+        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check cables (Forbearance | DC 12)] \n[2]: [Let the Old TV rest]",
         "key": {
             "1": "TVCablesCheck",
             "2": "End"
@@ -40,6 +40,7 @@
         "title": "TVCablesFail"
     },
     {
+        "body": "",
         "title": "End"
     },
     {

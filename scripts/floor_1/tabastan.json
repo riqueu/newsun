@@ -125,7 +125,7 @@
         "title": "Student"
     },
     {
-        "body": "[Tabastan, the Mindful Truant]: \"I'm not sure. I think you should go to the nurse's office. Maybe they can help you out.\" \n\n[1]: \"Okay, I might be a student. A one that can't even sign attendance though.\" \n[2]: \"I'll leave you alone, thanks for the help though\" [Leave]",
+        "body": "[Tabastan, the Mindful Truant]: \"I'm not sure. I think you should go to the nurse's office. Maybe they can help you out.\" \n\n[1]: \"Okay, I might be a student. One that can't even sign attendance though.\" \n[2]: \"I'll leave you alone, thanks for the help though\" [Leave]",
         "key": {
             "1": "Student",
             "2": "End"
@@ -148,6 +148,7 @@
         "title": "Camellia"
     },
     {
+        "body": "",
         "title": "End"
     },
     {
