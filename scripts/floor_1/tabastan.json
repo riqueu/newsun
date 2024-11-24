@@ -1,5 +1,8 @@
 [
     {
+        "title": "Start"
+    },
+    {
         "body": "[Tabastan, the Mindful Truant]: There's a tall person standing by the elevator. Unlike the broken elevator, he seem to be in a hurry. \n\n [1]: \"Hello fellow human, do you know my name or where I am?\" \n [2]: \"Were you the one who knocked on my door?\" \n [3]: \"I don't think that elevator will work.\" \n[4] [Leave the person alone]",
         "key": {
             "1": "Hey",
@@ -7,7 +10,7 @@
             "3": "Elevator",
             "4": "End"
         },
-        "title": "Start"
+        "title": "Start1"
     },
     {
         "body": "[Tabastan, the Mindful Truant]: \"Maybe I did. Maybe I didn't. What's it to you?\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
@@ -69,7 +72,7 @@
     {
         "title": "NewsunCheck",
         "check_skill": "Resonance",
-        "check_minpass": 10
+        "difficulty_class": 10
     },
     {
         "body": "[Resonance]: \"He's clearly joking with you. You can tell by the way he's smiling.\" \n\n[1]: \"I lost my memory but I'm not stupid. Can you please not blatantly lie?\" \n[2]: \"You are not the best liar. If you won't help, at least don't get in my way.\" [Leave]",
@@ -122,7 +125,7 @@
         "title": "Student"
     },
     {
-        "body": "[Tabastan, the Mindful Truant]: \"I'm not sure. I think you should go to the nurse's office. Maybe they can help you out.\" \n\n[1]: \"Okay, I might be a student. A one that can't even sign attendance though.\" \n[2]: \"I'll leave you alone, thanks for the help though\" [Leave]",
+        "body": "[Tabastan, the Mindful Truant]: \"I'm not sure. I think you should go to the nurse's office. Maybe they can help you out.\" \n\n[1]: \"Okay, I might be a student. One that can't even sign attendance though.\" \n[2]: \"I'll leave you alone, thanks for the help though\" [Leave]",
         "key": {
             "1": "Student",
             "2": "End"
@@ -145,6 +148,11 @@
         "title": "Camellia"
     },
     {
+        "body": "",
         "title": "End"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: Tabastan stands by the elevator, he's not up for talking right now. \n\n[1]: [Leave him alone]",
+        "title": "Start2"
     }
 ]

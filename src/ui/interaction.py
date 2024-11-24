@@ -4,7 +4,8 @@ import pygame
 import os
 import json
 
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import vid_roll, vid_pass, vid_fail, video, video_in, video_out
+from src.characters.player import Player
 from settings import WIDTH, HEIGHT
 
 
@@ -60,9 +61,6 @@ class DialogueBox:
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 18)
         self.text = ""
         self.lines = []
-        self.video_in = load_png_sequence('assets/ui/DialogueBoxIn')
-        self.video = load_png_sequence('assets/ui/DialogueBox')
-        self.video_out = load_png_sequence('assets/ui/DialogueBoxOut')
 
     def set_text(self, text: str) -> None:
         """Function that sets the text to be displayed
@@ -96,7 +94,7 @@ class DialogueBox:
                 current_line = parts[-1] + " "
             else:
                 test_line = current_line + word + " "
-                if self.font.size(test_line)[0] <= self.box_width - 30:  # Adjusted to fit within the box
+                if self.font.size(test_line)[0] <= self.box_width - 35:  # Adjusted to fit within the box
                     current_line = test_line
                 else:
                     lines.append(current_line.strip())
@@ -104,37 +102,59 @@ class DialogueBox:
 
         if current_line.strip():
             lines.append(current_line.strip())
+        
         return lines
 
     def render_bg(self) -> None:
-        """Function that renders the background of the box
+        """Function that renders the background of the box & its animations
         """
-        self.screen.blit(sequence_current_frame(self.video), (self.box_x,self.box_y))
+        if video_in.status:
+            video_in.draw(self.screen)
+            video_in.animate()
+            
+        elif video_out.status:
+            video_out.draw(self.screen)
+            video_out.animate()
+
+        else:
+            video.draw(self.screen)
+            video.animate()
+
 
     def render_text(self) -> None:
         """Function that renders the text with animation
         """
+        lines = self.wrap_text(self.text)
+        text_surface = pygame.Surface((self.screen.get_width(), self.screen.get_height()), pygame.SRCALPHA)
+        text_surface.fill((0, 0, 0, 0))
         
-        if not hasattr(self, 'animation_played'):
-            self.animation_played = False
+        if (not hasattr(self, 'current_time')) or self.new_text:
+            self.current_time = pygame.time.get_ticks()
+            self.new_text = False
+        
+        text_speed = 10  # Change text speed (lower -> faster)
+        total_chars = sum(len(line) for line in lines)
+        elapsed_time = pygame.time.get_ticks() - self.current_time
+        max_chars = min((elapsed_time // text_speed), total_chars)
+        current_chars = 0
+        
+        for line in lines:
+            if current_chars + len(line) < max_chars:
+                rendered_line = self.font.render(line, True, (255, 255, 255))
+                text_surface.blit(rendered_line, (20, 50 + lines.index(line) * 40))
+                current_chars += len(line)
+            else:
+                rendered_line = self.font.render(line[:max_chars - current_chars], True, (255, 255, 255))
+                text_surface.blit(rendered_line, (20, 50 + lines.index(line) * 40))
+                break
+        
+        self.screen.blit(text_surface, (self.box_x, self.box_y))
 
-        # FIXME: Animation has a weird effect to it. See if fixable. 
-        if not self.animation_played:
-            max_chars = len(self.text)
-            char_index = 0
-            for i, line in enumerate(self.lines):
-                for j in range(len(line)):
-                    if char_index < max_chars:
-                        text_surface = self.font.render(line[:j+1], True, (255, 255, 255))
-                        self.screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
-                        char_index += 1
-                        pygame.display.flip()
-                        pygame.time.delay(5)  # Adjust delay for speed of animation
-            self.animation_played = True
-        else:
-            for i, line in enumerate(self.lines):
-                text_surface = self.font.render(line, True, (255, 255, 255))
-                self.screen.blit(text_surface, (self.box_x + 20, self.box_y + i * 40 + 20))
+    def draw(self) -> None:
+        """Function that draws the dialogue box and text
+        """
+        self.render_bg()
+        self.render_text()        
 
 
 class DialogueManager:
@@ -151,9 +171,15 @@ class DialogueManager:
         self.dialogue_data = dialogue_data
         self.current_node = self.find_node("Start")
         self.dialogue_box = DialogueBox(screen)
-        self.dialogue_started = False
+        
         self.dialogue_active = False
         self.dialogue_ended = False
+        self.check_done = False
+        
+        self.start_count = sum(1 for node in self.dialogue_data if "Start" in node['title'])
+        self.nodes_with_body = [node for node in self.dialogue_data if 'body' in node]
+        
+        self.player = Player(self.screen) # Access singleton player object
     
     def find_node(self, title: str) -> dict|None:
         """Function that finds the next node
@@ -175,36 +201,77 @@ class DialogueManager:
         Args:
             event (pygame.event.Event): current event
         """
-        if self.current_node['title'] == "End":
-            self.dialogue_ended = True
+        if self.current_node['title'] == "Start":
+            if self.start_count > 1:
+            # TODO: Either go to start 1 or 2 depending on conditions, default to start 1 for now
+                self.current_node = self.find_node("Start1")
+            video_in.status = True
+            video_out.status = False
         
+        elif self.current_node['title'] == "End":
+            video_out.status = True
+            self.dialogue_ended = True
+            self.dialogue_active = False
+        
+        # Check if the current node is a check node
+        elif "Check" in self.current_node['title']:
+            skill_name = self.current_node.get('check_skill')
+            difficulty_class = self.current_node.get('difficulty_class')
+            if skill_name and difficulty_class:
+                check_result = self.player.roll_skill_check(skill_name, difficulty_class)
+                pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/check_roll.mp3'))
+                
+                vid_roll.status = True
+                
+                if check_result == True:
+                    pygame.mixer.Channel(1).queue(pygame.mixer.Sound('assets/sounds/check_pass.mp3'))
+                    vid_pass.status = True
+                    self.next_node_title = self.current_node['title'].replace("Check", "Pass")
+                
+                elif check_result == False:
+                    pygame.mixer.Channel(1).queue(pygame.mixer.Sound('assets/sounds/check_fail.mp3'))
+                    vid_fail.status = True
+                    self.next_node_title = self.current_node['title'].replace("Check", "Fail")
+                
+                if self.next_node_title:
+                    self.current_node = self.find_node(self.next_node_title)
+                    
+                    self.dialogue_box.animation_played = False
+                
         elif event.type == pygame.KEYDOWN:
-            # TODO: Implement Skill Checks (check Player.roll_skill_check(self, skill_name: str, difficulty_class: int))
             pressed_key = event.unicode
             self.next_node_title = self.current_node['key'].get(pressed_key)
             if self.next_node_title:
+                # Change player stats based on the node after the key pressed
+                if 'reason' in self.current_node:
+                    self.player.reason += self.current_node['reason']
+                if 'health' in self.current_node:
+                    self.player.health += self.current_node['health']
                 self.current_node = self.find_node(self.next_node_title)
                 self.dialogue_box.animation_played = False
+                self.dialogue_box.new_text = True
     
     def draw(self) -> None:
         """Function that draws the dialogue text and ui
         """
-        if self.current_node['title'] != "End":
-            self.screen.fill((0, 0, 0))
+        if self.current_node in self.nodes_with_body:
             self.dialogue_box.set_text(self.current_node['body'])
-            if self.dialogue_started: # First time dialogue is shown, play box in animation
-                for frame in self.dialogue_box.video_in:
-                    self.screen.blit(frame, (self.dialogue_box.box_x, self.dialogue_box.box_y))
-                    pygame.display.flip()
-                    pygame.time.delay(60)  # Adjust delay for speed of animation
-                self.dialogue_started = False
-            elif self.dialogue_active: # Dialogue is active, render text and play box loop animation
-                self.dialogue_box.render_bg()
-                self.dialogue_box.render_text()
-                pygame.display.flip()
-        else: # Dialogue has ended, play box out animation
-            for frame in self.dialogue_box.video_out:
-                self.screen.fill((0, 0, 0))
-                self.screen.blit(frame, (self.dialogue_box.box_x, self.dialogue_box.box_y))
-                pygame.display.flip()
-                pygame.time.delay(60)  # Adjust delay for speed of animation
+            # Dialogue is active, render text and play box loop animation
+            if not self.dialogue_ended or video_out.status:
+                self.dialogue_box.draw()
+            else:
+                # Resets dialogue manager to start when dialogue ends
+                self.current_node = self.find_node("Start")
+                self.dialogue_ended = False
+                
+        if vid_roll.status:
+            vid_roll.draw(self.screen)
+            vid_roll.animate()
+                
+        if vid_pass.status:
+            vid_pass.draw(self.screen)
+            vid_pass.animate()
+                
+        if vid_fail.status:
+            vid_fail.draw(self.screen)
+            vid_fail.animate()

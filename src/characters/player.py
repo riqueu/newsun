@@ -7,6 +7,18 @@ from settings import WIDTH, HEIGHT
 from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 
 class Player:
+    _instance = None
+    
+    def __new__(cls, *args, **kwargs):
+        """Create a new instance of the Player class if one does not already exist, i.e. Singleton pattern.
+
+        Returns:
+            _type_: The Player instance.
+        """
+        if not cls._instance:
+            cls._instance = super(Player, cls).__new__(cls)
+        return cls._instance
+    
     def __init__(self, screen: pygame.Surface, position: list[int] = [50, 450]) -> None:
         """Initialize the Player object.
 
@@ -14,29 +26,32 @@ class Player:
             screen (pygame.Surface): The screen where the player will be drawn.
             position (list[int], optional): Initial position of the player. Defaults to [50, 450].
         """
-        self.screen = screen
-        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 20)
-        self.stats_bar = load_png_sequence('assets/ui/StatsBar')
-        
-        # Initial values
-        self.position = position
-        
-        self.eloquence = 0
-        self.clairvoyance = 0
-        self.forbearance = 0
-        self.resonance = 0
-        self.experience = 0
-        
-        self.health = 4
-        self.reason = 2
-        self.speed = 5
-        
-        # Load the player's sprite
-        self.sprite = pygame.image.load('assets/images/protagonist/protagonist_frame_temp.png')
-        self.sprite = pygame.transform.scale(self.sprite, (100, 100))  # Resize the sprite to 100x100 pixels
-        
-        # PLACEHOLDER: Implement Inventory Object at ui/inventory.py
-        self.inventory = []
+        if not hasattr(self, "initialized"):  # Prevent re-initialization
+            self.screen = screen
+            self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 20)
+            self.stats_bar = load_png_sequence('assets/ui/StatsBar')
+            
+            # Initial values
+            self.position = position
+            
+            self.eloquence = 0
+            self.clairvoyance = 0
+            self.forbearance = 0
+            self.resonance = 0
+            self.experience = 0
+            
+            self.health = 4
+            self.reason = 2
+            self.speed = 5
+            
+            # Load the player's sprite
+            self.sprite = pygame.image.load('assets/images/protagonist/protagonist_frame_temp.png')
+            self.sprite = pygame.transform.scale(self.sprite, (100, 100))  # Resize the sprite to 100x100 pixels
+            
+            # PLACEHOLDER: Implement Inventory Object at ui/inventory.py
+            self.inventory = []
+            
+            self.initialized = True  # Mark as initialized
     
     def get_position(self) -> list[int]:
         """Get the current position of the player.
@@ -124,8 +139,9 @@ class Player:
         Returns:
             bool: True if the skill check is successful, False otherwise.
         """
-        skill_value = getattr(self, skill_name, 0)  # Get the value of the skill
+        skill_value = getattr(self, skill_name.lower(), 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
+        print(f"Rolled a {roll} for {skill_name} check. attr: {skill_value}")
         return roll + skill_value >= difficulty_class  # Simple pass/fail check
     
     def reduce_attribute(self, attribute_name: str, amount: int) -> None:

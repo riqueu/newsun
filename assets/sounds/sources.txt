@@ -1,4 +1,9 @@
 1: https://pixabay.com/sound-effects/door-knocking-angry-88120/
 door_knock_angry.mp3
 
-2: 
+2: https://www.myinstants.com/en/instant/rolling-dice-98674/
+check_roll.mp3
+
+3: made on after effects
+check_pass.mp3
+check_fail.mp3

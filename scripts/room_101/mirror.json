@@ -1,15 +1,18 @@
 [
     {
-      "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Touch your face (Resonance|50%)] \n[3]: [Leave the mirror alone]",
+        "title": "Start"
+    },
+    {
+      "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Touch your face (Resonance | DC 10)] \n[3]: [Leave the mirror alone]",
       "key": {
         "1": "WipeMirror",
         "2": "TouchFaceCheck",
         "3": "End"
         },
-      "title": "Start"
+      "title": "Start1"
     },
     {
-        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Touch your Face (Resonance|50%)] \n[2]: [Leave the mirror alone]",
+        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Touch your Face (Resonance | DC 10)] \n[2]: [Leave the mirror alone]",
         "key": {
             "1": "TouchFaceCheck",
             "2": "End"
@@ -19,7 +22,7 @@
     {
         "title": "TouchFaceCheck",
         "check_skill": "Resonance",
-        "check_minpass": 10
+        "difficulty_class": 10
     },
     {
         "body": "[Resonance]: It's you. You can't exactly recall who you are, but that's you for sure. Always has been, always will be. You feel warmth despite the cold environment. (+1 Reason) \n\n[1]: [Leave the mirror alone]",
@@ -37,6 +40,22 @@
         "title": "TouchFaceFail"
     },
     {
+        "body": "",
         "title": "End"
+    },
+    {
+        "body": "[Mirror]: It's a steamed up mirror, you can't see your reflection. \n\n[1]: [Wipe the mirror] \n[2]: [Leave the mirror alone]",
+        "key": {
+          "1": "WipeMirror2",
+          "2": "End"
+          },
+        "title": "Start2"
+    },
+    {
+        "body": "[Mirror]: You wipe the mirror, but you can't recognize the person on the other side of it. \n\n[1]: [Leave the mirror alone]",
+        "key": {
+            "1": "End"
+            },
+        "title": "WipeMirror2"
     }
 ]

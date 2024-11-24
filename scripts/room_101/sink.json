@@ -1,12 +1,15 @@
 [
     {
+        "title": "Start"
+    },
+    {
       "body": "[Sink]: It's an old sink, but it seems functional. \n\n[1]: [Inspect the sink] \n[2]: [Wash your face] \n[3]: [Leave the sink alone]",
       "key": {
         "1": "InspectSink",
         "2": "WashFace",
         "3": "End"
         },
-      "title": "Start"
+      "title": "Start1"
     },
     {
         "body": "[Sink]: You weren't always the best at general knowledge, but you remember that sinks were used to wash hands and faces. You're not sure why you'd want to wash your face right now, but you're not sure why you'd want to inspect the sink either. \n\n[1]: [Judge the old sink] \n[2]: [Wash your face] \n[3]: [Leave the sink alone]",
@@ -34,6 +37,7 @@
         "title": "WashFace"
     },
     {
+        "body": "",
         "title": "End"
     }
 ]
