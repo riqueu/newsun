@@ -78,7 +78,7 @@ class Camera:
         self.game = game
         self.camera_rect = pygame.Rect(0, 0, width, height)
         self.offset = pygame.Vector2(0, 0)
-        self.camera_borders = {'left': 100, 'right': 100, 'top': 200, 'bottom': 200}
+        self.camera_borders = {'left': 200, 'right': 200, 'top': 300, 'bottom': 300}
         self.keyboard_speed = 5
 
     def box_target_camera(self, target):
