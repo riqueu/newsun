@@ -17,20 +17,21 @@
 - Character Creator Structure: ✔️
 - Inventory(?): ❌
 - Dialogue Trees System and Dialogue Boxes: ✔️
-    - TODO: Skill Checks ❌
+    - Skill Checks: ✔️
+    - Animations: ✔️
+    - FIXME: Fix player rendered on top of interaction menu (prob draw order)
 - Player Movement: ✔️
-    - FIXME: Sprites Flickering on background ❌
 - Interactions with Objects in Range: ❌
-- Sprites/Scenes: ❌
+- Sprites/Scenes: ✔️
 - Write Dialogues ❌
     - Room 101: ✔️
     - Floor 1 Corridor: ❌
     - Floor 0: ❌
     - Floor -1: ❌
-- Animated UI:❌
+- Animated UI:✔️
     - Dialogue Box: ✔️
     - Character Creator: ✔️
     - Menu Background: ✔️
     - Character Status: ✔️
-    - ... ❌
+    - ... ✔️
 - ... ❌
