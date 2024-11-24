@@ -145,6 +145,9 @@ class Game:
         
         pygame.display.flip()  # Update the entire screen
 
+    def update(self) -> None:
+        pass
+    
     def run(self) -> None:
         """Method to run through the game loop
         """
