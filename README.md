@@ -19,7 +19,6 @@
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - Skill Checks: ✔️
     - Animations: ✔️
-    - FIXME: Fix player rendered on top of interaction menu (prob draw order)
 - Player Movement: ✔️
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ✔️

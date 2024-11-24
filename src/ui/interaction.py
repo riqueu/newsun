@@ -37,7 +37,7 @@ def load_scene_interactions(scripts_path: str, screen: pygame.Surface) -> dict:
     for filename in os.listdir(scripts_path):
         if filename.endswith('.json'):
             file_path = os.path.join(scripts_path, filename)
-            with open(file_path, 'r') as file:
+            with open(file_path, 'r', encoding="utf8") as file:
                 interaction = json.load(file)
                 key = filename.split('.')[0]
                 interactions[key] = interaction

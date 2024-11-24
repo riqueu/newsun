@@ -4,7 +4,7 @@ import pygame
 import numpy as np
 
 from settings import WIDTH, HEIGHT
-from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
+from src.ui.animated_sequence import status_bar
 
 class Player:
     _instance = None
@@ -29,7 +29,6 @@ class Player:
         if not hasattr(self, "initialized"):  # Prevent re-initialization
             self.screen = screen
             self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 20)
-            self.stats_bar = load_png_sequence('assets/ui/StatsBar')
             
             # Initial values
             self.position = position
@@ -165,6 +164,7 @@ class Player:
     def draw(self) -> None:
         """Draw the player & their stats on the screen."""
         self.screen.blit(self.sprite, self.position)
-        self.screen.blit(sequence_current_frame(self.stats_bar), (0, 0))
+        status_bar.draw(self.screen)
+        status_bar.animate()
         self.screen.blit(self.font.render(f"Health: {self.health}", True, (255, 255, 255)), (20, 18))
         self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))

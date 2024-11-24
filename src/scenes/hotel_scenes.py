@@ -3,6 +3,7 @@
 import pygame
 
 from src.ui.interaction import load_scene_interactions
+from src.characters.player import Player
 
 class Scene:
     def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str) -> None:
@@ -18,6 +19,7 @@ class Scene:
         self.dialogue_managers = load_scene_interactions(scripts_path, self.screen)
         self.in_dialogue = False
         self.objects = []
+        self.player = Player(screen) # Singleton pattern to draw the player in the right order
     
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the scene
@@ -36,7 +38,9 @@ class Scene:
         
         for obj in self.objects:
             pygame.draw.rect(self.screen, (255, 0, 0), obj["rect"], 2)
-            
+        
+        self.player.draw()
+        
         for manager in self.dialogue_managers.values():
             if manager.dialogue_active or manager.dialogue_ended: # dialogue_ended only to draw out animation
                 manager.draw()
@@ -77,10 +81,75 @@ class Room101(Scene):
         
 
 class Floor1(Scene):
-    pass
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/floor_1") -> None:
+        """Function that initializes the floor 1 scene
+
+        Args:
+            screen (pygame.Surface): the screen
+            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
+            scripts_path (str, optional): scripts. Defaults to "scripts/floor_1".
+        """
+        super().__init__(screen, background_path, scripts_path)
+
+    def handle_event(self, event: pygame.event.Event) -> None:
+        """Function that handles events in the floor 1 scene
+
+        Args:
+            event (pygame.event.Event): current event
+        """
+        super().handle_event(event)
+
+    def draw(self) -> None:
+        """Function that draws the room
+        """
+        super().draw()
+
 
 class Floor0(Scene):
-    pass
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/floor_0") -> None:
+        """Function that initializes the floor 0 scene
+
+        Args:
+            screen (pygame.Surface): the screen
+            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
+            scripts_path (str, optional): scripts. Defaults to "scripts/floor_0".
+        """
+        super().__init__(screen, background_path, scripts_path)
+
+    def handle_event(self, event: pygame.event.Event) -> None:
+        """Function that handles events in the floor 0 scene
+
+        Args:
+            event (pygame.event.Event): current event
+        """
+        super().handle_event(event)
+
+    def draw(self) -> None:
+        """Function that draws the room
+        """
+        super().draw()
+
 
 class Underground(Scene):
-    pass
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/underground") -> None:
+        """Function that initializes the underground scene
+
+        Args:
+            screen (pygame.Surface): the screen
+            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
+            scripts_path (str, optional): scripts. Defaults to "scripts/underground".
+        """
+        super().__init__(screen, background_path, scripts_path)
+
+    def handle_event(self, event: pygame.event.Event) -> None:
+        """Function that handles events in the underground scene
+
+        Args:
+            event (pygame.event.Event): current event
+        """
+        super().handle_event(event)
+
+    def draw(self) -> None:
+        """Function that draws the room
+        """
+        super().draw()

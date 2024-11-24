@@ -123,6 +123,9 @@ class Game:
         """Method that creates the map
         """
         self.room_101 = Room101(self.screen)
+        self.floor_1 = Floor1(self.screen)
+        self.floor_0 = Floor0(self.screen)
+        self.underground = Underground(self.screen)
 
     def draw(self) -> None:
         """Method that renders the game
@@ -137,7 +140,12 @@ class Game:
         elif self.menu_state == "game":
             if self.current_scene == "room_101":
                 self.room_101.draw()
-            self.player.draw()
+            elif self.current_scene == "floor_1":
+                self.floor_1.draw()
+            elif self.current_scene == "floor_0":
+                self.floor_0.draw()
+            elif self.current_scene == "underground":
+                self.underground.draw()
         elif self.menu_state == "pause":
             self.pause_menu.draw()
         else:

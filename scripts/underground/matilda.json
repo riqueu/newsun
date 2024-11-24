@@ -66,7 +66,7 @@
         "title": "Who"
     },
     {
-        "body": "[Matilda]: \"You have been chosen. You have been marked. You have been blessed. You have been cursed. You have been given a gift. You have been given a burden. You have been given a chance. Yet you threw it away at the funeral march.\" \n\n[1]: \"Funeral march?\" \n[2]: \"What curse?\" \n[3]: \"What burden?\" \n[4]: \"What chance?\"",
+        "body": "[Matilda]: \"You have been chosen. You have been marked. You have been blessed. You have been cursed. You have been given a gift. You have been given a burden. You have been given a chance. Yet you threw it all away at the funeral march.\" \n\n[1]: \"Funeral march?\" \n[2]: \"What curse?\" \n[3]: \"What burden?\" \n[4]: \"What chance?\"",
         "key": {
             "1": "FuneralMarch",
             "2": "Curse",
@@ -76,15 +76,35 @@
         "title": "Schemes"
     },
     {
+        "body": "[Matilda]: \"You still don't understand...\" \n\n[1]: \"Give me my memories back!\"",
+        "key": {
+            "1": "Memories"
+        },
         "title": "FuneralMarch"
     },
     {
+        "body": "[Matilda]: \"A curse, a gift, a burden, what's the difference? It always comes down to the hunters' helper to clean up after these sorts of messes.\" \n\n[1] \"What burden!?\"\n[2]: \"Who am I? What did you do to my memories?\"",
+        "key": {
+            "1": "Burden",
+            "2": "Memories"
+        },
         "title": "Curse"
     },
     {
+        "body": "[Matilda]: \"Convenience is poison. One must accustom themselves to pursue any intention as soon as it appears, regardless of difficulty. Otherwise one burns out, gives in to doubt, starts fearing oneself. The bolder the dream, the more surely it becomes dust when the moment is lost. You, however, drank the poison. You were the one responsible for this mess!\" \n\n[1]\"What do you want from me?\"\n[2]: \"What happened to my memories?\"",
+        "key": {
+            "1": "WhatWant",
+            "2": "Memories"
+        },
         "title": "Burden"
     },
     {
+        "body": "[Matilda]: \"You had the chance to do things right... You are a slave of the inevitable, while I am its mistress. The past is immutable, the future, unavoidable. However, the lines between both may be cut. Any line can be reattached with greater effort. There are consequences, however; burdens.” \" \n\n[1]: \"What burden?\" \n[2]\"What do you want from me?\"\n[3]: \"What happened to my memories?\"",
+        "key": {
+            "1": "Burden",
+            "2": "WhatWant",
+            "3": "Memories"
+        },
         "title": "Chance"
     },
     {
@@ -96,10 +116,58 @@
         "title": "WhatWant"
     },
     {
+        "body": "[Matilda]: \"You haven't yet figured out why you feel the way you fell? Why no one can recall yuor name? Do you really believe no one in this dammed place knows your name?\" \n\n[1]: [Listen]",
+        "key": {
+            "1": "Memories"
+        },
         "title": "Purpose"
     },
     {
+        "body": "[Matilda]: \"I didn't take or steal your memories! YOU were the one who came to me, begging for my assistance. I simply made an offer, and you simply accepted it.\" \n\n[1]: \"What offer?\" \n[2]: \"What did you do to my memories?\"",
+        "key": {
+            "1": "Offer1",
+            "2": "WhatHappenedMemories"
+        },
         "title": "Memories"
+    },
+    {
+        "body": "[Matilda]: \"Does that matter? You gave them away, so why bother figuring it out. You should've asked before.\" \n\n[1]: \"What offer did I take?\"",
+        "key": {
+            "1": "Offer1"
+        },
+        "title": "WhatHappenedMemories"
+    },
+    {
+        "body": "[Matilda]: \"Well, you came to me desperate, asking for solutions. You had an 'assignment' due the next day. 'Assignment', is that how you call those things? It matters not to me, what matters is, you needed a wish grant...\" \n\n[1]: [Listen]",
+        "key": {
+            "1": "Offer2"
+        },
+        "title": "Offer1"
+    },
+    {
+        "body": "[Matilda]: \"I myself, am not a genie, but a *Feedbacker*. For me, every action produces a reaction. You were desperate to finish that 'assignment' you call; I only helped you.\" \n\n[1]: \"You fooled me!\"",
+        "key": {
+            "1": "Offer3"
+        },
+        "title": "Offer2"
+    },
+    {
+        "body": "[Matilda]: \"I did not. You were aware of the consequences. You knew, yet you exchanged something for something else. Was it worth it? Did I make you happy?\" \n\n[1]: \"It couldn't be going worse!\" \n[2]: \"I want my memories back!\" \n[3]: \"Of course it wasn't worth it. An assignment for my memories? That's not fair!\"",
+        "key": {
+            "1": "BeWorse",
+            "2": "WantMemoriesBack",
+            "3": "NotFair"
+        },
+        "title": "Offer3"
+    },
+    {
+        "title": "BeWorse"
+    },
+    {
+        "title": "NotFair"
+    },
+    {
+        "title": "WantMemoriesBack"
     },
     {
         "body": "",

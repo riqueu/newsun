@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Bed]: You are not sure why you woke up in a place that is not the bed. Maybe it's too dusty for you too sleep in. \n\n[Forbearance]: \"We shouldn't touch this bed for now.\" \n\n[1]: [Touch Bed] \n[2]: [Leave]",
+        "key": {
+            "1": "Touch",
+            "2": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "[Bed]: You touch the bed, and it feels like a bed. That's it. You can leave now. \n\n[1]: [End]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Touch"
+    },
+    {
+        "body": "",
+        "title": "End"
+    }
+]
