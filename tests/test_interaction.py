@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
 import os
-import json
 import pygame
 from src.ui.interaction import load_scene_interactions, get_key_to_node, DialogueManager
 

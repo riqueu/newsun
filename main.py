@@ -8,6 +8,7 @@ from src.scenes.main_menu import MainMenu
 from src.scenes.options_menu import OptionsMenu
 from src.scenes.pause_menu import PauseMenu
 from src.scenes.new_game import NewGame
+from src.scenes.ending_menu import EndingMenu
 from src.scenes.hotel_scenes import *
 
 
@@ -27,6 +28,7 @@ class Game:
         self.main_menu = MainMenu(self.screen) 
         self.options_menu = OptionsMenu(self.screen)
         self.pause_menu = PauseMenu(self.screen)
+        self.ending_menu = EndingMenu(self.screen)
         
         self.game_scenes = []
         
@@ -86,10 +88,14 @@ class Game:
                 elif selected_option == "Exit":
                     self.running = False  # Exit the game
             
+            elif self.menu_state == "ending":
+                selected_option = self.ending_menu.handle_event(event)
+                if selected_option == "quit":
+                    self.running = False
+            
             elif self.menu_state == "pause":
                 selected_option = self.pause_menu.handle_event(event)
                 if selected_option == "Resume":
-                    self.screen.fill((0, 0, 0))
                     self.menu_state = "game"
                     pygame.mixer.music.unpause()
                 elif selected_option == "Options":
@@ -109,7 +115,6 @@ class Game:
                     pygame.mixer.music.load('assets/music/new_game_conversation.ogg')
                     pygame.mixer.music.play(-1)
                 if self.new_game.game_begin:
-                    self.screen.fill((0, 0, 0))
                     self.load_map()
                     self.menu_state = "game"
                     self.current_scene = "room_101"
@@ -133,6 +138,8 @@ class Game:
         self.screen.fill((0, 0, 0))
         if self.menu_state == "main":
             self.main_menu.draw()
+        elif self.menu_state == "ending":
+            self.ending_menu.draw()
         elif self.menu_state == "options":
             self.options_menu.draw()
         elif self.menu_state == "new_game":

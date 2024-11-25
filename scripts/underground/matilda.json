@@ -257,16 +257,71 @@
         "difficulty_class": 20
     },
     {
+        "body": "[Inner Self]: It's... you. Despite everything, you remember, you are still you. Not all is lost. You can still find your way back. \n\n[1]: [Embrace your old self] \n[2]: [Reject your old self]",
+        "key": {
+            "1": "EmbraceOldSelf",
+            "2": "RejectOldSelf"
+        },
         "title": "FinalPass"
     },
     {
+        "body": "[Inner Self]: Despite your recollection, you believe it was for the better. You reject your old self and accept your new life. \n\n[1]: [Accept your fate]",
+        "key": {
+            "1": "AcceptFate"
+        },
+        "title": "RejectOldSelf"
+    },
+    {
+        "body": "[Inner Self]: You can't. No matter how hard you try, you can't remember. You can't remember your name, your past, your life. You feel a sense of despair, as you realize that you are truly lost. \n\n[1]: [Accept your fate]",
+        "key": {
+            "1": "AcceptFate"
+        },
         "title": "FinalFail"
     },
     {
+        "body": "[Inner Self]: You close your eyes, embracing the darkness, and you feel a sense of peace wash over you. You feel a connection to something fresh and powerful, as if you are finally moving out of your childhood home. \n\n[1]: [Continue]",
+        "key": {
+            "1": "AcceptFate2"
+        },
         "title": "AcceptFate"
     },
     {
+        "body": "[Inner Self]: It's finally over. You are free to build your new life. Free to discover the world, to be yourself. The world is yours. \n\n[1]: [Continue]",
+        "key": {
+            "1": "VISION"
+        },
+        "title": "AcceptFate2"
+    },
+    {
+        "body": "[Inner Self]: You close your eyes, embracing the darkness, and you feel a sense of peace wash over you. You feel a connection to something ancient and powerful, as if you are finally home. \n\n[1]: [Continue]",
+        "key": {
+            "1": "EmbraceOldSelf2"
+        },
+        "title": "EmbraceOldSelf"
+    },
+    {
+        "body": "[Inner Self]: It's finally over. You remember things. You were not perfect, but you were you; that's all that matters. You got your memories back, and turned the assignment in just in time. A sense of relief is felt by your old self. We are back. \n\n[1]: [Continue]",
+        "key": {
+            "1": "VISION"
+        },
+        "title": "EmbraceOldSelf2"
+    },
+    {
+        "body": "[Resonance]: \"VISION\" \n\n[1]: [Continue]",
+        "key": {
+            "1": "VISION"
+        },
+        "title": "VISION"
+    },
+    {
+        "body": "[Clairvoyance]: \"CREATION\" \n\n[1]: [Continue]",
+        "key": {
+            "1": "NEWSUN"
+        },
+        "title": "CREATION"
+    },
+    {
         "body": "",
-        "title": "End"
+        "title": "NEWSUN"
     }
 ]
