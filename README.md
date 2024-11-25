@@ -2,12 +2,48 @@
 
 [Game Design Document](gdd/newsun.md)
 
-## Grupo:
+## Group:
 - [Artur Vidal Krause](https://github.com/arturvidalkrause)
 - [Bruno Luís Zerbinatto Rosa](https://github.com/Brunikito)
 - [Gustavo de Oliveira da Silva](https://github.com/GuOliv2306)
 - [Gustavo Luciano dos Santos](https://github.com/gstavol)
 - [Henrique Coelho Beltrão](https://github.com/riqueu)
+
+## About:
+
+Lorem Ipsium
+
+## How to Run
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/riqueu/newsun
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd newsun
+    ```
+3. Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4. Run the main script:
+    ```bash
+    python main.py
+    ```
+## Running the Tests
+
+To run the unit tests, follow these steps:
+
+1. Ensure you are in the project directory:
+    ```bash
+    cd newsun
+    ```
+
+2. Run the unit tests using the following command:
+    ```bash
+    python -m unittest discover -s tests
+    ```
 
 # Progresso (Temp.)
 
@@ -34,3 +70,7 @@
     - Character Status: ✔️
     - ... ✔️
 - ... ❌
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

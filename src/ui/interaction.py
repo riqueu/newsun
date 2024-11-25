@@ -61,6 +61,7 @@ class DialogueBox:
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 18)
         self.text = ""
         self.lines = []
+        self.rendered_done = False
 
     def set_text(self, text: str) -> None:
         """Function that sets the text to be displayed
@@ -146,7 +147,13 @@ class DialogueBox:
             else:
                 rendered_line = self.font.render(line[:max_chars - current_chars], True, (255, 255, 255))
                 text_surface.blit(rendered_line, (20, 50 + lines.index(line) * 40))
+                current_chars += len(line[:max_chars - current_chars])
                 break
+        
+        if current_chars >= total_chars:
+            self.rendered_done = True
+        else:
+            self.rendered_done = False
         
         self.screen.blit(text_surface, (self.box_x, self.box_y))
 
@@ -170,6 +177,7 @@ class DialogueManager:
         self.key_to_node = key_to_node
         self.dialogue_data = dialogue_data
         self.current_node = self.find_node("Start")
+        self.next_node_title = None
         self.dialogue_box = DialogueBox(screen)
         
         self.dialogue_active = False
@@ -240,7 +248,8 @@ class DialogueManager:
                 
         elif event.type == pygame.KEYDOWN:
             pressed_key = event.unicode
-            self.next_node_title = self.current_node['key'].get(pressed_key)
+            if self.dialogue_box.rendered_done:
+                self.next_node_title = self.current_node['key'].get(pressed_key)
             if self.next_node_title:
                 # Change player stats based on the node after the key pressed
                 if 'reason' in self.current_node:
@@ -250,6 +259,7 @@ class DialogueManager:
                 self.current_node = self.find_node(self.next_node_title)
                 self.dialogue_box.animation_played = False
                 self.dialogue_box.new_text = True
+                self.next_node_title = None
     
     def draw(self) -> None:
         """Function that draws the dialogue text and ui

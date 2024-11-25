@@ -127,6 +127,7 @@ class Player:
         self.clairvoyance = skills["Clairvoyance"]
         self.forbearance = skills["Forbearance"]
         self.resonance = skills["Resonance"]
+        self.experience = self.eloquence + self.clairvoyance + self.forbearance + self.resonance
 
     def roll_skill_check(self, skill_name: str, difficulty_class: int) -> bool:
         """Roll a skill check based on the player's current stats.
@@ -140,8 +141,14 @@ class Player:
         """
         skill_value = getattr(self, skill_name.lower(), 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
-        print(f"Rolled a {roll} for {skill_name} check. attr: {skill_value}")
-        return roll + skill_value >= difficulty_class  # Simple pass/fail check
+        # print(f"Rolled a {roll} for {skill_name} check. attr: {skill_value}")
+        result = roll + skill_value >= difficulty_class
+        if result:
+            print(f"Success! Rolled a {roll} + {skill_value} for {skill_name} check.")
+            self.raise_experience(1) # Gain experience for successful checks
+        else:
+            print(f"Failure! Rolled a {roll} + {skill_value} for {skill_name} check.")
+        return result  # Simple pass/fail check
     
     def reduce_attribute(self, attribute_name: str, amount: int) -> None:
         """Reduce the value of an attribute by a specified amount.

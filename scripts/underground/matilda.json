@@ -152,7 +152,7 @@
         "title": "Offer2"
     },
     {
-        "body": "[Matilda]: \"I did not. You were aware of the consequences. You knew, yet you exchanged something for something else. Was it worth it? Did I make you happy?\" \n\n[1]: \"It couldn't be going worse!\" \n[2]: \"I want my memories back!\" \n[3]: \"Of course it wasn't worth it. An assignment for my memories? That's not fair!\"",
+        "body": "[Matilda]: \"I did not. You were aware of the consequences. You knew, yet you exchanged something for something else. Was it worth it? Did I make you happy?\" \n\n[1]: \"It couldn't be going worse!\" \n[2]: \"I want my memories back!\" \n[3]: \"Of course it wasn't worth it. An assignment for my memories? That's not fair at all!\"",
         "key": {
             "1": "BeWorse",
             "2": "WantMemoriesBack",
@@ -161,13 +161,109 @@
         "title": "Offer3"
     },
     {
+        "body": "[Matilda]: \"You are the one who made the choice. You are the one who decided to exchange your memories for a wish. You are the one who decided to forget.\" \n\n[1]: \"Nonsense! I want my memories back!\"",
+        "key": {
+            "1": "WantMemoriesBack"
+        },
         "title": "BeWorse"
     },
     {
+        "body": "[Matilda]: \"You made a deal, and you must live with the consequences. You can't change the past, but you can change the future. You can't have your memories back, but you can make new ones.\" \n\n[1]: \"But I want my memories back!\"",
+        "key": {
+            "1": "WantMemoriesBack"
+        },
         "title": "NotFair"
     },
     {
+        "body": "[Matilda]: \"You didn't seem to want them back then.\" \n\n[1]: \"Why would I not want my memories?\" \n[2]: \"It doesn't matter, I want them now.\" \n[3]: \"I don't care! Give me them now.\"",
+        "key": {
+            "1": "WhyNot",
+            "2": "WantNow",
+            "3": "WantNow"
+        },
         "title": "WantMemoriesBack"
+    },
+    {
+        "body": "[Matilda]: \"I believe you are not strong enough.\" \n\n[1]: \"Why am I not strong? Why did I not want my memories?\"",
+        "key": {
+            "1": "WhyNot"
+        },
+        "title": "WantNow"
+    },
+    {
+        "body": "[Matilda]: \"You were desperate. You were afraid. You were alone. You were lost. You were confused. You were angry. You were sad. You were hurt. You were broken. You were empty. You were nothing. You were everything. You were...\" \n\n[1]: \"I was what?\"",
+        "key": {
+            "1": "IWasWhat"
+        },
+        "title": "WhyNot"
+    },
+    {
+        "body": "[Resonance]: \"Tired. You were tired. *We* were tired. Of everything.\" \n\n[Matilda]: \"You wanted a new beginning; I gave you that.\" \n\n[1]: \"What do you mean by 'new beginning'?\" \n[2]: \"What did you do to me?\"",
+        "key": {
+            "1": "NewBeginning",
+            "2": "WhatDidYouDo"
+        },
+        "title": "IWasWhat"
+    },
+    {
+        "body": "[Matilda]: \"I did what I was asked to.\" \n\n[1]: \"What about this 'new beginning'? What does that mean?\"",
+        "key": {
+            "1": "NewBeginning"
+        },
+        "title": "WhatDidYouDo"
+    },
+    {
+        "body": "[Matilda]: \"It is up to you now. My job here is done. Your name is forgotten by all, including me. Your memories, gone. It's time to grab a new name and start a new life.\" \n\n[1]: \"I'm not leaving everything behind!\" \n[2]: \"Where would I even begin? I can't just...\"",
+        "key": {
+            "1": "NotLeaving",
+            "2": "WhereBegin"
+        },
+        "title": "NewBeginning"
+    },
+    {
+        "body": "[Matilda]: \"You must let it go. What was it? 'Real darkness has love for a face. The first death is in the heart.', a great friend of mine once said. You must accept it. You must build a new *you*.\" \n\n[1]: \"But... I can't.\" \n[2]: \"How would I rebuild everything? I can't.?\"",
+        "key": {
+            "1": "ThereIsALight",
+            "2": "WhereBegin"
+        },
+        "title": "NotLeaving"
+    },
+    {
+        "body": "[Matilda]: \"You must find a new name. You must find a new place. You must find a new purpose. You must find a new life. You must find a new you.\" \n\n[1]: \"But... I can't.\"",
+        "key": {
+            "1": "ThereIsALight"
+        },
+        "title": "WhereBegin"
+    },
+    {
+        "body": "[Matilda]: \"There is a way. A way to resurrect your old self back into this world. A light that never goes out within your inner self.\" \n\n[1]: \"How?\" \n[2]: \"I don't believe you.\"",
+        "key": {
+            "1": "AWay",
+            "2": "AWay"
+        },
+        "title": "ThereIsALight"
+    },
+    {
+        "body": "[Matilda]: \"It is time to make a choice. If you truly express the desire to become your old self, close your eyes and remember.\" \n\n[1]: [Close your eyes and try to remember (Experience | DC 20)] \n[2]: [Accept your fate]",
+        "key": {
+            "1": "FinalCheck",
+            "2": "AcceptFate"
+        },
+        "title": "AWay"
+    },
+    {
+        "title": "FinalCheck",
+        "check_skill": "Experience",
+        "difficulty_class": 20
+    },
+    {
+        "title": "FinalPass"
+    },
+    {
+        "title": "FinalFail"
+    },
+    {
+        "title": "AcceptFate"
     },
     {
         "body": "",
