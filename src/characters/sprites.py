@@ -10,5 +10,3 @@ class SpriteSheet():
         sprite.blit(self.sheet, (0,0), (x*widht, y*height, widht, height))
         sprite.set_colorkey(BLUE)
         return sprite
-    
-character_spritesheet = SpriteSheet('assets/images/characters/characters.png')

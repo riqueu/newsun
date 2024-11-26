@@ -1,13 +1,13 @@
 import pygame
-
+from settings import KEYBOARD_SPEED
 
 class Camera:
     def __init__(self, game, width, height):
         self.game = game
         self.camera_rect = pygame.Rect(0, 0, width, height)
         self.offset = pygame.Vector2(0, 0)
-        self.camera_borders = {'left': 200, 'right': 200, 'top': 300, 'bottom': 300}
-        self.keyboard_speed = 5
+        self.camera_borders = {'left': 200, 'right': 200, 'top': 200, 'bottom': 200}
+        self.keyboard_speed = KEYBOARD_SPEED
 
     def box_target_camera(self, target):
         if target.rect.left < self.camera_rect.left + self.camera_borders['left']:

@@ -51,6 +51,8 @@ To run the unit tests, follow these steps:
 - Pause Menu Structure: ✔️
 - Options Menu Structure: ✔️
 - Character Creator Structure: ✔️
+- Camera Movement ✔️
+- Render Map & Change Scenes ✔️
 - Inventory(?): ❌
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - Skill Checks: ✔️
@@ -60,9 +62,9 @@ To run the unit tests, follow these steps:
 - Sprites/Scenes: ✔️
 - Write Dialogues ❌
     - Room 101: ✔️
-    - Floor 1 Corridor: ❌
+    - Floor 1 Corridor: ✔️
     - Floor 0: ❌
-    - Floor -1: ❌
+    - Floor -1: ✔️
 - Animated UI:✔️
     - Dialogue Box: ✔️
     - Character Creator: ✔️

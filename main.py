@@ -1,5 +1,5 @@
 import pygame
-from src.sprites import *
+from src.characters.sprites import *
 import sys
 
 from settings import *
@@ -13,34 +13,51 @@ from src.scenes.hotel_scenes import *
 
 
 class Game:
+    _instance = None
+    
+    def __new__(cls, *args, **kwargs):
+        """Create a new instance of the Game class if one does not already exist, i.e. Singleton pattern.
+
+        Returns:
+            _type_: The Player instance.
+        """
+        if not cls._instance:
+            cls._instance = super(Game, cls).__new__(cls)
+        return cls._instance
+    
     def __init__(self) -> None:
         """Initialize the Game
         """
-        pygame.init()
-        pygame.display.set_caption("Newsun")
-        pygame.display.set_icon(pygame.image.load('assets/images/newsun.jpg'))
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        self.clock = pygame.time.Clock()
-        self.time=pygame.time.get_ticks()
-        self.running = True  # Set a running flag for game control
-        
-        # Scene initialization
-        self.main_menu = MainMenu(self.screen) 
-        self.options_menu = OptionsMenu(self.screen)
-        self.pause_menu = PauseMenu(self.screen)
-        self.ending_menu = EndingMenu(self.screen)
-        
-        self.game_scenes = []
-        
-        # Character & Camera initialization #TODO: Implement Camera
-        self.character_spritesheet = SpriteSheet('assets/images/characters/characters.png')
-        self.camera = Camera(self, WIDTH, HEIGHT)
-        
-        # Game variables
-        self.menu_state = "main"
-        self.interaction_state = False
-        self.current_scene = None
+        if not hasattr(self, "initialized"):  # Prevent re-initialization
+            pygame.init()
+            pygame.display.set_caption("Newsun")
+            pygame.display.set_icon(pygame.image.load('assets/images/newsun.jpg'))
+            self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+            self.clock = pygame.time.Clock()
+            self.time=pygame.time.get_ticks()
+            self.running = True  # Set a running flag for game control
+            
+            # Scene initialization
+            self.main_menu = MainMenu(self.screen) 
+            self.options_menu = OptionsMenu(self.screen)
+            self.pause_menu = PauseMenu(self.screen)
+            self.ending_menu = EndingMenu(self.screen)
+            
+            self.game_scenes = []
+            # self.all_sprites = pygame.sprite.Group()
+            self.all_sprites = pygame.sprite.LayeredUpdates()
+            
+            # Character & Camera initialization #TODO: Implement Camera
+            self.character_spritesheet = SpriteSheet('assets/images/characters/characters.png')
+            self.camera = Camera(self, WIDTH, HEIGHT)
+            
+            # Game variables
+            self.menu_state = "main"
+            self.interaction_state = False
+            self.current_scene = None
 
+            self.initialized = True  #  Mark as initialized
+            
     def handle_events(self) -> None:
         """Handles events in the game
         """
@@ -63,14 +80,21 @@ class Game:
                         self.menu_state = "pause"
                         pygame.mixer.music.pause()
                         
-                if self.current_scene == "room_101":
-                    self.room_101.handle_event(event)
-                elif self.current_scene == "floor_1":
-                    self.floor_1.handle_event(event)
-                elif self.current_scene == "floor_0":
-                    self.floor_0.handle_event(event)
-                elif self.current_scene == "underground":
-                    self.underground.handle_event(event)
+                    # TEMP: Change maps with number keys
+                    if event.key == pygame.K_7:
+                        self.change_map(self.current_scene, self.room_101)
+                        self.current_scene = self.room_101
+                    if event.key == pygame.K_8:
+                        self.change_map(self.current_scene, self.floor_1)
+                        self.current_scene = self.floor_1
+                    if event.key == pygame.K_9:
+                        self.change_map(self.current_scene, self.floor_0)
+                        self.current_scene = self.floor_0
+                    if event.key == pygame.K_0:
+                        self.change_map(self.current_scene, self.underground)
+                        self.current_scene = self.underground
+                
+                self.current_scene.handle_event(event)
             
             if self.menu_state == "main":
                 if not pygame.mixer.music.get_busy():
@@ -117,8 +141,11 @@ class Game:
                 if self.new_game.game_begin:
                     self.load_map()
                     self.menu_state = "game"
-                    self.current_scene = "room_101"
+                    self.current_scene = self.room_101
                     self.player = self.new_game.player
+                    self.player.add_game(self)
+                    self.all_sprites.add(self.player)
+                    self.all_sprites.add(self.current_scene)
                     pygame.mixer.music.stop()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
             else:
@@ -131,11 +158,22 @@ class Game:
         self.floor_1 = Floor1(self.screen)
         self.floor_0 = Floor0(self.screen)
         self.underground = Underground(self.screen)
+    
+    def change_map(self, old_map, new_map) -> None:
+        """Method that changes the current map, i.e. removes the old and adds the new map
+
+        Args:
+            old_map (Scene): old scene
+            new_map (Scene): target scene
+        """
+        self.all_sprites.remove(old_map)
+        self.all_sprites.add(new_map)
 
     def draw(self) -> None:
         """Method that renders the game
         """
-        self.screen.fill((0, 0, 0))
+        self.screen.fill((35, 14, 13))
+            
         if self.menu_state == "main":
             self.main_menu.draw()
         elif self.menu_state == "ending":
@@ -145,14 +183,11 @@ class Game:
         elif self.menu_state == "new_game":
             self.new_game.draw()
         elif self.menu_state == "game":
-            if self.current_scene == "room_101":
-                self.room_101.draw()
-            elif self.current_scene == "floor_1":
-                self.floor_1.draw()
-            elif self.current_scene == "floor_0":
-                self.floor_0.draw()
-            elif self.current_scene == "underground":
-                self.underground.draw()
+            for sprite in self.all_sprites:
+                self.screen.blit(sprite.image, sprite.rect.topleft - self.camera.offset)
+                
+            self.current_scene.draw()
+
         elif self.menu_state == "pause":
             self.pause_menu.draw()
         else:
@@ -161,10 +196,11 @@ class Game:
         pygame.display.flip()  # Update the entire screen
 
     def update(self) -> None:
+        self.all_sprites.update()
         if hasattr(self, 'player') and self.menu_state == "game":
             self.player.update()
             self.camera.box_target_camera(self.player)
-        self.camera.keyboard_control()
+            self.camera.keyboard_control()
     
     def run(self) -> None:
         """Method to run through the game loop

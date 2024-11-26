@@ -35,11 +35,6 @@ class TestPlayer(unittest.TestCase):
         self.assertTrue(self.player.roll_skill_check("Eloquence", 18))
         self.assertFalse(self.player.roll_skill_check("Eloquence", 21))
     
-    def test_reduce_attribute(self):
-        self.player.health = 10
-        self.player.reduce_attribute("health", 3)
-        self.assertEqual(self.player.health, 7)
-    
     def test_raise_experience(self):
         self.player.experience = 0
         self.player.raise_experience(10)

@@ -3,10 +3,12 @@
 import pygame
 
 from src.ui.interaction import load_scene_interactions
+from src.ui.animated_sequence import status_bar
 from src.characters.player import Player
+from main import Game
 from settings import *
 
-class Scene:
+class Scene(pygame.sprite.Sprite):
     def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str, width: int, height: int) -> None:
         self.screen = screen
         # self.background = pygame.image.load(background_path)
@@ -14,26 +16,27 @@ class Scene:
         self.in_dialogue = False
         self.objects = []
         self.player = Player(screen) # Singleton pattern to draw the player in the right order
-        
+        self.game = Game() # Singleton pattern to access the game instance
         self._layer = GROUND_LAYER
-        # self.groups = self.game.all_sprites
-        # pygame.sprite.Sprite.__init__(self, self.groups)
-
+        self.groups = self.game.all_sprites
+        pygame.sprite.Sprite.__init__(self, self.groups)
+        self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 20)
+        
         self.width = width
         self.height = height
         self.x = (WIDTH-self.width)//2
         self.y = (HEIGHT-self.height)//2
 
-        self.background = pygame.image.load(background_path).convert_alpha()
-        self.background.set_colorkey(BLUE)
+        self.image = pygame.image.load(background_path).convert_alpha()
+        self.image.set_colorkey(BLUE)
 
         collision_path = background_path.replace("full.png", "collision.png")
-        self.image_colision = pygame.image.load(collision_path).convert_alpha()
-        self.image_colision.set_colorkey(BLUE)
+        self.image_collision = pygame.image.load(collision_path).convert_alpha()
+        self.image_collision.set_colorkey(BLUE)
 
-        self.mask = pygame.mask.from_surface(self.image_colision)
+        self.mask = pygame.mask.from_surface(self.image_collision)
 
-        self.rect = self.background.get_rect()
+        self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
     
@@ -48,14 +51,19 @@ class Scene:
                 manager.handle_event(event)
     
     def draw(self) -> None:
-        """Function that draws the scene
+        """Function that draws the UI elements in the scene
         """
-        self.screen.blit(self.background, (0, 0))
+        #self.screen.blit(self.image, (0, 0))
         
-        for obj in self.objects:
-            pygame.draw.rect(self.screen, (255, 0, 0), obj["rect"], 2)
+        #for obj in self.objects:
+        #    pygame.draw.rect(self.screen, (255, 0, 0), obj["rect"], 2)
         
-        self.player.draw()
+        #self.player.draw()
+        
+        status_bar.draw(self.screen)
+        status_bar.animate()
+        self.screen.blit(self.font.render(f"Health: {self.player.health}", True, (255, 255, 255)), (20, 18))
+        self.screen.blit(self.font.render(f"Reason: {self.player.reason}", True, (255, 255, 255)), (20, 44))
         
         for manager in self.dialogue_managers.values():
             if manager.dialogue_active or manager.dialogue_ended: # dialogue_ended only to draw out animation

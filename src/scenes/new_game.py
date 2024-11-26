@@ -6,6 +6,7 @@ import json
 from src.ui.interaction import DialogueManager, get_key_to_node
 from src.ui.animated_sequence import black_bg, dialogue_box_left, skill_desc
 from src.characters.player import Player
+# from main import Game
 
 class NewGame:
     def __init__(self, screen: pygame.Surface) -> None:

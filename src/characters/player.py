@@ -4,11 +4,11 @@ import pygame
 import numpy as np
 import math
 
-from settings import WIDTH, HEIGHT, PLAYER_SPEED
-from src.ui.animated_sequence import status_bar
-from src.characters.sprites import character_spritesheet
+from settings import *
 
-class Player:
+initial_pos = (WIDTH-ROOM_WIDHT)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240
+
+class Player(pygame.sprite.Sprite):
     _instance = None
     
     def __new__(cls, *args, **kwargs):
@@ -21,7 +21,7 @@ class Player:
             cls._instance = super(Player, cls).__new__(cls)
         return cls._instance
     
-    def __init__(self, screen: pygame.Surface, position: list[int] = [50, 450]) -> None:
+    def __init__(self, screen: pygame.Surface, position: tuple[int] = initial_pos) -> None:
         """Initialize the Player object.
 
         Args:
@@ -55,16 +55,6 @@ class Player:
             self.health = 4
             self.reason = 2
             self.speed = 5
-            
-            # Load the player's sprite
-            self.image = character_spritesheet.get_sprite(1, 0, self.width, self.height)
-            self.image_hitbox = pygame.image.load('assets/images/characters/player_hitbox.png').convert_alpha()
-
-            self.mask = pygame.mask.from_surface(self.image_hitbox)
-
-            self.rect = self.image.get_rect()
-            self.rect.x = self.x
-            self.rect.y = self.y
 
             self.door_side = "top"
             
@@ -73,13 +63,25 @@ class Player:
             
             self.initialized = True  # Mark as initialized
     
-    def get_position(self) -> list[int]:
-        """Get the current position of the player.
+    def add_game(self, game) -> None:
+        """Add the game instance to the player.
 
-        Returns:
-            List[int]: The current position of the player.
+        Args:
+            game (Game): The game instance.
         """
-        return self.position
+        self.game = game  # Use the passed game instance
+        self._layer = PLAYER_LAYER
+        
+        # Load the player's sprite
+        self.image = self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height)
+        self.image_hitbox = pygame.image.load('assets/images/characters/player_hitbox.png').convert_alpha()
+        self.mask = pygame.mask.from_surface(self.image_hitbox)
+        self.rect = self.image.get_rect()
+        self.rect.x = self.x
+        self.rect.y = self.y
+            
+        self.groups = self.game.all_sprites
+        pygame.sprite.Sprite.__init__(self, self.groups)
     
     def handle_movement(self):
         keys = pygame.key.get_pressed()
@@ -105,25 +107,25 @@ class Player:
             self.facing = 'down'
 
     def animate(self):
-        down_animations = [character_spritesheet.get_sprite(1, 0, self.width, self.height),
-                           character_spritesheet.get_sprite(0, 0, self.width, self.height),
-                           character_spritesheet.get_sprite(2, 0, self.width, self.height)]
+        down_animations = [self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 0, self.width, self.height)]
 
-        up_animations = [character_spritesheet.get_sprite(1, 3, self.width, self.height),
-                           character_spritesheet.get_sprite(0, 3, self.width, self.height),
-                           character_spritesheet.get_sprite(2, 3, self.width, self.height)]
+        up_animations = [self.game.character_spritesheet.get_sprite(1, 3, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 3, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 3, self.width, self.height)]
 
-        left_animations = [character_spritesheet.get_sprite(1, 1, self.width, self.height),
-                           character_spritesheet.get_sprite(0, 1, self.width, self.height),
-                           character_spritesheet.get_sprite(2, 1, self.width, self.height)]
+        left_animations = [self.game.character_spritesheet.get_sprite(1, 1, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 1, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 1, self.width, self.height)]
 
-        right_animations = [character_spritesheet.get_sprite(1, 2, self.width, self.height),
-                           character_spritesheet.get_sprite(0, 2, self.width, self.height),
-                           character_spritesheet.get_sprite(2, 2, self.width, self.height)]
+        right_animations = [self.game.character_spritesheet.get_sprite(1, 2, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(0, 2, self.width, self.height),
+                           self.game.character_spritesheet.get_sprite(2, 2, self.width, self.height)]
         
         if self.facing == 'down':
             if self.y_change == 0:
-                self.image = character_spritesheet.get_sprite(1, 0, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height)
             else:
                 self.image = down_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -132,7 +134,7 @@ class Player:
         
         if self.facing == 'up':
             if self.y_change == 0:
-                self.image = character_spritesheet.get_sprite(1, 3, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 3, self.width, self.height)
             else:
                 self.image = up_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -141,7 +143,7 @@ class Player:
         
         if self.facing == 'left':
             if self.x_change == 0:
-                self.image = character_spritesheet.get_sprite(1, 1, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 1, self.width, self.height)
             else:
                 self.image = left_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -150,7 +152,7 @@ class Player:
         
         if self.facing == 'right':
             if self.x_change == 0:
-                self.image = character_spritesheet.get_sprite(1, 2, self.width, self.height)
+                self.image = self.game.character_spritesheet.get_sprite(1, 2, self.width, self.height)
             else:
                 self.image = right_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
@@ -219,7 +221,6 @@ class Player:
         """
         skill_value = getattr(self, skill_name.lower(), 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
-        # print(f"Rolled a {roll} for {skill_name} check. attr: {skill_value}")
         result = roll + skill_value >= difficulty_class
         if result:
             print(f"Success! Rolled a {roll} + {skill_value} for {skill_name} check.")
@@ -227,16 +228,6 @@ class Player:
         else:
             print(f"Failure! Rolled a {roll} + {skill_value} for {skill_name} check.")
         return result  # Simple pass/fail check
-    
-    def reduce_attribute(self, attribute_name: str, amount: int) -> None:
-        """Reduce the value of an attribute by a specified amount.
-
-        Args:
-            attribute_name (str): The name of the attribute to reduce.
-            amount (int): The amount to reduce the attribute by.
-        """
-        current_value = getattr(self, attribute_name, 0)
-        setattr(self, attribute_name, current_value - amount)
     
     def raise_experience(self, amount: int) -> None:
         """Increase the player's experience by a specified amount.
@@ -246,39 +237,37 @@ class Player:
         """
         self.experience += amount
         
-    def draw(self) -> None:
-        """Draw the player & their stats on the screen."""
+    """def draw(self) -> None:
+        # Draw the player & their stats on the screen.
         self.screen.blit(self.image, [self.rect.x, self.rect.y])
         status_bar.draw(self.screen)
         status_bar.animate()
         self.screen.blit(self.font.render(f"Health: {self.health}", True, (255, 255, 255)), (20, 18))
-        self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))
+        self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))"""
 
-    def update(self):
+    def update(self) -> None:
         previous_x = self.rect.x
         previous_y = self.rect.y
 
         # Executar o movimento do jogador
         self.handle_movement()
         self.animate()
-
-        # Tentar mover horizontalmente, se possível
+        
+        # Tentar mover, se possível
         self.rect.x += self.x_change
-        #if self.colisao_com_paredes(self.game.all_sprites):
-        #    self.rect.x = previous_x  # Reverter o movimento horizontal se houver colisão
-
-        # Tentar mover verticalmente, se possível
         self.rect.y += self.y_change
-        #if self.colisao_com_paredes(self.game.all_sprites):
-        #    self.rect.y = previous_y  # Reverter o movimento vertical se houver colisão
-
+        if self.check_collision(self.game.all_sprites):
+            # print("COLIDIU")
+            self.rect.y = previous_y 
+            self.rect.x = previous_x
+        
         # Resetar as mudanças no movimento após cada atualização
         self.x_change = 0
         self.y_change = 0
         
-    # TODO: Implementar colisão com paredes CORRETAMENTE
-    def colisao_com_paredes(self, outros_sprites):
-        for sprite in outros_sprites:
+    def check_collision(self, all_sprites: pygame.sprite.LayeredUpdates) -> bool:
+        #print(all_sprites.sprites())
+        for sprite in all_sprites:
             if not isinstance(sprite, Player):  # Verifique colisão com o fundo do quarto
                 # Verifique colisões
                 offset = (self.rect.x - sprite.rect.x, self.rect.y - sprite.rect.y)

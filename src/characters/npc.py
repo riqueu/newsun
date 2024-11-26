@@ -8,9 +8,15 @@ class Interactable:
         self.y = y
         self.dialogue_manager = dialogue_manager
     
-    def draw(self):
-        pass
-    
+    def draw(self, screen, range=1):
+        rect = pygame.Rect(
+            self.x - range * 32,  # Assuming each tile is 32x32 pixels
+            self.y - range * 32,
+            (range * 2 + 1) * 32,
+            (range * 2 + 1) * 32
+        )
+        pygame.draw.rect(screen, (255, 0, 0), rect, 1)
+        
     def is_within_range(self, player_x, player_y, range=1):
         return abs(self.x - player_x) <= range and abs(self.y - player_y) <= range
 
@@ -23,24 +29,8 @@ class Object(Interactable): # e.g. Mirror
     def __init__(self, x, y, dialogue_manager):
         super().__init__(x, y, dialogue_manager)
     
-    def draw(self):
-        # Add code to draw the object
-        pass
-    
-    def handle_event(self, event, player_x, player_y):
-        super().handle_event(event, player_x, player_y)
-        # Add additional event handling for the object
-        pass
 
 class NPC(Interactable): # e.g. Tabastan
     def __init__(self, x, y, dialogue_manager):
         super().__init__(x, y, dialogue_manager)
     
-    def draw(self):
-        # Add code to draw the NPC
-        pass
-    
-    def handle_event(self, event, player_x, player_y):
-        super().handle_event(event, player_x, player_y)
-        # Add additional event handling for the NPC
-        pass
