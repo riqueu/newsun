@@ -4,22 +4,38 @@ import pygame
 
 from src.ui.interaction import load_scene_interactions
 from src.characters.player import Player
+from settings import *
 
 class Scene:
-    def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str) -> None:
-        """Function that initializes the scene
-
-        Args:
-            screen (pygame.Surface): the screen
-            background_path (str): path to the background image
-            scripts_path (str): path to the scripts (interactions)
-        """
+    def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str, width: int, height: int) -> None:
         self.screen = screen
-        self.background = pygame.image.load(background_path)
+        # self.background = pygame.image.load(background_path)
         self.dialogue_managers = load_scene_interactions(scripts_path, self.screen)
         self.in_dialogue = False
         self.objects = []
         self.player = Player(screen) # Singleton pattern to draw the player in the right order
+        
+        self._layer = GROUND_LAYER
+        # self.groups = self.game.all_sprites
+        # pygame.sprite.Sprite.__init__(self, self.groups)
+
+        self.width = width
+        self.height = height
+        self.x = (WIDTH-self.width)//2
+        self.y = (HEIGHT-self.height)//2
+
+        self.background = pygame.image.load(background_path).convert_alpha()
+        self.background.set_colorkey(BLUE)
+
+        collision_path = background_path.replace("full.png", "collision.png")
+        self.image_colision = pygame.image.load(collision_path).convert_alpha()
+        self.image_colision.set_colorkey(BLUE)
+
+        self.mask = pygame.mask.from_surface(self.image_colision)
+
+        self.rect = self.background.get_rect()
+        self.rect.x = self.x
+        self.rect.y = self.y
     
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the scene
@@ -47,15 +63,9 @@ class Scene:
 
 
 class Room101(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/room_101") -> None:
-        """Function that initializes the room 101 scene
-
-        Args:
-            screen (pygame.Surface): the screen
-            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
-            scripts_path (str, optional): scripts. Defaults to "scripts/room_101".
-        """
-        super().__init__(screen, background_path, scripts_path)
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+        """Function that initializes the room 101 scene"""
+        super().__init__(screen, background_path, scripts_path, width, height)
         self.objects = [
             {"name": "sink", "rect": pygame.Rect(100, 100, 50, 50)},
             {"name": "mirror", "rect": pygame.Rect(200, 100, 50, 50)},
@@ -81,15 +91,9 @@ class Room101(Scene):
         
 
 class Floor1(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/floor_1") -> None:
-        """Function that initializes the floor 1 scene
-
-        Args:
-            screen (pygame.Surface): the screen
-            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
-            scripts_path (str, optional): scripts. Defaults to "scripts/floor_1".
-        """
-        super().__init__(screen, background_path, scripts_path)
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+        """Function that initializes the room 101 scene"""
+        super().__init__(screen, background_path, scripts_path, width, height)
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the floor 1 scene
@@ -106,15 +110,9 @@ class Floor1(Scene):
 
 
 class Floor0(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/floor_0") -> None:
-        """Function that initializes the floor 0 scene
-
-        Args:
-            screen (pygame.Surface): the screen
-            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
-            scripts_path (str, optional): scripts. Defaults to "scripts/floor_0".
-        """
-        super().__init__(screen, background_path, scripts_path)
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/lobby_full.png", scripts_path: str = "scripts/floor_0", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+        """Function that initializes the hall scene"""
+        super().__init__(screen, background_path, scripts_path, width, height)
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the floor 0 scene
@@ -131,15 +129,9 @@ class Floor0(Scene):
 
 
 class Underground(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/fundo_temp.png", scripts_path: str = "scripts/underground") -> None:
-        """Function that initializes the underground scene
-
-        Args:
-            screen (pygame.Surface): the screen
-            background_path (str, optional): bg. Defaults to "assets/images/backgrounds/temp_bg.jpg".
-            scripts_path (str, optional): scripts. Defaults to "scripts/underground".
-        """
-        super().__init__(screen, background_path, scripts_path)
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+        """Function that initializes the underground scene"""
+        super().__init__(screen, background_path, scripts_path, width, height)
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the underground scene

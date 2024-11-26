@@ -1,5 +1,6 @@
 import pygame
-from src.config import *
+# from src.config import *
+from settings import *
 import math
 import random
 
@@ -254,7 +255,7 @@ class RoomDoor(pygame.sprite.Sprite):
                 self.game.hall = None  # Limpa a referência ao corredor
 
             # Cria e desenha o Room
-            self.game.room = Room(self.game, (WIN_WIDTH - ROOM_WIDHT) // 2, (WIN_HEIGHT - ROOM_HEIGHT) // 2)
+            self.game.room = Room(self.game, (WIDTH - ROOM_WIDHT) // 2, (HEIGHT - ROOM_HEIGHT) // 2)
             self.game.all_sprites.add(self.game.room)  # Adiciona o novo ambiente (Room) aos sprites
 
     def update(self):

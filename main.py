@@ -1,9 +1,9 @@
 import pygame
-from src.config import *
 from src.sprites import *
 import sys
 
-from settings import WIDTH, HEIGHT, FPS
+from settings import *
+from src.ui.camera import Camera
 from src.scenes.main_menu import MainMenu
 from src.scenes.options_menu import OptionsMenu
 from src.scenes.pause_menu import PauseMenu
@@ -32,23 +32,22 @@ class Game:
         
         self.game_scenes = []
         
+        # Character & Camera initialization #TODO: Implement Camera
+        self.character_spritesheet = SpriteSheet('assets/images/characters/characters.png')
+        self.camera = Camera(self, WIDTH, HEIGHT)
+        
         # Game variables
         self.menu_state = "main"
         self.interaction_state = False
         self.current_scene = None
-        
-        # TODO: Implement Fade in/out effect between scenes
-        self.fade = pygame.Surface((WIDTH, HEIGHT)).convert_alpha()
-        self.fade.fill((0, 0, 0, 0))
-        self.fade_alpha = 255
 
     def handle_events(self) -> None:
         """Handles events in the game
         """
         # outside event loop to allow for continuous movement
-        if self.menu_state == "game":
-            keys = pygame.key.get_pressed()
-            self.player.handle_movement(keys)
+        #if self.menu_state == "game":
+            #keys = pygame.key.get_pressed()
+            #self.player.handle_movement(keys)
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -162,7 +161,10 @@ class Game:
         pygame.display.flip()  # Update the entire screen
 
     def update(self) -> None:
-        pass
+        if hasattr(self, 'player') and self.menu_state == "game":
+            self.player.update()
+            self.camera.box_target_camera(self.player)
+        self.camera.keyboard_control()
     
     def run(self) -> None:
         """Method to run through the game loop
@@ -171,58 +173,12 @@ class Game:
             self.handle_events()
             self.update()
             self.draw()
-        self.running = False
+            self.clock.tick(FPS)
 
-    def game_over(self):
-        pass
+        pygame.quit()
+        sys.exit()
 
-    def intro_screen(self):
-        pass
 
-class Camera:
-    def __init__(self, game, width, height):
-        self.game = game
-        self.camera_rect = pygame.Rect(0, 0, width, height)
-        self.offset = pygame.Vector2(0, 0)
-        self.camera_borders = {'left': 200, 'right': 200, 'top': 300, 'bottom': 300}
-        self.keyboard_speed = 5
-
-    def box_target_camera(self, target):
-        if target.rect.left < self.camera_rect.left + self.camera_borders['left']:
-            self.camera_rect.left = target.rect.left - self.camera_borders['left']
-
-        # Verificar se o jogador ultrapassou a borda direita da tela
-        if target.rect.right > self.camera_rect.right - self.camera_borders['right']:
-            self.camera_rect.right = target.rect.right + self.camera_borders['right']
-
-        # Verificar se o jogador ultrapassou a borda superior da tela
-        if target.rect.top < self.camera_rect.top + self.camera_borders['top']:
-            self.camera_rect.top = target.rect.top - self.camera_borders['top']
-
-        # Verificar se o jogador ultrapassou a borda inferior da tela
-        if target.rect.bottom > self.camera_rect.bottom - self.camera_borders['bottom']:
-            self.camera_rect.bottom = target.rect.bottom + self.camera_borders['bottom']
-
-        # Atualiza o deslocamento da câmera para o movimento da tela
-        self.offset.x = self.camera_rect.left 
-        self.offset.y = self.camera_rect.top
-
-    def keyboard_control(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_a]: self.camera_rect.x -= self.keyboard_speed
-        if keys[pygame.K_d]: self.camera_rect.x += self.keyboard_speed
-        if keys[pygame.K_w]: self.camera_rect.y -= self.keyboard_speed
-        if keys[pygame.K_s]: self.camera_rect.y += self.keyboard_speed
-
-        self.offset.x = self.camera_rect.left
-        self.offset.y = self.camera_rect.top
-
-g = Game()
-g.intro_screen()
-g.new()
-while g.running:
-    g.main()
-    g.game_over()
-
-pygame.quit()
-sys.exit()
+if __name__ == "__main__":
+    game = Game()
+    game.run()
