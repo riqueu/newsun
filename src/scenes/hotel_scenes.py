@@ -10,6 +10,15 @@ from settings import *
 
 class Scene(pygame.sprite.Sprite):
     def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str, width: int, height: int) -> None:
+        """Initializes the scene
+
+        Args:
+            screen (pygame.Surface): screen
+            background_path (str): path to bg
+            scripts_path (str): path to scene scripts
+            width (int): scene width
+            height (int): scene height
+        """
         self.screen = screen
         # self.background = pygame.image.load(background_path)
         self.dialogue_managers = load_scene_interactions(scripts_path, self.screen)
@@ -46,6 +55,7 @@ class Scene(pygame.sprite.Sprite):
         Args:
             event (pygame.event.Event): the event
         """
+        self.in_dialogue = any(manager.dialogue_active for manager in self.dialogue_managers.values())
         for manager in self.dialogue_managers.values():
             if manager.dialogue_active:
                 manager.handle_event(event)
@@ -53,13 +63,6 @@ class Scene(pygame.sprite.Sprite):
     def draw(self) -> None:
         """Function that draws the UI elements in the scene
         """
-        #self.screen.blit(self.image, (0, 0))
-        
-        #for obj in self.objects:
-        #    pygame.draw.rect(self.screen, (255, 0, 0), obj["rect"], 2)
-        
-        #self.player.draw()
-        
         status_bar.draw(self.screen)
         status_bar.animate()
         self.screen.blit(self.font.render(f"Health: {self.player.health}", True, (255, 255, 255)), (20, 18))
@@ -74,12 +77,12 @@ class Room101(Scene):
     def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
         """Function that initializes the room 101 scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
-        self.objects = [
+        """self.objects = [
             {"name": "sink", "rect": pygame.Rect(100, 100, 50, 50)},
             {"name": "mirror", "rect": pygame.Rect(200, 100, 50, 50)},
             {"name": "clock", "rect": pygame.Rect(900, 400, 50, 50)},
             {"name": "door", "rect": pygame.Rect(900, 500, 50, 50)}
-        ]
+        ]"""
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the room 101 scene
@@ -89,6 +92,7 @@ class Room101(Scene):
         """
         super().handle_event(event)
         
+        # Test to start and end dialogue
         if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
             self.dialogue_managers['mirror'].dialogue_active = True     
 

@@ -196,9 +196,10 @@ class Game:
         pygame.display.flip()  # Update the entire screen
 
     def update(self) -> None:
-        self.all_sprites.update()
+        """Function that updates the game loop
+        """
         if hasattr(self, 'player') and self.menu_state == "game":
-            self.player.update()
+            self.all_sprites.update()
             self.camera.box_target_camera(self.player)
             self.camera.keyboard_control()
     

@@ -58,6 +58,7 @@ To run the unit tests, follow these steps:
     - Skill Checks: ✔️
     - Animations: ✔️
 - Player Movement: ✔️
+    - Block when Interacting / Paused ✔️
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ✔️
 - Write Dialogues ❌

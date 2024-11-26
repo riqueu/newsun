@@ -83,30 +83,28 @@ class Player(pygame.sprite.Sprite):
         self.groups = self.game.all_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
     
-    def handle_movement(self):
+    def handle_movement(self) -> None:
+        """Handles the movement of the player based on the keys pressed if not in dialogue.
+        """
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            # for sprite in self.game.all_sprites:
-            #     sprite.rect.x += PLAYER_SPEED
-            self.x_change -= PLAYER_SPEED
-            self.facing = 'left'
-        if keys[pygame.K_RIGHT]:
-            # for sprite in self.game.all_sprites:
-            #     sprite.rect.x -= PLAYER_SPEED
-            self.x_change += PLAYER_SPEED
-            self.facing = 'right'
-        if keys[pygame.K_UP]:
-            # for sprite in self.game.all_sprites:
-            #     sprite.rect.y += PLAYER_SPEED
-            self.y_change -= PLAYER_SPEED
-            self.facing = 'up'
-        if keys[pygame.K_DOWN]:
-            # for sprite in self.game.all_sprites:
-            #     sprite.rect.y -= PLAYER_SPEED
-            self.y_change += PLAYER_SPEED
-            self.facing = 'down'
+        # Only move if the player is not in dialogue
+        if not self.game.current_scene.in_dialogue:
+            if keys[pygame.K_LEFT]:
+                self.x_change -= PLAYER_SPEED
+                self.facing = 'left'
+            if keys[pygame.K_RIGHT]:
+                self.x_change += PLAYER_SPEED
+                self.facing = 'right'
+            if keys[pygame.K_UP]:
+                self.y_change -= PLAYER_SPEED
+                self.facing = 'up'
+            if keys[pygame.K_DOWN]:
+                self.y_change += PLAYER_SPEED
+                self.facing = 'down'
 
-    def animate(self):
+    def animate(self) -> None:
+        """Handles character animation based on the direction they are facing and their movement.
+        """
         down_animations = [self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(2, 0, self.width, self.height)]
@@ -246,6 +244,8 @@ class Player(pygame.sprite.Sprite):
         self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))"""
 
     def update(self) -> None:
+        """Updates the player's position and animation.
+        """
         previous_x = self.rect.x
         previous_y = self.rect.y
 
@@ -266,7 +266,14 @@ class Player(pygame.sprite.Sprite):
         self.y_change = 0
         
     def check_collision(self, all_sprites: pygame.sprite.LayeredUpdates) -> bool:
-        #print(all_sprites.sprites())
+        """Check for collisions with the walls of the room.
+
+        Args:
+            all_sprites (pygame.sprite.LayeredUpdates): all sprites in scene.
+
+        Returns:
+            bool: True if the player collides with a wall, False otherwise.
+        """
         for sprite in all_sprites:
             if not isinstance(sprite, Player):  # Verifique colisão com o fundo do quarto
                 # Verifique colisões
