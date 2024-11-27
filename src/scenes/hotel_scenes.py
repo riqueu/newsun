@@ -61,6 +61,8 @@ class Scene(pygame.sprite.Sprite):
         self.dialogue_conditions = {}
 
         self.people = []
+    
+        self.scene_sprites = []
         
         self.npc_positionns = {
             "npc_vorakh": (100, 100),

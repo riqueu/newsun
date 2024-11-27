@@ -44,10 +44,9 @@ class Game:
             self.ending_menu = EndingMenu(self.screen)
             
             self.game_scenes = []
-            # self.all_sprites = pygame.sprite.Group()
             self.all_sprites = pygame.sprite.LayeredUpdates()
             
-            # Character & Camera initialization #TODO: Implement Camera
+            # Character & Camera initialization
             self.character_spritesheet = SpriteSheet('assets/images/characters/characters.png')
             self.camera = Camera(self, WIDTH, HEIGHT)
             
@@ -96,9 +95,11 @@ class Game:
                         self.current_scene = self.underground
                 
                 event_handled = self.current_scene.handle_event(event)
+                # check if event is a scene change
                 if event_handled in self.current_scene.scene_mapping.values():
                     self.change_map(self.current_scene, getattr(self, event_handled))
                     self.current_scene = getattr(self, event_handled)
+                # check if game ended
                 elif event_handled == "ending":
                     self.menu_state = "ending"
                     pygame.mixer.music.stop()
@@ -156,6 +157,8 @@ class Game:
                     self.player.add_game(self)
                     self.all_sprites.add(self.player)
                     self.all_sprites.add(self.current_scene)
+                    #for sprite in self.current_scene.scene_sprites: TODO: do this after done with map sprites
+                    #    self.all_sprites.add(sprite)
                     pygame.mixer.music.stop()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
             else:
@@ -177,7 +180,12 @@ class Game:
             new_map (Scene): target scene
         """
         self.all_sprites.remove(old_map)
+        #for sprite in old_map.scene_sprites: TODO: do this after done with map sprites
+        #    self.all_sprites.remove(sprite)
+        
         self.all_sprites.add(new_map)
+        #for sprite in new_map.scene_sprites: TODO: do this after done with map sprites
+        #    self.all_sprites.add(sprite)
 
     def draw(self) -> None:
         """Method that renders the game

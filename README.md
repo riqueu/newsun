@@ -54,7 +54,7 @@ To run the unit tests, follow these steps:
 - Character Creator Structure: ✔️
 - Camera Movement ✔️
 - Render Map & Change Scenes ✔️
-- Inventory(?): ❌
+- Inventory/Hotbar: ❌
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - Skill Checks: ✔️
     - Animations: ✔️
@@ -78,7 +78,7 @@ To run the unit tests, follow these steps:
     - ... ✔️
 - Scene Variables: ❌
     - Fix Elevator -> Change StartCondition, etc. ❌
-- Map Placement/Positioning: ❌
+- Map Placement/Positioning: ✔️
 
 ## License
 
