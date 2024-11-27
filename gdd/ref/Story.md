@@ -32,6 +32,6 @@ The game **will** end here.
 
 Floor -1 not only feels but acts like a different dimension.
 
-There you meet [Han](han.md). The game ends by the end of your conversation.
+There you meet [Matilda](Matilda.md). The game ends by the end of your conversation.
 
 Possibility: Different endings depending on your conversations/interactions/checks.

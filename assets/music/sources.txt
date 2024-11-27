@@ -2,5 +2,4 @@
 main.ogg
 new_game_conversation.ogg
 newsun_hotel.ogg
-
-2:
+credits.ogg

@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Elevator Door]: It's broken... You feel like you should try to talk to the person standing next to it. It seems like they are trying to fix the elevator. \n\n[1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "[Elevator]: It is finally fixed. You can now enter the elevator. \n\n[1]: [Enter the elevator] \n[2]: [Leave]",
+        "key": {
+            "1": "EnterElevator",
+            "2": "End"
+        },
+        "title": "Start2"
+    },
+    {
+        "title": "EnterElevator"
+    },
+    {
+        "body": "",
+        "title": "End"
+    }
+]

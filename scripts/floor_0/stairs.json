@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Stairs]: You can probably make it upstairs again. \n\n[1]: [Go upstairs] \n[2]: [Stay]",
+        "key": {
+            "1": "Upstairs",
+            "2": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "title": "Upstairs"
+    },
+    {
+        "body": "",
+        "title": "End"
+    }
+]

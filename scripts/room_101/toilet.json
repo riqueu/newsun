@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Toilet]: There is a dirty toilet sitting by the bathroom. You feel a strong sensation: it is telling you not to engage with it. Your nostrils agree. \n\n[1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "",
+        "title": "End"
+    }
+]

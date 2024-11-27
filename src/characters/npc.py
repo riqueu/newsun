@@ -1,23 +1,13 @@
-"""PLACEHOLDER: Interactables class for creating non-player characters in the game."""
+"""Interactables class for creating non-player characters/objects in the game."""
+import pygame
+from settings import *
 
-class Interactable:
+# TODO: Do this class and put them in the right place
+class Interactable(pygame.sprite.Sprite):
     pass
 
-class Object(Interactable): # e.g. Mirror
+class Object(Interactable): # e.g. Mirror (Sprite will be blank as it's already in the map)
     pass
 
 class NPC(Interactable): # e.g. Tabastan
-    def __init__(self, name, dialogue_lines):
-        """Initializes the NPC with a name and a list of dialogue lines."""
-        self.name = name
-        self.dialogue_lines = dialogue_lines
-        self.current_line = 0
-
-    def speak(self):
-        """Displays the next line of dialogue for the NPC."""
-        if self.current_line < len(self.dialogue_lines):
-            print(f"{self.name}: {self.dialogue_lines[self.current_line]}")
-            self.current_line += 1
-        else:
-            print(f"{self.name} has nothing more to say.")
-            self.current_line = 0  # Reset dialogue for next interaction
+    pass

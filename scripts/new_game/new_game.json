@@ -1,12 +1,16 @@
 [
     {
-      "body": "[???]: \"The car's on fire and there's no driver at the wheel.\" \n\n[1]: \"What's going on?\" \n[2]: \"Who are you?\" \n[3]: \"A dark wind blows.\"",
+        "title": "Start"
+    },
+    {
+      "body": "[???]: \"The car's on fire and there's no driver at the wheel.\" \n\n[1]: \"What's going on?\" \n[2]: \"Who are you?\" \n[3]: \"A dark wind blows.\" \n[4]: [Skip]",
       "key": {
         "1": "Questions",
         "2": "Questions",
-        "3": "Next"
+        "3": "Next",
+        "4": "End"
         },
-      "title": "Start"
+      "title": "Start1"
     },
     {
       "body": "[???]: \"There are more questions than answers, and the more you find out, the less you know.\" \n\n[1]: \"What do you mean?\"",
@@ -84,6 +88,7 @@
       "title": "Begin"
     },
     {
+      "body": "",
       "title": "End"
     }
   ]
