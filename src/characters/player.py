@@ -6,7 +6,7 @@ import math
 
 from settings import *
 
-initial_pos = (WIDTH-ROOM_WIDTH)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240
+initial_pos = ((WIDTH-ROOM_WIDTH)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240)
 
 class Player(pygame.sprite.Sprite):
     _instance = None
@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
 
         Args:
             screen (pygame.Surface): The screen where the player will be drawn.
-            position (list[int], optional): Initial position of the player. Defaults to [50, 450].
+            position (tuple[int], optional): Initial position of the player. Defaults to initial_pos.
         """
         if not hasattr(self, "initialized"):  # Prevent re-initialization
             self.screen = screen
@@ -54,9 +54,6 @@ class Player(pygame.sprite.Sprite):
             self.experience = 0
             self.health = 4
             self.reason = 2
-            self.speed = 5
-
-            self.door_side = "top"
             
             # PLACEHOLDER: Implement Inventory Object at ui/inventory.py
             self.inventory = []

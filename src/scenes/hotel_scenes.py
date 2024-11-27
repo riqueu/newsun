@@ -5,6 +5,7 @@ import pygame
 from src.ui.interaction import load_scene_interactions
 from src.ui.animated_sequence import status_bar
 from src.characters.player import Player
+from src.characters.npc import NPC, Object
 from main import Game
 from settings import *
 
@@ -56,9 +57,24 @@ class Scene(pygame.sprite.Sprite):
             "Downstairs": 'floor_0',
             "EnterElevator": 'underground'
         }
+        
         self.dialogue_conditions = {}
+
+        self.people = []
+        
+        self.npc_positionns = {
+            "npc_vorakh": (100, 100),
+            "npc_tabastan": (200, 200),
+            "npc_camellia": (300, 300),
+        }
+        
+        # TODO: Implement later
+        #for name in self.dialogue_managers:
+        #    if name.startswith("npc_"):
+        #        npc_object = NPC(self.screen, self.npc_positionns[name])
+        #        self.people.append(npc_object)
     
-    def handle_event(self, event: pygame.event.Event, dialogue_conditions: dict) -> None:
+    def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the scene
 
         Args:
@@ -114,7 +130,7 @@ class Scene(pygame.sprite.Sprite):
 
 
 class Room101(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT - 400) -> None:
         """Function that initializes the room 101 scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
         """self.objects = [
@@ -130,7 +146,7 @@ class Room101(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event, self.dialogue_conditions)
+        super().handle_event(event)
         
         # Test to start and end dialogue
         if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
@@ -147,7 +163,7 @@ class Room101(Scene):
         
 
 class Floor1(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = 0, height: int = 0) -> None:
         """Function that initializes the room 101 scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
         
@@ -159,7 +175,7 @@ class Floor1(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event, self.dialogue_conditions)
+        super().handle_event(event)
         
         # Check if it's a change of scene dialogue (door or stairs)
         if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
@@ -182,13 +198,13 @@ class Floor1(Scene):
 
 
 class Floor0(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/lobby_full.png", scripts_path: str = "scripts/floor_0", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/lobby_full.png", scripts_path: str = "scripts/floor_0", width: int = 0, height: int = 0) -> None:
         """Function that initializes the hall scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
         
         self.dialogue_conditions = {
-            "vorakh": 1,
-            "door": 1
+            "npc_vorakh": 1,
+            "door": 2
         }
 
     def handle_event(self, event: pygame.event.Event) -> None:
@@ -197,7 +213,7 @@ class Floor0(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event, self.dialogue_conditions)
+        super().handle_event(event)
         
         # Check if it's a change of scene dialogue (door or stairs)
         if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
@@ -220,17 +236,23 @@ class Floor0(Scene):
 
 
 class Underground(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = 0, height: int = 0) -> None:
         """Function that initializes the underground scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
 
-    def handle_event(self, event: pygame.event.Event) -> None:
+    def handle_event(self, event: pygame.event.Event) -> None|str:
         """Function that handles events in the underground scene
 
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event, self.dialogue_conditions)
+        super().handle_event(event)
+        
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+            self.dialogue_managers['matilda'].dialogue_active = True
+        
+        if self.dialogue_managers['matilda'].current_node['title'] == "NEWSUN":
+            return "ending"
 
     def draw(self) -> None:
         """Function that draws the room

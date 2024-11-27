@@ -50,6 +50,7 @@ To run the unit tests, follow these steps:
 - Main Menu Structure: ✔️
 - Pause Menu Structure: ✔️
 - Options Menu Structure: ✔️
+- Credits Menu Structure: ✔️
 - Character Creator Structure: ✔️
 - Camera Movement ✔️
 - Render Map & Change Scenes ✔️
@@ -61,6 +62,9 @@ To run the unit tests, follow these steps:
     - Block when Interacting / Paused ✔️
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ✔️
+    - Scene Transition ✔️
+    - Interact with Interactables (Objects and NPCs) ❌
+    - Draw NPCs(Interactable) ❌
 - Write Dialogues ❌
     - Room 101: ✔️
     - Floor 1 Corridor: ✔️
@@ -72,7 +76,9 @@ To run the unit tests, follow these steps:
     - Menu Background: ✔️
     - Character Status: ✔️
     - ... ✔️
-- ... ❌
+- Scene Variables: ❌
+    - Fix Elevator -> Change StartCondition, etc. ❌
+- Map Placement/Positioning: ❌
 
 ## License
 

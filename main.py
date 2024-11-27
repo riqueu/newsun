@@ -99,6 +99,9 @@ class Game:
                 if event_handled in self.current_scene.scene_mapping.values():
                     self.change_map(self.current_scene, getattr(self, event_handled))
                     self.current_scene = getattr(self, event_handled)
+                elif event_handled == "ending":
+                    self.menu_state = "ending"
+                    pygame.mixer.music.stop()
                 
             if self.menu_state == "main":
                 if not pygame.mixer.music.get_busy():
@@ -119,8 +122,8 @@ class Game:
             elif self.menu_state == "ending":
                 selected_option = self.ending_menu.handle_event(event)
                 if not pygame.mixer.music.get_busy():
-                            pygame.mixer.music.load('assets/music/credits.ogg')
-                            pygame.mixer.music.play(-1)  # Loop the music indefinitely
+                    pygame.mixer.music.load('assets/music/credits.ogg')
+                    pygame.mixer.music.play(-1)  # Loop the music indefinitely
                 if selected_option == "quit":
                     self.running = False
             
@@ -162,9 +165,9 @@ class Game:
         """Method that creates the map
         """
         self.room_101 = Room101(self.screen)
-        self.floor_1 = Floor1(self.screen)
-        self.floor_0 = Floor0(self.screen)
-        self.underground = Underground(self.screen)
+        self.floor_1 = Floor1(self.screen, width=self.room_101.rect.topleft[0] + 500, height=self.room_101.rect.topleft[1] - 600)
+        self.floor_0 = Floor0(self.screen, width=self.floor_1.rect.topleft[0] + 500, height=self.floor_1.rect.topleft[1] - 750)
+        self.underground = Underground(self.screen, width=self.floor_0.rect.topleft[0] - 1950, height=self.floor_0.rect.topleft[1] - 750)
     
     def change_map(self, old_map, new_map) -> None:
         """Method that changes the current map, i.e. removes the old and adds the new map
