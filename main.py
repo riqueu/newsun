@@ -48,6 +48,7 @@ class Game:
             
             # Character & Camera initialization
             self.character_spritesheet = SpriteSheet('assets/images/characters/characters.png')
+            self.matilda_spritesheet = SpriteSheet('assets/images/characters/cockroach.png')
             self.camera = Camera(self, WIDTH, HEIGHT)
             
             # Game variables
@@ -157,8 +158,8 @@ class Game:
                     self.player.add_game(self)
                     self.all_sprites.add(self.player)
                     self.all_sprites.add(self.current_scene)
-                    #for sprite in self.current_scene.scene_sprites: TODO: do this after done with map sprites
-                    #    self.all_sprites.add(sprite)
+                    for sprite in self.current_scene.scene_sprites: # TODO: do this after done with map sprites
+                        self.all_sprites.add(sprite)
                     pygame.mixer.music.stop()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
             else:
@@ -180,12 +181,12 @@ class Game:
             new_map (Scene): target scene
         """
         self.all_sprites.remove(old_map)
-        #for sprite in old_map.scene_sprites: TODO: do this after done with map sprites
-        #    self.all_sprites.remove(sprite)
+        for sprite in old_map.scene_sprites: # TODO: do this after done with map sprites
+            self.all_sprites.remove(sprite)
         
         self.all_sprites.add(new_map)
-        #for sprite in new_map.scene_sprites: TODO: do this after done with map sprites
-        #    self.all_sprites.add(sprite)
+        for sprite in new_map.scene_sprites: # TODO: do this after done with map sprites
+            self.all_sprites.add(sprite)
 
     def draw(self) -> None:
         """Method that renders the game

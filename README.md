@@ -63,8 +63,7 @@ To run the unit tests, follow these steps:
 - Interactions with Objects in Range: ❌
 - Sprites/Scenes: ✔️
     - Scene Transition ✔️
-    - Interact with Interactables (Objects and NPCs) ❌
-    - Draw NPCs(Interactable) ❌
+    - Draw NPCs(Interactable) ✔️
 - Write Dialogues ❌
     - Room 101: ✔️
     - Floor 1 Corridor: ✔️
