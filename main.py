@@ -79,7 +79,8 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         self.menu_state = "pause"
                         pygame.mixer.music.pause()
-                        
+                    
+
                     # TEMP: Change maps with number keys
                     if event.key == pygame.K_7:
                         self.change_map(self.current_scene, self.room_101)
@@ -94,8 +95,11 @@ class Game:
                         self.change_map(self.current_scene, self.underground)
                         self.current_scene = self.underground
                 
-                self.current_scene.handle_event(event)
-            
+                event_handled = self.current_scene.handle_event(event)
+                if event_handled in self.current_scene.scene_mapping.values():
+                    self.change_map(self.current_scene, getattr(self, event_handled))
+                    self.current_scene = getattr(self, event_handled)
+                
             if self.menu_state == "main":
                 if not pygame.mixer.music.get_busy():
                     pygame.mixer.music.load('assets/music/main.ogg')
@@ -114,6 +118,9 @@ class Game:
             
             elif self.menu_state == "ending":
                 selected_option = self.ending_menu.handle_event(event)
+                if not pygame.mixer.music.get_busy():
+                            pygame.mixer.music.load('assets/music/credits.ogg')
+                            pygame.mixer.music.play(-1)  # Loop the music indefinitely
                 if selected_option == "quit":
                     self.running = False
             

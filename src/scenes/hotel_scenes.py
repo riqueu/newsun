@@ -48,18 +48,58 @@ class Scene(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
+        
+        self.scene_mapping = {
+            "GoToRoom": 'room_101',
+            "GoToCorridor": 'floor_1',
+            "Upstairs": 'floor_1',
+            "Downstairs": 'floor_0',
+            "EnterElevator": 'underground'
+        }
+        self.dialogue_conditions = {}
     
-    def handle_event(self, event: pygame.event.Event) -> None:
+    def handle_event(self, event: pygame.event.Event, dialogue_conditions: dict) -> None:
         """Function that handles events in the scene
 
         Args:
             event (pygame.event.Event): the event
         """
         self.in_dialogue = any(manager.dialogue_active for manager in self.dialogue_managers.values())
-        for manager in self.dialogue_managers.values():
+        for name, manager in self.dialogue_managers.items():
             if manager.dialogue_active:
-                manager.handle_event(event)
+                condition = self.dialogue_conditions.get(name, None)
+                if condition is not None:
+                    manager.handle_event(event, condition)
+                else:
+                    manager.handle_event(event)
+        
     
+    def change_of_scene(self, scene: str) -> None|str:
+        """Function that returns change of scenes
+
+        Args:
+            scene (str): the scene string (stairs or door)
+
+        Returns:
+            None|str: if the scene is changed
+        """
+        node_title = self.dialogue_managers[scene].current_node['title'] 
+        if node_title in self.scene_mapping:
+            self.dialogue_managers[scene].dialogue_active = False
+            self.dialogue_managers[scene].dialogue_ended = True
+            self.dialogue_managers[scene].current_node = self.dialogue_managers[scene].find_node("Start") # To reset dialogue
+            return self.scene_mapping[node_title]
+        
+    def change_conditions(self, condition_name: str, value: int) -> None:
+        """Function to change dialogue conditions
+
+        Args:
+            condition_name (str): the name of the condition to change
+            value (int): the new value of the condition
+        """
+        if condition_name in self.dialogue_conditions:
+            self.dialogue_conditions[condition_name] = value
+
     def draw(self) -> None:
         """Function that draws the UI elements in the scene
         """
@@ -74,7 +114,7 @@ class Scene(pygame.sprite.Sprite):
 
 
 class Room101(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
         """Function that initializes the room 101 scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
         """self.objects = [
@@ -84,17 +124,21 @@ class Room101(Scene):
             {"name": "door", "rect": pygame.Rect(900, 500, 50, 50)}
         ]"""
 
-    def handle_event(self, event: pygame.event.Event) -> None:
+    def handle_event(self, event: pygame.event.Event) -> None|str:
         """Function that handles events in the room 101 scene
 
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event)
+        super().handle_event(event, self.dialogue_conditions)
         
         # Test to start and end dialogue
         if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            self.dialogue_managers['mirror'].dialogue_active = True     
+            self.dialogue_managers['door'].dialogue_active = True
+            
+        # Check if it's a change of scene dialogue (door)
+        if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
+            return self.change_of_scene('door')
 
     def draw(self) -> None:
         """Function that draws the room
@@ -103,9 +147,11 @@ class Room101(Scene):
         
 
 class Floor1(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
         """Function that initializes the room 101 scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
+        
+
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the floor 1 scene
@@ -113,7 +159,21 @@ class Floor1(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event)
+        super().handle_event(event, self.dialogue_conditions)
+        
+        # Check if it's a change of scene dialogue (door or stairs)
+        if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
+            return self.change_of_scene('door')
+        
+        elif 'stairs' in self.dialogue_managers and self.dialogue_managers['stairs'].dialogue_active:
+            return self.change_of_scene('stairs')
+        
+        # Test to start and end dialogue
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+            self.dialogue_managers['door'].dialogue_active = True
+        # Test to start and end dialogue
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_o:
+            self.dialogue_managers['stairs'].dialogue_active = True
 
     def draw(self) -> None:
         """Function that draws the room
@@ -122,9 +182,14 @@ class Floor1(Scene):
 
 
 class Floor0(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/lobby_full.png", scripts_path: str = "scripts/floor_0", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/lobby_full.png", scripts_path: str = "scripts/floor_0", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
         """Function that initializes the hall scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
+        
+        self.dialogue_conditions = {
+            "vorakh": 1,
+            "door": 1
+        }
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the floor 0 scene
@@ -132,7 +197,21 @@ class Floor0(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event)
+        super().handle_event(event, self.dialogue_conditions)
+        
+        # Check if it's a change of scene dialogue (door or stairs)
+        if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
+            return self.change_of_scene('door')
+        
+        elif 'stairs' in self.dialogue_managers and self.dialogue_managers['stairs'].dialogue_active:
+            return self.change_of_scene('stairs')
+        
+        # Test to start and end dialogue
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
+            self.dialogue_managers['door'].dialogue_active = True
+        # Test to start and end dialogue
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_o:
+            self.dialogue_managers['stairs'].dialogue_active = True
 
     def draw(self) -> None:
         """Function that draws the room
@@ -141,7 +220,7 @@ class Floor0(Scene):
 
 
 class Underground(Scene):
-    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = ROOM_WIDHT, height: int = ROOM_HEIGHT) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT) -> None:
         """Function that initializes the underground scene"""
         super().__init__(screen, background_path, scripts_path, width, height)
 
@@ -151,7 +230,7 @@ class Underground(Scene):
         Args:
             event (pygame.event.Event): current event
         """
-        super().handle_event(event)
+        super().handle_event(event, self.dialogue_conditions)
 
     def draw(self) -> None:
         """Function that draws the room

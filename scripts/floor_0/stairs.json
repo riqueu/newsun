@@ -3,15 +3,15 @@
         "title": "Start"
     },
     {
-        "body": "[Door]: You can't see what's behind it, but you know it's Room 101. \n\n[1]: [Enter Room 101] \n[2]: [Leave]",
+        "body": "[Stairs]: You can probably make it upstairs again. \n\n[1]: [Go upstairs] \n[2]: [Stay]",
         "key": {
-            "1": "GoToRoom",
+            "1": "Upstairs",
             "2": "End"
         },
         "title": "Start1"
     },
     {
-        "title": "GoToRoom"
+        "title": "Upstairs"
     },
     {
         "body": "",

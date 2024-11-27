@@ -35,7 +35,7 @@
         "title": "Embrace"
     },
     {
-        "body": "[Eloquence]: You open your eyes again, and the darkness is still there. This is for real now. \n\n[Forbearance]: There is no end. \n\n[Clairvoyance]: The time to face the consequences arrive. \n\n [Resonance]: \"We can do this.\"\n\n[1]: [Face the consequences]",
+        "body": "[Eloquence]: You open your eyes again, and the darkness is still there. This is for real now. \n[Forbearance]: There is no end. \n[Clairvoyance]: The time to face the consequences has arrived. \n [Resonance]: \"We can do this.\"\n\n[1]: [Face the consequences]",
         "key": {
             "1": "Fate"
         },
@@ -91,7 +91,7 @@
         "title": "Curse"
     },
     {
-        "body": "[Matilda]: \"Convenience is poison. One must accustom themselves to pursue any intention as soon as it appears, regardless of difficulty. Otherwise one burns out, gives in to doubt, starts fearing oneself. The bolder the dream, the more surely it becomes dust when the moment is lost. You, however, drank the poison. You were the one responsible for this mess!\" \n\n[1]\"What do you want from me?\"\n[2]: \"What happened to my memories?\"",
+        "body": "[Matilda]: \"Convenience is poison. One must accustom themselves to pursue any intention as soon as it appears, regardless of difficulty. Otherwise one burns out, gives in to doubt, starts fearing oneself. The bolder the dream, the more surely it becomes dust when the moment is lost. You, however, drank the poison. You were the one responsible for this mess!\" \n\n[1] \"What do you want from me?\"\n[2]: \"What happened to my memories?\"",
         "key": {
             "1": "WhatWant",
             "2": "Memories"
@@ -116,7 +116,7 @@
         "title": "WhatWant"
     },
     {
-        "body": "[Matilda]: \"You haven't yet figured out why you feel the way you fell? Why no one can recall yuor name? Do you really believe no one in this dammed place knows your name?\" \n\n[1]: [Listen]",
+        "body": "[Matilda]: \"You haven't yet figured out why you feel the way you fell? Why no one can recall your name? Do you really believe no one in this dammed place knows your name?\" \n\n[1]: [Listen]",
         "key": {
             "1": "Memories"
         },
@@ -138,14 +138,14 @@
         "title": "WhatHappenedMemories"
     },
     {
-        "body": "[Matilda]: \"Well, you came to me desperate, asking for solutions. You had an 'assignment' due the next day. 'Assignment', is that how you call those things? It matters not to me, what matters is, you needed a wish grant...\" \n\n[1]: [Listen]",
+        "body": "[Matilda]: \"Well, you came to me desperate, asking for solutions. You had an 'assignment' due the next day. 'Assignment', is that how you call those things? It matters not to me, what matters is you needed a wish grant...\" \n\n[1]: [Listen]",
         "key": {
             "1": "Offer2"
         },
         "title": "Offer1"
     },
     {
-        "body": "[Matilda]: \"I myself, am not a genie, but a *Feedbacker*. For me, every action produces a reaction. You were desperate to finish that 'assignment' you call; I only helped you.\" \n\n[1]: \"You fooled me!\"",
+        "body": "[Matilda]: \"I myself, am not a genie, but a *Feedbacker*. Every action produces a reaction. You were desperate to finish that 'assignment' you call; I only helped you.\" \n\n[1]: \"You fooled me!\"",
         "key": {
             "1": "Offer3"
         },
@@ -184,7 +184,7 @@
         "title": "WantMemoriesBack"
     },
     {
-        "body": "[Matilda]: \"I believe you are not strong enough.\" \n\n[1]: \"Why am I not strong? Why did I not want my memories?\"",
+        "body": "[Matilda]: \"You are not strong enough.\" \n\n[1]: \"Why am I not strong? Why did I not want my memories?\"",
         "key": {
             "1": "WhyNot"
         },
@@ -198,7 +198,7 @@
         "title": "WhyNot"
     },
     {
-        "body": "[Resonance]: \"Tired. You were tired. *We* were tired. Of everything.\" \n\n[Matilda]: \"You wanted a new beginning; I gave you that.\" \n\n[1]: \"What do you mean by 'new beginning'?\" \n[2]: \"What did you do to me?\"",
+        "body": "[Resonance]: \"Tired. You were tired. *We* were tired. Of everything.\" \n[Matilda]: \"You wanted a new beginning; I gave you that.\" \n\n[1]: \"What do you mean by 'new beginning'?\" \n[2]: \"What did you do to me?\"",
         "key": {
             "1": "NewBeginning",
             "2": "WhatDidYouDo"
@@ -221,7 +221,7 @@
         "title": "NewBeginning"
     },
     {
-        "body": "[Matilda]: \"You must let it go. What was it? 'Real darkness has love for a face. The first death is in the heart.', a great friend of mine once said. You must accept it. You must build a new *you*.\" \n\n[1]: \"But... I can't.\" \n[2]: \"How would I rebuild everything? I can't.?\"",
+        "body": "[Matilda]: \"You must let it go. What was it? 'Real darkness has love for a face. The first death is in the heart.', a great friend of mine once said. You must accept it. You must build a new *you*.\" \n\n[1]: \"But... I can't.\" \n[2]: \"How would I rebuild everything? I just can't.\"",
         "key": {
             "1": "ThereIsALight",
             "2": "WhereBegin"
@@ -236,7 +236,7 @@
         "title": "WhereBegin"
     },
     {
-        "body": "[Matilda]: \"There is a way. A way to resurrect your old self back into this world. A light that never goes out within your inner self.\" \n\n[1]: \"How?\" \n[2]: \"I don't believe you.\"",
+        "body": "[Matilda]: \"There is a way. A way to resurrect your old self back into this world. A light that never goes out within your inner self.\" \n\n[1]: \"Please, I will do anything!\" \n[2]: \"I don't believe you.\"",
         "key": {
             "1": "AWay",
             "2": "AWay"
@@ -286,7 +286,7 @@
         "title": "AcceptFate"
     },
     {
-        "body": "[Inner Self]: It's finally over. You are free to build your new life. Free to discover the world, to be yourself. The world is yours. \n\n[1]: [Continue]",
+        "body": "[Inner Self]: It's finally over. You are free to build your new life. Free to discover the world, to be yourself. The world is yours. This might not be what you wanted, but it is what you got; it's all you have, don't let it go. \n\n[1]: [Continue]",
         "key": {
             "1": "VISION"
         },
@@ -309,7 +309,7 @@
     {
         "body": "[Resonance]: \"VISION\" \n\n[1]: [Continue]",
         "key": {
-            "1": "VISION"
+            "1": "CREATION"
         },
         "title": "VISION"
     },

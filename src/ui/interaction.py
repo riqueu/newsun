@@ -203,7 +203,7 @@ class DialogueManager:
                 return node
         return None
 
-    def handle_event(self, event: pygame.event.Event) -> None:
+    def handle_event(self, event: pygame.event.Event, condition: int = 1) -> None:
         """Function that handles dialogue/interaction events
 
         Args:
@@ -211,8 +211,7 @@ class DialogueManager:
         """
         if self.current_node['title'] == "Start":
             if self.start_count > 1:
-            # TODO: Either go to start 1 or 2 depending on conditions, default to start 1 for now
-                self.current_node = self.find_node("Start1")
+                self.current_node = self.find_node(f"Start{condition}")
             video_in.status = True
             video_out.status = False
         

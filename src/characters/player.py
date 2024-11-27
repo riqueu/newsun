@@ -6,7 +6,7 @@ import math
 
 from settings import *
 
-initial_pos = (WIDTH-ROOM_WIDHT)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240
+initial_pos = (WIDTH-ROOM_WIDTH)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240
 
 class Player(pygame.sprite.Sprite):
     _instance = None
