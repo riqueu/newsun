@@ -13,7 +13,7 @@
         "title": "Start1"
     },
     {
-        "body": "[Vorakh, the Emshen]: \"You know... yesterday the elevator made some weird noises, like it was falling, now the door just won't open. Everyone heard it. There were also noise complaints form Room 101, not sure if the occurrences are related though. The thing is: I need help.\" \n\n[1] \"Helping you it is then! What do I do?\" \n[2] \"Was there anyone inside it when it happened?\" \n[3] \"Well, I don't have time right now, good luck though!\" [Leave]",
+        "body": "[Vorakh, the Emshen]: \"You know... yesterday the elevator made some weird noises, as if it was falling, now the door just won't open. Everyone heard it. There were also noise complaints form Room 101, not sure if the occurrences are related though. The thing is: I need help.\" \n\n[1] \"Helping you it is then! What do I do?\" \n[2] \"Was there anyone inside it when it happened?\" \n[3] \"Well, I don't have time right now, good luck though!\" [Leave]",
         "key": {
             "1": "Fix",
             "2": "Inside",
@@ -30,7 +30,7 @@
         "title": "Elevator"
     },
     {
-        "body": "[Vorakh, the Emshen]: \"No. At least I hope so, 'cause there's no sound coming from it.\" He says while kicking the door. \"Why do I have to fix this thing!? I'm just a Medicine student! A human body is nothing like an elevator!\" He mumbles to himself. \n\n[1]: \"Let's fix this thing! What do I do again?\" \n[2]: \"I'm sorry, but I don't know how to fix elevators.\" \n[3]: \"I'm not sure if I can help you, but I'll try.\"",
+        "body": "[Vorakh, the Emshen]: \"No. At least I hope so, 'cause there's no sound coming from it anymore.\" He says while kicking the door. \"Why do I have to fix this thing!? I'm just a Medicine student! A human body is nothing like an elevator!\" He mumbles to himself. \n\n[1]: \"Let's fix this thing! What do I do again?\" \n[2]: \"I'm sorry, but I don't know how to fix elevators.\" \n[3]: \"I'm not sure if I can help you, but I'll try.\"",
         "key": {
             "1": "Fix",
             "2": "Fix",
@@ -56,7 +56,7 @@
     },
     {
         "body": "[You]: A weird sensation fills your mind. You feel like you're being watched. \n\n[1]: [Think further] \n[2]: \"I'll go find the items.\"",
-        "keys": {
+        "key": {
             "1": "ThinkMore",
             "2": "Items"
         },
@@ -64,7 +64,7 @@
     },
     {
         "body": "[You]: You are definitely being watched, yet you are also watching. You are two. You are also one. (-1 Reason)\n\n [1]: [Close your eyes and find the source of this madness] \n[2]: \"Just tell me which items I have to grab.\"",
-        "keys": {
+        "key": {
             "1": "ThinkMorePCheck",
             "2": "Items"
         },
@@ -94,21 +94,21 @@
     },
     {
         "body": "[Vorakh, the Emshen]: \"Hello? Are you alright? You were acting weird.\" \n\n[1]: \"I'm fine, sorry about that. What items are we looking for?\"",
-        "keys": {
+        "key": {
             "1": "Items"
         },
         "title": "SnapBack"
     },
     {
         "body": "[Vorakh, the Emshen]: \"Oh, right! The items! You'll need a *tool box*, a *zip tie*, and a cup of *coffee*. \" \n\n [1]: \"Is the cup of coffee really necessary?\"\n[2]: \"Okay. I'll be back!\"",
-        "keys": {
+        "key": {
             "1": "Coffee",
             "2": "End"
         },
         "title": "Items"
     },
-    {   "body": "[Vorakh, the Emshen]: \"It is not only necessary but essential for me to fix the elevator.\" \n\n [1] \"Yeah sure, I'll be back with the items.\" \n [2] \"Whatever, I'll be back.\"",
-        "keys": {
+    {   "body": "[Vorakh, the Emshen]: \"It is essential for me to fix the elevator.\" \n\n [1] \"Yeah sure, I'll be back with the items.\" \n [2] \"Whatever, I'll be back.\"",
+        "key": {
             "1": "End",
             "2": "End"
         },
@@ -120,7 +120,7 @@
     },
     {
         "body": "[Vorakh, the Emshen]: \"Hey, did you get the items?\" \n\n [1]: \"Could you repeat what items I need to get you?\" \n[2]: \"Not yet, but I'm working on it.\"",
-        "keys": {
+        "key": {
             "1": "Items",
             "2": "End"
         },
@@ -128,7 +128,7 @@
     },
     {
         "body": "[Vorakh, the Emshen]: \"Hey, did you get the items?\" \n\n [1]: \"Yeah! They're here!\" [Give him the items] \n[2]: \"Not yet, but I'm working on it.\"",
-        "keys": {
+        "key": {
             "1": "GiveItems",
             "2": "End"
         },
@@ -136,14 +136,14 @@
     },
     {
         "body": "[Vorakh, the Emshen]: \"Oh, thank you!\" He grabs the items and starts working on the elevator. \"Let me just...\" \n\n [1]: [Wait for him to finish]",
-        "keys": {
+        "key": {
             "1": "Wait"
         },
         "title": "GiveItems"
     },
     {
         "body": "[Vorakh, the Emshen]: \"Perfect! Now it should be working, wanna give it a ride?\" \n [Clairvoyance]: \"We should probably give it a go. Trust me. I believe this is the key to our situation.\"\n[Tutorial Agent]: \"Hey again, you should probably hit Z on the elevator door right after you leave this conversation!\" \n\n [1]: \"Sure! I'll give it a try.\" \n [2]: \"I'm good, thanks! Might try it later haha.\"",
-        "keys": {
+        "key": {
             "1": "End",
             "2": "End"
         },

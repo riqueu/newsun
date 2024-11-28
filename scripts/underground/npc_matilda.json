@@ -42,7 +42,7 @@
         "title": "WakeUp"
     },
     {
-        "body": "[Matilda]: \"In last night's dream, it appeared. A shining, glistening sign. I touched it. Did you?\" A voice echoes in your mind. It is not human. Your body reacts accordingly: you are terrified by the beast before your eyes. \n\n[1]: \"Who are you?\" \n[2]: [Ignore the voice]",
+        "body": "[Matilda]: \"In last night's dream, it appeared. A shining, glistening sign. I touched it. Did you?\" A voice echoes in your mind. It is not human. Your body reacts accordingly: you are terrified by the divine beast before your eyes. \n\n[1]: \"Who are you?\" \n[2]: [Ignore the voice]",
         "key": {
             "1": "Who",
             "2": "Ignore"

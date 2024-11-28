@@ -25,7 +25,7 @@
         "difficulty_class": 12
     },
     {
-        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV, but you're pretty sure you cannot fix such complex thing. \n\n[1]: [Let the Old TV rest]",
+        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV, but you're pretty sure you cannot fix such complex device. \n\n[1]: [Let the Old TV rest]",
         "key": {
             "1": "End"
             },
