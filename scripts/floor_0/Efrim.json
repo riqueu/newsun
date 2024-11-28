@@ -9,67 +9,105 @@
             "1": "Hey",
             "2": "Smell",
             "3": "Coffee",
-            "4": "thing",
+            "4": "Thing",
             "5": "End"
         },
         "title": "Start1"
     },
     {
-        "body": "[Efrim, Coffee Grinder]: \"Oh, hello\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
+        "body": "[Efrim, Coffee Grinder]: \"Oh, hello\" \n\n[1] \"could you give me some coffee?\" \n[2] \"Do we like, know each other?\" \n[3] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
         "key": {
             "1": "Coffee",
-            "2": "Hey",
-            "3": "End"
+            "2": "End"
         },
         "title": "Hey"
     },
     
+
     {
-        "body": "[Efrim, Coffee Grinder]: \"Oh, yeah, i was grinding some coffee. it turned out really good, but i've used my last *beans*...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "body": "[Efrim, Coffee Grinder]: \"Oh, yeah, i was grinding some coffee. it turned out really good, but i've used my last beans...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Wait, you're making coffee with *beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
         "key": {
             "1": "Coffee",
-            "2": "Beans",
+            "2": "Thing",
             "3": "End"
         },
-        "title": "smell"
+        "title": "Smell"
     },
 
     {
-        "body": "[Efrim, Coffee Grinder]: \"Ah, sorry, not only i'm all out of coffee beans, but i've just drunk my last cup as well\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "body": "[Efrim, Coffee Grinder]: \"yeah, sure, i've still got some ground coffee, i'll be making it right now \" \n\n[1]: [Jut wait a while (Forbearance | DC 10)]  \n[2] [chat to pass the time (Eloquence | DC 10)] \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "WaitCheck",
+            "2": "TalkCheck",
+            "3": "Leave"
+        },
+        "title": "Coffee"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "check_minpass": 10
+    },
+
+    {
+        "body": "[Forbearance]: Waiting is boring. You are young, you should do something, ANYTHING. Not stop and do nothing. At least it's over (-1 Reason) \n\n[1]: [Finally rab the coffee and do something]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "WaitFail"
+    },
+
+    {
+        "body": "[Forbearance]: Stopping for a little while is conforting. Seeing the contraptions of the coffee machine working also helps (+1 Reason) \n\n[1]: [Catch your coffee and leave]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "WaitSuccess"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "check_minpass": 10
+    },    
+   
+    {
+        "title": "TalkCheck",
+        "check_skill": "Eloquence",
+        "check_minpass": 10
+    },
+
+    {
+        "body": "[Eloquence]: Talking is relaxing, no one said anything important, but who cares? (+1 Reason) \n\n[1]: [Say goodbye and ]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "TalkSuccess"
+    },
+
+    {
+        "body": "[Eloquence]: What where you thinking what could you talk about? You don't even know who you are (-1 Reason) \n\n[1]: [Say goodbye and ]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "TalkFail"
+    },
+
+
+
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Yeah, i've recently gotten this coffee grinder, now i make the best coffee in NewSun\" \n\n[1] \"Oh, cool, coud i try that?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
         "key": {
             "1": "Coffee",
-            "2": "Beans",
             "3": "End"
         },
-        "title": "coffee"
-    },
-
-    {
-        "body": "[Efrim, Coffee Grinder]: \"Ah, sorry, not only i'm all out of coffee beans, but i've just drunk my last cup as well\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
-        "key": {
-            "1": "Coffee",
-            "2": "Beans",
-            "3": "End"
-        },
-        "title": "coffee"
-    },
-
-    {
-        "body": "[Efrim, Coffee Grinder]: \"Yeah, sure, a bunch of other students have as well. I think Camelia or Ersilia could give your some\" \n\n[1] \"Sorry, but who?\" \n[2] \"kay, thanks \" [Leave]",
-        "key": {
-            "1": "Who",
-            "2": "End"
-        },
-        "title": "coffee"
-    },
-
-    {
-        "body": "[Efrim, Coffee Grinder]: \"I thought you knew them, Camelia is the red-haired\" \n\n[1] \"Sorry, but who?\" \n[2] \"kay, thanks \" [Leave]",
-        "key": {
-            "1": "Who",
-            "2": "End"
-        },
-        "title": "who"
+        "title": "Thing"
     },
 
     {
