@@ -9,6 +9,7 @@ from src.scenes.options_menu import OptionsMenu
 from src.scenes.pause_menu import PauseMenu
 from src.scenes.new_game import NewGame
 from src.scenes.ending_menu import EndingMenu
+from src.scenes.death_menu import DeathMenu
 from src.scenes.hotel_scenes import *
 
 
@@ -42,6 +43,7 @@ class Game:
             self.options_menu = OptionsMenu(self.screen)
             self.pause_menu = PauseMenu(self.screen)
             self.ending_menu = EndingMenu(self.screen)
+            self.death_menu = DeathMenu(self.screen)
             
             self.game_scenes = []
             self.all_sprites = pygame.sprite.LayeredUpdates()
@@ -81,7 +83,7 @@ class Game:
                         pygame.mixer.music.pause()
                     
 
-                    # TEMP: Change maps with number keys
+                    """# TEMP: Change maps with number keys
                     if event.key == pygame.K_7:
                         self.change_map(self.current_scene, self.room_101)
                         self.current_scene = self.room_101
@@ -93,7 +95,7 @@ class Game:
                         self.current_scene = self.floor_0
                     if event.key == pygame.K_0:
                         self.change_map(self.current_scene, self.underground)
-                        self.current_scene = self.underground
+                        self.current_scene = self.underground"""
                 
                 event_handled = self.current_scene.handle_event(event)
                 # check if event is a scene change
@@ -103,6 +105,14 @@ class Game:
                 # check if game ended
                 elif event_handled == "ending":
                     self.menu_state = "ending"
+                    pygame.mixer.music.stop()
+                elif self.player.health <= 0:
+                    self.death_menu.d_type = "health"
+                    self.menu_state = "death"
+                    pygame.mixer.music.stop()
+                elif self.player.reason <= 0:
+                    self.death_menu.d_type = "reason"
+                    self.menu_state = "death"
                     pygame.mixer.music.stop()
                 
             if self.menu_state == "main":
@@ -123,6 +133,14 @@ class Game:
             
             elif self.menu_state == "ending":
                 selected_option = self.ending_menu.handle_event(event)
+                if not pygame.mixer.music.get_busy():
+                    pygame.mixer.music.load('assets/music/credits.ogg')
+                    pygame.mixer.music.play(-1)  # Loop the music indefinitely
+                if selected_option == "quit":
+                    self.running = False
+                    
+            elif self.menu_state == "death":
+                selected_option = self.death_menu.handle_event(event)
                 if not pygame.mixer.music.get_busy():
                     pygame.mixer.music.load('assets/music/credits.ogg')
                     pygame.mixer.music.play(-1)  # Loop the music indefinitely
@@ -197,6 +215,8 @@ class Game:
             self.main_menu.draw()
         elif self.menu_state == "ending":
             self.ending_menu.draw()
+        elif self.menu_state == "death":
+            self.death_menu.draw()
         elif self.menu_state == "options":
             self.options_menu.draw()
         elif self.menu_state == "new_game":
@@ -204,9 +224,7 @@ class Game:
         elif self.menu_state == "game":
             for sprite in self.all_sprites:
                 self.screen.blit(sprite.image, sprite.rect.topleft - self.camera.offset)
-                
             self.current_scene.draw()
-
         elif self.menu_state == "pause":
             self.pause_menu.draw()
         else:

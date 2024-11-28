@@ -51,6 +51,7 @@ To run the unit tests, follow these steps:
 - Pause Menu Structure: ✔️
 - Options Menu Structure: ✔️
 - Credits Menu Structure: ✔️
+- Death Menu Structure: ✔️
 - Character Creator Structure: ✔️
 - Camera Movement ✔️
 - Render Map & Change Scenes ✔️
@@ -60,14 +61,14 @@ To run the unit tests, follow these steps:
     - Animations: ✔️
 - Player Movement: ✔️
     - Block when Interacting / Paused ✔️
-- Interactions with Objects in Range: ❌
+- Interactions with Objects in Range: ✔️
 - Sprites/Scenes: ✔️
     - Scene Transition ✔️
     - Draw NPCs(Interactable) ✔️
-- Write Dialogues ❌
+- Write Dialogues ✔️
     - Room 101: ✔️
     - Floor 1 Corridor: ✔️
-    - Floor 0: ❌
+    - Floor 0: ✔️
     - Floor -1: ✔️
 - Animated UI:✔️
     - Dialogue Box: ✔️

@@ -10,9 +10,9 @@ The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsu
 ## Inspiration
 
 - Disco Elysium
-    - like everything lol
+    - pretty much everything lol
 - Pathologic 2
-    - it’s themes/relationship with time
+    - themes/dialogues
 - Rue Valley
     - gameplay/dialogues
 - Half-Life: Alyx
@@ -21,13 +21,13 @@ The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsu
     - dialogues/characters
 - A Short Hike
     - dialogues/characters
+- Persona 3, 4, and 5
+    - Stylized User Interface Design
 
 ---
 ## Player Experience
 
 The [Story](ref/Story.md) starts with the player waking up clueless in room 101 with one single objective: get a grip on what the hell is going on! Who they are? Where they are? Why is everyone crazy? As you connect with the guests, you start to uncover the mysteries that lie within Newsun.
-
-[Time](ref/Time.md) is a precious gift, make sure you use it wisely. You must investigate the objects and interact with guests who might or might not know you. Each interaction costs time.
 
 [Skills](ref/Skills.md) are ones who guide you along your path. They shall help you where you need the most.
 
@@ -39,15 +39,13 @@ By the end of the day you shall reach the Floor -1, where you will find answers 
 - Pygame
 - Paint.net *(for spriting)*
 - After Effects *(for ui/animation)*
-- Yarn Spinner *(for dialogue graphs)*
 
 ---
 ## Genre
 
 - CRPG
 - Mystery
-- “Puzzle?”
-- Point & Click
+- Puzzle
 
 ---
 ## Target Audience
@@ -70,7 +68,6 @@ You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to
 ---
 ## Theme Interpretation
 
-- Time is All
 - Sacrifice is Strength
 - Information is Key
 - Risks are a Necessity
@@ -84,28 +81,23 @@ You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to
 ---
 ## Secondary Mechanics
 
-- [Time](ref/Time.md)
 - [Health](ref/Health.md)
 - [Reason](ref/Reason.md)
 
 ---
 # Art
-## Theme Interpretation
-
-- Emphasized colors to represent possible [interactions](ref/Interaction.md)
-
 ---
 ## Design
 
-- Due to our lack of time, the designs shall be as simple as they can
-
+- Due to our lack of time, the designs shall be as simple as they can. 
+- Stylized UI
 
 ---
 # Audio
 ## Music
 
 - Simple Tracks
-- [Cool Bundle I found on itch.io](https://tallbeard.itch.io/music-loop-bundle)
+- [Bundle I found on itch.io](https://tallbeard.itch.io/music-loop-bundle)
 
 ---
 ## Sound Effects
@@ -113,21 +105,14 @@ You must also collect specific items through the [hotel](ref/Newsun_Hotel.md) to
 Sound effects when necessary, e.g.:
 - check passed
 - check failed
+- door knock
 
 ---
 
 # Game Experience
 ## UI
 
-- Main Menu
-    - New Game
-    - Options Menu (Control Volume)
-    - Exit Game
-- Pause Menu
-    - Resume
-    - TODO: Inventory (?)
-    - Options Menu (Control Volume)
-    - Exit Game
+User Interface is inspired by Disco Elysium, Rue Valley, and Persona Games, they were mostly designed and animated on After Effects CC 2024.
 
 ---
 ## Controls
@@ -136,24 +121,7 @@ Sound effects when necessary, e.g.:
 - X to Back/Cancel
 - Numbers for Dialogue Options
 - Arrows to Move
+- WASD to Control Camera
 - Escape to Pause
 
 ---
-# Development Timeline
-
-- Write The World
-- Write The Journey
-- Fill in The Gaps
-- Basic UI
-- Dialogue System
-- Skill Checks System
-- Put it all together
-
----
-# Possible Concepts
-
-- Secret society beneath the elevator (floor -1)
-- Protag. needs to find their name
-- Weird objects indicating some sort of weird thing
-- Power Dynamics in the hotel
-- Cockroach-like lovecraftian beast who makes a deal with the protag

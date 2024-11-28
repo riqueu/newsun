@@ -67,8 +67,8 @@ class Scene(pygame.sprite.Sprite):
         self.dialogue_conditions = {}
         self.objects_positions = object_positions
         self.npc_positionns = {
-            "npc_vorakh": [(1680, 600), (4,0)],
-            "npc_tabastan": [(1920, 600), (10,0)],
+            "npc_vorakh": [(1680, 700), (4,0)],
+            "npc_tabastan": [(1940, 680), (10,0)],
             "npc_camellia": [(2100, 600), (16,0)],
             "npc_matilda": [(1633, 750), (1,0)]
         }
@@ -79,16 +79,16 @@ class Scene(pygame.sprite.Sprite):
             if name.startswith("npc_"):
                 if name == "npc_matilda":
                     sprite = self.game.matilda_spritesheet.get_sprite(self.npc_positionns[name][1][0], self.npc_positionns[name][1][1], 48, 72)
+                    npc_object = NPC(self.npc_positionns[name][0], name, sprite, matilda=True)
                 else:
                     sprite = self.game.character_spritesheet.get_sprite(self.npc_positionns[name][1][0], self.npc_positionns[name][1][1], 48, 72)
-                npc_object = NPC(self.npc_positionns[name][0], sprite)
+                    npc_object = NPC(self.npc_positionns[name][0], name, sprite)
                 self.people.append(npc_object)
             elif name in self.objects_positions:
                 if len(self.objects_positions[name]) > 1:
-                    object_object = Object(self.objects_positions[name][0], self.objects_positions[name][1][0], self.objects_positions[name][1][1])
+                    object_object = Object(self.objects_positions[name][0], name, self.objects_positions[name][1])
                 else:
-                    object_object = Object(self.objects_positions[name][0])
-                object_object = Object(self.objects_positions[name][0])
+                    object_object = Object(self.objects_positions[name][0], name)
                 self.objects.append(object_object)
         
         self.scene_sprites = self.people + self.objects
@@ -101,7 +101,11 @@ class Scene(pygame.sprite.Sprite):
         """
         # Check for interaction with objects/npcs
         for sprite in self.scene_sprites:
-            pass
+            in_range = sprite.player_in_interaction_range(self.player.rect)
+            if in_range:
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+                    self.dialogue_managers[sprite.name].dialogue_active = True
+                    break
         
         self.in_dialogue = any(manager.dialogue_active for manager in self.dialogue_managers.values())
         for name, manager in self.dialogue_managers.items():
@@ -175,11 +179,7 @@ class Room101(Scene):
             event (pygame.event.Event): current event
         """
         super().handle_event(event)
-        
-        # Test to start and end dialogue
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            self.dialogue_managers['door'].dialogue_active = True
-            
+
         # Check if it's a change of scene dialogue (door)
         if 'door' in self.dialogue_managers and self.dialogue_managers['door'].dialogue_active:
             return self.change_of_scene('door')
@@ -196,8 +196,8 @@ class Floor1(Scene):
         self.objects_positions = {
             "door": [(870, 600)],
             "elevator": [(1965, 600)],
-            "stairs_up": [(2175, 600), (100,50)],
-            "stairs": [(1775, 600), (100,50)],
+            "stairs_up": [(2170, 600), (100,50)],
+            "stairs": [(1760, 600), (100,50)],
         }
         super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
         self.scene_name = "floor_1"
@@ -216,13 +216,6 @@ class Floor1(Scene):
         
         elif 'stairs' in self.dialogue_managers and self.dialogue_managers['stairs'].dialogue_active:
             return self.change_of_scene('stairs')
-        
-        # Test to start and end dialogue
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            self.dialogue_managers['door'].dialogue_active = True
-        # Test to start and end dialogue
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_o:
-            self.dialogue_managers['stairs'].dialogue_active = True
 
     def draw(self) -> None:
         """Function that draws the room
@@ -235,7 +228,7 @@ class Floor0(Scene):
         """Function that initializes the hall scene"""
         self.objects_positions = {
             "door": [(1620, 600), (70, 50)],
-            "stairs": [(1825, 600), (100,50)],
+            "stairs": [(1800, 600), (100,50)],
         }
         super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
         self.scene_name = "floor_0"
@@ -258,13 +251,6 @@ class Floor0(Scene):
         
         elif 'stairs' in self.dialogue_managers and self.dialogue_managers['stairs'].dialogue_active:
             return self.change_of_scene('stairs')
-        
-        # Test to start and end dialogue
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            self.dialogue_managers['door'].dialogue_active = True
-        # Test to start and end dialogue
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_o:
-            self.dialogue_managers['stairs'].dialogue_active = True
 
     def draw(self) -> None:
         """Function that draws the room
@@ -285,9 +271,6 @@ class Underground(Scene):
             event (pygame.event.Event): current event
         """
         super().handle_event(event)
-        
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-            self.dialogue_managers['npc_matilda'].dialogue_active = True
         
         if self.dialogue_managers['npc_matilda'].current_node['title'] == "NEWSUN":
             return "ending"
