@@ -16,7 +16,8 @@ class Interactable(pygame.sprite.Sprite):
 class Object(Interactable): # e.g. Mirror (Sprite will be blank as it's already in the map)
     def __init__(self, pos: tuple[int, int], name: str, rec: tuple[int, int] = (50, 50)):
         sprite = pygame.Surface(rec, pygame.SRCALPHA)
-        sprite.fill((255, 0, 0, 255))  # Fill the surface with transparent color
+        # sprite.fill((255, 0, 0, 255))  # Fill the surface with red
+        sprite.fill((0, 0, 0, 0))  # Fill the surface with transparent color
         super().__init__(pos, sprite, name)
         self._layer = BLOCK_LAYER
         self.image_hitbox = pygame.Surface(rec, pygame.SRCALPHA)
