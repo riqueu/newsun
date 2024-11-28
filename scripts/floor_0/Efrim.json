@@ -1,0 +1,117 @@
+[
+    {
+        "title": "Start"
+    },   
+
+    {
+        "body": "[Efrim, Coffee Grinder]: A strong aroma of coffee is filling the room. It seems to be coming from this guy and his weird contramption \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
+        "key": {
+            "1": "Hey",
+            "2": "Smell",
+            "3": "Coffee",
+            "4": "Thing",
+            "5": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Oh, hello\" \n\n[1] \"could you give me some coffee?\" \n[2] \"Do we like, know each other?\" \n[3] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "End"
+        },
+        "title": "Hey"
+    },
+    
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Oh, yeah, i was grinding some coffee. it turned out really good, but i've used my last beans...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Wait, you're making coffee with *beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "Thing",
+            "3": "End"
+        },
+        "title": "Smell"
+    },
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"yeah, sure, i've still got some ground coffee, i'll be making it right now \" \n\n[1]: [Jut wait a while (Forbearance | DC 10)]  \n[2] [chat to pass the time (Eloquence | DC 10)] \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "WaitCheck",
+            "2": "TalkCheck",
+            "3": "Leave"
+        },
+        "title": "Coffee"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "check_minpass": 10
+    },
+
+    {
+        "body": "[Forbearance]: Waiting is boring. You are young, you should do something, ANYTHING. Not stop and do nothing. At least it's over (-1 Reason) \n\n[1]: [Finally rab the coffee and do something]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "WaitFail"
+    },
+
+    {
+        "body": "[Forbearance]: Stopping for a little while is conforting. Seeing the contraptions of the coffee machine working also helps (+1 Reason) \n\n[1]: [Catch your coffee and leave]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "WaitSuccess"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "check_minpass": 10
+    },    
+   
+    {
+        "title": "TalkCheck",
+        "check_skill": "Eloquence",
+        "check_minpass": 10
+    },
+
+    {
+        "body": "[Eloquence]: Talking is relaxing, no one said anything important, but who cares? (+1 Reason) \n\n[1]: [Say goodbye and ]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "TalkSuccess"
+    },
+
+    {
+        "body": "[Eloquence]: What where you thinking what could you talk about? You don't even know who you are (-1 Reason) \n\n[1]: [Say goodbye and ]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "TalkFail"
+    },
+
+
+
+
+    {
+        "body": "[Efrim, Coffee Grinder]: \"Yeah, i've recently gotten this coffee grinder, now i make the best coffee in NewSun\" \n\n[1] \"Oh, cool, coud i try that?\" \n[2] \"Oh, does anybody else have those *coffee beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "3": "End"
+        },
+        "title": "Thing"
+    },
+
+    {
+        "body":"",
+        "title": "End"
+    }
+]
