@@ -58,7 +58,7 @@ class DeathMenu:
         rect_dev_name = dev_name.get_rect(center=(self.screen.get_width() // 2, 50))
         
         # Display thanks for playing
-        thanks_text = self.font.render("Thanks for playing! Good luck in next attempt.", True, self.default_color)
+        thanks_text = self.font.render("Thanks for playing! Good luck in your next attempt.", True, self.default_color)
         rect_thanks_text = thanks_text.get_rect(center=(self.screen.get_width() // 2, self.screen.get_height() // 2 + 200))
                 
         # Display options

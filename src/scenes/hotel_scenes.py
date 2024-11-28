@@ -6,7 +6,6 @@ from src.ui.interaction import load_scene_interactions
 from src.ui.animated_sequence import status_bar
 from src.characters.player import Player
 from src.characters.npc import NPC, Object
-from src.characters.sprites import SpriteSheet
 from main import Game
 from settings import *
 
@@ -67,9 +66,11 @@ class Scene(pygame.sprite.Sprite):
         self.dialogue_conditions = {}
         self.objects_positions = object_positions
         self.npc_positionns = {
-            "npc_vorakh": [(1680, 700), (4,0)],
             "npc_tabastan": [(1940, 680), (10,0)],
             "npc_camellia": [(2100, 600), (16,0)],
+            "npc_vorakh": [(1680, 700), (4,0)],
+            "npc_efrim": [(1370, 770), (13,0)],
+            "npc_ersilia": [(1200, 900), (22,0)],
             "npc_matilda": [(1633, 750), (1,0)]
         }
         
@@ -196,8 +197,9 @@ class Floor1(Scene):
         self.objects_positions = {
             "door": [(870, 600)],
             "elevator": [(1965, 600)],
-            "stairs_up": [(2170, 600), (100,50)],
-            "stairs": [(1760, 600), (100,50)],
+            "stairs_up": [(2170, 600), (100, 50)],
+            "stairs": [(1750, 600), (110, 50)],
+            "bookshelf": [(1240, 600), (84, 60)],
         }
         super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
         self.scene_name = "floor_1"
@@ -228,7 +230,7 @@ class Floor0(Scene):
         """Function that initializes the hall scene"""
         self.objects_positions = {
             "door": [(1620, 600), (70, 50)],
-            "stairs": [(1800, 600), (100,50)],
+            "stairs": [(1800, 600), (100, 50)],
         }
         super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
         self.scene_name = "floor_0"
