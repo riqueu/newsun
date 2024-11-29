@@ -5,13 +5,13 @@
     {
         "body": "[Stairs]: Going down seems easier than going up. \n\n[1]: [Go downstairs] \n[2]: [Stay]",
         "key": {
-            "1": "GoDown",
+            "1": "Downstairs",
             "2": "End"
         },
         "title": "Start1"
     },
     {
-        "title": "GoDown"
+        "title": "Downstairs"
     },
     {
         "body": "",

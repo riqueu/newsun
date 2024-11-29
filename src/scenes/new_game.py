@@ -6,6 +6,7 @@ import json
 from src.ui.interaction import DialogueManager, get_key_to_node
 from src.ui.animated_sequence import black_bg, dialogue_box_left, skill_desc
 from src.characters.player import Player
+# from main import Game
 
 class NewGame:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -16,7 +17,7 @@ class NewGame:
         """
         self.screen = screen
         self.interactions = json.load(open('scripts/new_game/new_game.json'))
-        # self.interactions = json.load(open('scripts/room_101/tv.json'))
+        # self.interactions = json.load(open('scripts/room_101/mirror.json'))
         self.key_to_node = get_key_to_node(self.interactions)
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)

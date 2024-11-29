@@ -4,25 +4,16 @@
     },
     
     {
-        "body": "[bookshelf]: The books are all really old, but some of them are less dusty - probably recently used \n\n[1]: [pick some books] \n\n[1]: [leave them be]",
+        "body": "[Bookshelf]: The books are all really old, but some of them are less dusty - probably recently used. \n\n[1]: [Pick some books] \n[2]: [Leave them be]",
         "key": {
-            "1": "Inspect",
+            "1": "PickTheBooks",
             "2": "End"
         },
         "title": "Start1"
     },
 
     {
-        "body": "[bookshelf]: The books are all really old, but some of them are less dusty - probably recently used \n\n[1]: [pick some books] \n\n[1]: [leave them be]",
-        "key": {
-            "1": "PickTheBooks",
-            "2": "End"
-        },
-        "title": "Inspect"
-    },
-
-    {
-        "body": "[Forbearance]: \"taking the dustier books could kill you.\n\n[1]: [Pick the cleaner ones] \n[2]: [Try to take a dirt book (forbearance | dc 15)] \n[3]: [Leave the books alone]",
+        "body": "[Forbearance]: \"Taking the dustier books could kill you. Be careful.\"\n\n[1]: [Pick the cleaner ones] \n[2]: [Try to take a dusty old book (Forbearance | DC 15)] \n[3]: [Leave the books alone]",
         "key": {
             "1": "PickClean",
             "2": "PickCheck",
@@ -32,22 +23,23 @@
     },
 
     {
-        "body": "[Forbearance]: \"The books you see look both boring and useless, peraphs the old ones are better.\n\n[1]:  [Try to take a dirt book (forbearance | dc 15)] \n[2]: [Give Up]",
+        "body": "[Forbearance]: The books you see look both boring and useless, peraphs the old ones are better. \n\n[1]: [Try to take a dirt book (Forbearance | DC 15)] \n[2]: [Give Up]",
         "key": {
             "1": "PickCheck",
-            "2":"End"
+            "2": "End"
         },
-        "title": "Pickclean"
+        "title": "PickClean"
     },
     
     {
         "title": "PickCheck",
         "check_skill": "Forbearance",
-        "check_minpass": 15
+        "difficulty_class": 15,
+        "condition": 2
     },
 
     {
-        "body": "[Forbearance]: Your body reacts. Badly. These books are probably older than you. (-1 Reason) \n\n[1]: [Take them]",
+        "body": "[Forbearance]: Your body reacts. Badly. These books are probably older than you. (-1 Health) \n\n[1]: [Take them]",
         "key": {
             "1": "End"
             },
@@ -56,16 +48,23 @@
     },
 
     {
-        "body": "[Forbearance]: Dust is nothing against you. You. Are. Strong \n\n[1]: [Take the books with you]",
+        "body": "[Forbearance]: Dust is nothing against you. You. Are. Strong. \n\n[1]: [Take the books with you]",
         "key": {
             "1": "End"
             },
-        "title": "PickSuccess"
+        "title": "PickPass"
     },
-
 
     {
         "body":"",
         "title": "End"
+    },
+
+    {
+        "body": "[Bookshelf]: You already got what you wanted. You should probably avoid this dusty bookshelf. \n\n[1]: [Leave them be]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
     }
 ]

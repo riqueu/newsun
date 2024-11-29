@@ -38,7 +38,7 @@
         "title": "KnowMe"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"That's okay! Our class is quite big.\"\n\n[Resonance] \"She doesn't care you don't know her. She's just trying to be polite.\" \n\n[1]: \"I'm pretty sure I lost my memory. Did you hear anything weird coming from Room 101 last night?\" \n[3]: \"Exams! You mentioned some. What exams do I have?\"",
+        "body": "[Camellia, The Uneasy Student]: \"That's okay! Our class is quite big.\"\n\n[Resonance] \"She doesn't care you don't know her. She's just trying to be polite.\" \n\n[1]: \"I'm pretty sure I lost my memory. Did you hear anything weird coming from Room 101 last night?\" \n[2]: \"Exams! You mentioned some. What exams do I have?\"",
         "key": {
             "1": "Memory",
             "2": "Exams"
@@ -77,21 +77,52 @@
         "title": "Sounds"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"Crickets are insects that make a chirping sound. They're quite common in the countryside, but I've never heard them in the city.\" \n\n[1]: \"I see... Do you know anything else? Did you see me or anything?\"",
+        "body": "[Camellia, The Uneasy Student]: \"Crickets are insects that make a chirping sound. They're quite common in the countryside, but I've never heard them here. Förgätmigej is quite a crowded city, and Moya lives at the heart of it.\" \n\n[1]: \"I see... Do you know anything else? Did you see me or anything?\"",
         "key": {
             "1": "AnythingElse"
         },
         "title": "Crickets"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"I'm sorry, that's all I know. I was too focused on my project.\"\n\n[1]: \"I see... Thanks for the help. Hopefully I'll find out what's going on.\"",
+        "body": "[Camellia, The Uneasy Student]: \"I'm sorry, that's all I know. I was too focused on my project. I've also been looking for these books, but I can't find it anywhere, and I don't want to look at that old bookshelf. I can't get close to it. Allergies.\"\n\n[1]: \"I see... Thanks for the help. Hopefully I'll find out what's going on. And your books! I'll check those bookshelves out.\"",
         "key": {
             "1": "End"
         },
-        "title": "AnythingElse"
+        "title": "AnythingElse",
+        "condition": 2
     },
     {
         "body":"",
         "title": "End"
+    },
+    {
+        "body": "[Camellia, The Uneasy Student]: \"Hey, did you get those books?\" \n\n[1]: \"I'm sorry, I couldn't find them. I'll keep looking.\"",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
+    },
+    {
+        "body": "[Camellia, The Uneasy Student]: \"Hey, did you get those books?\" \n\n[1]: \"I found them! Here you go!\" [Give Books] \n[2]: \"No, not yet, I'm working on it\" [Lie]",
+        "key": {
+            "1": "GiveBooks",
+            "2": "End"
+        },
+        "title": "Start3"
+    },
+    {
+        "body": "[Camellia, The Uneasy Student]: \"Oh, thank you!\" She grabs the books and starts reading. \"I'll be sure to return them to the bookshelf! I'll find a way. Oh and take this!\" She hands you a zip tie. \"It's a zip tie bracelet from my rock band! I sing and play the guitar!\" \n\n[1]: \"Thanks! Send me some of your songs later!\" [Grab the zip tie]",
+        "key": {
+            "1": "End"
+        },
+        "title": "GiveBooks",
+        "condition": 4
+    },
+    {
+        "body": "[Camellia, The Uneasy Student]: \"Thanks for the books again!\" \n\n[1]: \"You're welcome!!\"",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start4"
     }
 ]

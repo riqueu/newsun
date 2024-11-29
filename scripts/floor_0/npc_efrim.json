@@ -1,0 +1,127 @@
+[
+    {
+        "title": "Start"
+    },   
+
+    {
+        "body": "[Efrim, the Coffee Grinder]: A strong aroma of coffee fills the room. It seems to be coming from this guy and his weird contramption. \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
+        "key": {
+            "1": "Hey",
+            "2": "Smell",
+            "3": "Coffee",
+            "4": "Thing",
+            "5": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "[Efrim, the Coffee Grinder]: \"Oh, hello!\" \n\n[1] \"Could you give me some coffee?\" \n[2] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "End"
+        },
+        "title": "Hey"
+    },
+    
+
+    {
+        "body": "[Efrim, the Coffee Grinder]: \"Oh, yeah, I was grinding some coffee. it turned out really good, but I've used my last beans...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Wait, you're making coffee with *beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "Thing",
+            "3": "End"
+        },
+        "title": "Smell"
+    },
+
+    {
+        "body": "[Efrim, the Coffee Grinder]: \"Yeah, sure, I've still got some ground coffee, I'll be making it right now! \" \n\n[1]: [Just wait a while (Forbearance | DC 10)]  \n[2] [Chat with him (Eloquence | DC 10)]",
+        "key": {
+            "1": "WaitCheck",
+            "2": "TalkCheck"
+        },
+        "title": "Coffee"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "difficulty_class": 10
+    },
+
+    {
+        "body": "[Forbearance]: Waiting is boring. You are young, you should do something, ANYTHING. Not stop and do nothing. At least it's over. (-1 Reason) \n\n[1]: [Finally grab the coffee and go do something]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "WaitFail"
+    },
+
+    {
+        "body": "[Forbearance]: Stopping for a little while is comforting. Seeing the contraptions of the coffee machine working also helps. (+1 Reason) \n\n[1]: [Catch your coffee and leave]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "WaitPass"
+    },
+
+    {
+        "title": "WaitCheck",
+        "check_skill": "Forbearance",
+        "difficulty_class": 10
+    },    
+   
+    {
+        "title": "TalkCheck",
+        "check_skill": "Eloquence",
+        "difficulty_class": 10
+    },
+
+    {
+        "body": "[Eloquence]: Talking is relaxing, no one said anything important. Who cares anyway? (+1 Reason) \n\n[1]: [Say goodbye and grab the coffee]",
+        "key": {
+            "1": "End"
+            },
+        "reason": 1,
+        "title": "TalkPass"
+    },
+
+    {
+        "body": "[Eloquence]: \"What where you thinking? You can't talk! You don't even know who you are.\" (-1 Reason) \n\n[1]: [Say goodbye and grab the coffee]",
+        "key": {
+            "1": "End"
+            },
+        "reason": -1,
+        "title": "TalkFail"
+    },
+
+
+
+
+    {
+        "body": "[Efrim, the Coffee Grinder]: \"I recently got this coffee grinder, now I make the best coffee in NewSun Hotel\" \n\n[1] \"Oh, cool, could I try that?\" \n[2] \"Yeah, that's cool. See ya\" [Leave]",
+        "key": {
+            "1": "Coffee",
+            "2": "End"
+        },
+        "title": "Thing"
+    },
+
+    {
+        "condition": 2,
+        "body":"",
+        "title": "End"
+    },
+
+    {
+        "body": "[Efrim, the Coffee Grinder]: \"Hey again! How was the coffee?\" \n[1]: \"I am yet to try it, but thanks for it! See you around.\" \n[2]: \"It was great, thank you! Have a nice life!\" \n[3]: \"It's actually for a friend! But thanks! See you.\"",
+        "key": {
+            "1": "End",
+            "2": "End",
+            "3": "End"
+        },
+        "title": "Start2"
+    }
+]
