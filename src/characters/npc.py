@@ -2,7 +2,6 @@
 import pygame
 from settings import *
 
-# TODO: Do this class and put them in the right place
 class Interactable(pygame.sprite.Sprite):
     def __init__(self, pos: tuple[int, int], sprite: pygame.Surface, name: str):
         super().__init__()

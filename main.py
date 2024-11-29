@@ -97,12 +97,24 @@ class Game:
                         self.change_map(self.current_scene, self.underground)
                         self.current_scene = self.underground"""
                 
+                # If you got the book, Camellia will give you the zip tie
+                if self.floor_1.dialogue_conditions['bookshelf'] == 2 and self.floor_1.dialogue_conditions['npc_camellia'] != 4 and self.floor_1.dialogue_conditions['npc_camellia'] != 1:
+                    self.floor_1.change_conditions('npc_camellia', 3)
+                
+                # If you got all the items, Vorakh will fix the elevator
+                if self.floor_0.dialogue_conditions['npc_efrim'] == 2 and self.room_101.dialogue_conditions['bed'] == 2 and self.floor_1.dialogue_conditions['npc_camellia'] == 4 and self.floor_0.dialogue_conditions['npc_vorakh'] != 4 and self.floor_0.dialogue_conditions['npc_vorakh'] != 1:
+                    self.floor_0.change_conditions('npc_vorakh', 3)
+                
+                # That means Vorakh fixed the elevator
+                if self.floor_0.dialogue_conditions['npc_vorakh'] == 4:
+                    self.floor_0.change_conditions('door', 2)
+                
                 event_handled = self.current_scene.handle_event(event)
                 # check if event is a scene change
                 if event_handled in self.current_scene.scene_mapping.values():
                     self.change_map(self.current_scene, getattr(self, event_handled))
                     self.current_scene = getattr(self, event_handled)
-                # check if game ended
+                # check if game ended or if you died
                 elif event_handled == "ending":
                     self.menu_state = "ending"
                     pygame.mixer.music.stop()
@@ -176,7 +188,7 @@ class Game:
                     self.player.add_game(self)
                     self.all_sprites.add(self.player)
                     self.all_sprites.add(self.current_scene)
-                    for sprite in self.current_scene.scene_sprites: # TODO: do this after done with map sprites
+                    for sprite in self.current_scene.scene_sprites:
                         self.all_sprites.add(sprite)
                     pygame.mixer.music.stop()
                     pygame.mixer.Channel(1).play(pygame.mixer.Sound('assets/sounds/door_knock_angry.mp3'))
@@ -199,11 +211,11 @@ class Game:
             new_map (Scene): target scene
         """
         self.all_sprites.remove(old_map)
-        for sprite in old_map.scene_sprites: # TODO: do this after done with map sprites
+        for sprite in old_map.scene_sprites:
             self.all_sprites.remove(sprite)
         
         self.all_sprites.add(new_map)
-        for sprite in new_map.scene_sprites: # TODO: do this after done with map sprites
+        for sprite in new_map.scene_sprites:
             self.all_sprites.add(sprite)
 
     def draw(self) -> None:

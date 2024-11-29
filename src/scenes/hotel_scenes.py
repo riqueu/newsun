@@ -10,7 +10,7 @@ from main import Game
 from settings import *
 
 class Scene(pygame.sprite.Sprite):
-    def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str, width: int, height: int, object_positions: dict = {}) -> None:
+    def __init__(self, screen: pygame.Surface, background_path: str, scripts_path: str, width: int, height: int) -> None:
         """Initializes the scene
 
         Args:
@@ -19,7 +19,6 @@ class Scene(pygame.sprite.Sprite):
             scripts_path (str): path to scene scripts
             width (int): scene width
             height (int): scene height
-            object_positions (dict): objects positions
         """
         self.screen = screen
         self.dialogue_managers = load_scene_interactions(scripts_path, self.screen)
@@ -49,8 +48,6 @@ class Scene(pygame.sprite.Sprite):
         self.rect.x = self.x
         self.rect.y = self.y
         
-        self.scene_name = ""
-        
         self.scene_mapping = {
             "GoToRoom": 'room_101',
             "GoToCorridor": 'floor_1',
@@ -63,8 +60,6 @@ class Scene(pygame.sprite.Sprite):
         self.objects = []
         self.scene_sprites = []
         
-        self.dialogue_conditions = {}
-        self.objects_positions = object_positions
         self.npc_positionns = {
             "npc_tabastan": [(1940, 680), (10,0)],
             "npc_camellia": [(2100, 600), (16,0)],
@@ -116,6 +111,8 @@ class Scene(pygame.sprite.Sprite):
                     manager.handle_event(event, condition)
                 else:
                     manager.handle_event(event)
+                if 'condition' in manager.current_node:
+                    self.change_conditions(name, manager.current_node['condition'])
         
     
     def change_of_scene(self, scene: str) -> None|str:
@@ -160,6 +157,11 @@ class Scene(pygame.sprite.Sprite):
 class Room101(Scene):
     def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/room_full.png", scripts_path: str = "scripts/room_101", width: int = ROOM_WIDTH, height: int = ROOM_HEIGHT - 400) -> None:
         """Function that initializes the room 101 scene"""
+        self.dialogue_conditions = {
+            "bed": 1,
+            "mirror": 1,
+            "tv": 1,
+        }
         self.objects_positions = {
             "bed": [(890, 480)],
             "clock": [(508, 450)],
@@ -170,8 +172,7 @@ class Room101(Scene):
             "toilet": [(195, 555)],
             "tv": [(652, 451)]
         }
-        super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
-        self.scene_name = "room_101"
+        super().__init__(screen, background_path, scripts_path, width, height)
         
     def handle_event(self, event: pygame.event.Event) -> None|str:
         """Function that handles events in the room 101 scene
@@ -194,6 +195,12 @@ class Room101(Scene):
 class Floor1(Scene):
     def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/hall_full.png", scripts_path: str = "scripts/floor_1", width: int = 0, height: int = 0) -> None:
         """Function that initializes the room 101 scene"""
+        self.dialogue_conditions = {
+            "npc_tabastan": 1,
+            "npc_camellia": 1,
+            "bookshelf": 1,
+            "stairs_up": 1,
+        }
         self.objects_positions = {
             "door": [(870, 600)],
             "elevator": [(1965, 600)],
@@ -201,8 +208,7 @@ class Floor1(Scene):
             "stairs": [(1750, 600), (110, 50)],
             "bookshelf": [(1240, 600), (84, 60)],
         }
-        super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
-        self.scene_name = "floor_1"
+        super().__init__(screen, background_path, scripts_path, width, height)
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """Function that handles events in the floor 1 scene
@@ -231,12 +237,15 @@ class Floor0(Scene):
         self.objects_positions = {
             "door": [(1620, 600), (70, 50)],
             "stairs": [(1800, 600), (100, 50)],
+            "sofa": [(1595, 900), (290, 60)],
         }
-        super().__init__(screen, background_path, scripts_path, width, height, self.objects_positions)
-        self.scene_name = "floor_0"
+        super().__init__(screen, background_path, scripts_path, width, height)
         self.dialogue_conditions = {
             "npc_vorakh": 1,
-            "door": 2
+            "npc_efrim": 1,
+            "npc_ersilia": 1,
+            "sofa": 1,
+            "door": 1
         }
 
     def handle_event(self, event: pygame.event.Event) -> None:
@@ -263,8 +272,9 @@ class Floor0(Scene):
 class Underground(Scene):
     def __init__(self, screen: pygame.Surface, background_path: str = "assets/images/backgrounds/underground_full.png", scripts_path: str = "scripts/underground", width: int = 0, height: int = 0) -> None:
         """Function that initializes the underground scene"""
+        self.dialogue_conditions = {}
+        self.objects_positions = {}
         super().__init__(screen, background_path, scripts_path, width, height)
-        self.scene_name = "underground"
 
     def handle_event(self, event: pygame.event.Event) -> None|str:
         """Function that handles events in the underground scene

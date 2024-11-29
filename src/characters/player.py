@@ -217,11 +217,11 @@ class Player(pygame.sprite.Sprite):
         skill_value = getattr(self, skill_name.lower(), 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
         result = roll + skill_value >= difficulty_class
-        if result:
+        """if result:
             print(f"Success! Rolled a {roll} + {skill_value} for {skill_name} check.")
             self.raise_experience(1) # Gain experience for successful checks
         else:
-            print(f"Failure! Rolled a {roll} + {skill_value} for {skill_name} check.")
+            print(f"Failure! Rolled a {roll} + {skill_value} for {skill_name} check.")"""
         return result  # Simple pass/fail check
     
     def raise_experience(self, amount: int) -> None:
@@ -254,7 +254,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.x_change
         self.rect.y += self.y_change
         if self.check_collision(self.game.all_sprites):
-            # print("COLIDIU")
             self.rect.y = previous_y 
             self.rect.x = previous_x
         

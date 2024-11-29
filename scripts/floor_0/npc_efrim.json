@@ -4,7 +4,7 @@
     },   
 
     {
-        "body": "[Efrim, Coffee Grinder]: A strong aroma of coffee fills the room. It seems to be coming from this guy and his weird contramption. \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
+        "body": "[Efrim, the Coffee Grinder]: A strong aroma of coffee fills the room. It seems to be coming from this guy and his weird contramption. \n\n [1]: \"Hello\" \n [2]: \"Hey, it does smell good here, huh?\" \n [3]: \"Hello sir, do you, by any chance, have some spare coffee?\" \n [4]: \"What is that weird thing?\" \n[5] [Leave the person alone]",
         "key": {
             "1": "Hey",
             "2": "Smell",
@@ -15,7 +15,7 @@
         "title": "Start1"
     },
     {
-        "body": "[Efrim, Coffee Grinder]: \"Oh, hello!\" \n\n[1] \"Could you give me some coffee?\" \n[2] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
+        "body": "[Efrim, the Coffee Grinder]: \"Oh, hello!\" \n\n[1] \"Could you give me some coffee?\" \n[2] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
         "key": {
             "1": "Coffee",
             "2": "End"
@@ -25,7 +25,7 @@
     
 
     {
-        "body": "[Efrim, Coffee Grinder]: \"Oh, yeah, I was grinding some coffee. it turned out really good, but I've used my last beans...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Wait, you're making coffee with *beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
+        "body": "[Efrim, the Coffee Grinder]: \"Oh, yeah, I was grinding some coffee. it turned out really good, but I've used my last beans...\" \n\n[1] \"Hey, i kinda need some coffee, could you give me some, please?\" \n[2] \"Wait, you're making coffee with *beans*?\" \n[3] \"Yeah, that's cool. See ya \" [Leave]",
         "key": {
             "1": "Coffee",
             "2": "Thing",
@@ -35,7 +35,7 @@
     },
 
     {
-        "body": "[Efrim, Coffee Grinder]: \"Yeah, sure, I've still got some ground coffee, I'll be making it right now! \" \n\n[1]: [Just wait a while (Forbearance | DC 10)]  \n[2] [Chat with him (Eloquence | DC 10)]",
+        "body": "[Efrim, the Coffee Grinder]: \"Yeah, sure, I've still got some ground coffee, I'll be making it right now! \" \n\n[1]: [Just wait a while (Forbearance | DC 10)]  \n[2] [Chat with him (Eloquence | DC 10)]",
         "key": {
             "1": "WaitCheck",
             "2": "TalkCheck"
@@ -101,7 +101,7 @@
 
 
     {
-        "body": "[Efrim, Coffee Grinder]: \"I recently got this coffee grinder, now I make the best coffee in NewSun Hotel\" \n\n[1] \"Oh, cool, could I try that?\" \n[2] \"Yeah, that's cool. See ya\" [Leave]",
+        "body": "[Efrim, the Coffee Grinder]: \"I recently got this coffee grinder, now I make the best coffee in NewSun Hotel\" \n\n[1] \"Oh, cool, could I try that?\" \n[2] \"Yeah, that's cool. See ya\" [Leave]",
         "key": {
             "1": "Coffee",
             "2": "End"
@@ -110,12 +110,13 @@
     },
 
     {
+        "condition": 2,
         "body":"",
         "title": "End"
     },
 
     {
-        "body": "[Efrim, Coffee Grinder]: \"Hey again! How was the coffee?\" \n\n [1]: \"I am yet to try it, but thanks for it! See you around.\" \n\n [2]: \"It was great, thank you! Have a nice life!\" \n\n [3]: \"It's actually for a friend! But thanks! See you.\"",
+        "body": "[Efrim, the Coffee Grinder]: \"Hey again! How was the coffee?\" \n[1]: \"I am yet to try it, but thanks for it! See you around.\" \n[2]: \"It was great, thank you! Have a nice life!\" \n[3]: \"It's actually for a friend! But thanks! See you.\"",
         "key": {
             "1": "End",
             "2": "End",
