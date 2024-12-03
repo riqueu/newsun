@@ -3,7 +3,7 @@
         "title": "Start"
     },
     {
-        "body": "[Ersilia, the Trustworthy] a short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: \"Hello, do you, like, know who I am?\" \n[2][leave her alone]",
+        "body": "[Ersilia, the Trustworthy] A short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: \"Hello, do you, like, know who I am?\" \n[2] [Leave her alone]",
         "key": {
             "1":"KnowMe",
             "2":"End"
@@ -11,7 +11,7 @@
         "title": "Start1"
     },
     {
-        "body": "[Ersilia, the Trustworthy] \"Yeah, like, everyone here knows you\" \n\n[1]: \"That doesn't sound right, are you sure?\" \n[2]:\"That sure is true, I'm a *Really* cool guy\"\n[3]:\"Nice, then what's my name?\"" ,
+        "body": "[Ersilia, the Trustworthy] \"Yeah, like, everyone here knows you\" \n\n[1]: \"That doesn't sound right, are you sure?\" \n[2]: \"That sure is true, I'm *really* cool.\"\n[3]: \"Nice, then what's my name?\"" ,
         "key": {
             "1":"KnownCheck",
             "2":"KnownCheck",
@@ -25,132 +25,152 @@
         "difficulty_class": 20
     },
     {
-        "body": "[Resonance]: \"She's holdin a faint smile, that was just a harmless. friednly joke..\"\n\n[1]: \"Hah, nice one\" [Leave]",
+        "body": "[Resonance]: \"She's holding a faint smile, that was just a harmless, friednly joke... (+1 Reason)\"\n\n[1]: \"Hah, nice one\" [Continue]",
         "key": {
-            "1": "End"
+            "1": "Next"
         },
         "reason": 1,
-        "title": "ThinkPass"
+        "title": "KnownPass"
     },
     {
-        "body": "[Ersilia, the Trustworthy]: The girl shrugs and stop paying atention to you. You're left with what she said to think about. \n\n[1]: [Leave]",
+        "body": "[Ersilia, the Trustworthy]: The girl shrugs and stop paying attention to you. You're left with what she said to think about. \n\n[1]: [Continue]",
+        "key": {
+            "1": "Next"
+        },
+        "title": "KnownFail"
+    },
+    {
+        "body": "[Ersilia, the Trustworthy]: She goes on to do whatever she was doing before. \n\n [1]: [Leave]",
         "key": {
             "1": "End"
         },
-        "reason": -1,
-        "title": "ThinkFail"
+        "condition": 2,
+        "title": "Next"
     },
 
     {
-        "body": "[Ersilia, the Trustworthy] \"Yup, you're called *Ambrosius* \"\n\n[Clairvoyance]: \"You don't actually know your name, but it sure isn't *Ambrosius*. Better not think about it\" \n\n[1]: [Think about it]\n[2]:[Laugh and ignore]",
+        "body": "[Ersilia, the Trustworthy] \"Yup, you're called *Ambrosius* \"\n\n[Clairvoyance]: \"You don't actually know your name, but it sure isn't *Ambrosius*. Better not think about it.\" \n\n[1]: [Think about it] (Clairvoyance | DC 13)\n[2]: [Laugh and ignore]",
         "key": {
-            "1":"ThinkCheck",
-            "2":"End"
+            "1": "ThinkCheck",
+            "2": "Next"
         },
         "title": "Name"
     },
     {
         "title": "ThinkCheck",
         "check_skill": "Clairvoyance",
-        "difficulty_class": 15
+        "difficulty_class": 13
     },
     {
-        "body": "[Clairvoyance]: \"You can't recall your name, but you will, eventually.\"\n\n[1]: \"Hah, nice one\" [Leave]",
+        "body": "[Clairvoyance]: \"You can't recall your name, but you will, eventually.\"\n\n[1]: \"Hah, nice one\" [Continue]",
         "key": {
-            "1": "End"
+            "1": "Next"
         },
         "title": "ThinkPass"
     },
     {
-        "body": "[Clairvoiance]: \"You're thinking too much. Your head hurts. No awnesr is found\" . (-1 Reason) \n\n[1]: \" Humm... thanks? I need a moment[Leave]\"",
+        "body": "[Clairvoiance]: \"You're thinking too much. Your head hurts. No answer is found\" . (-1 Reason) \n\n[1]: \" Humm... thanks? I need a moment. [Next]\"",
         "key": {
-            "1": "End"
+            "1": "Next"
         },
         "reason": -1,
         "title": "ThinkFail"
     },
-
     {
-        "body": "[Ersilia, the Trustworthy] a short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: Hello?[End]",
+        "body": "[Ersilia, the Trustworthy] A short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: \"Hey, I need to find some stuff, could you help me?\" \n[2] \"It's nothing, actually\" [End]",
         "key": {
-            "1": "Hey",
-            "2":"KnowMe",
-            "3":"Coffee"
-        },
-        "title": "Hey"
-    },
-    {
-        "body": "[Ersilia, the Trustworthy] a short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: \"Hey, i need to find some stuff, could you help me?\" \n[2] \"it's nothing, actually\" [End]",
-        "key": {
-            "1": "Stuff",
-            "2":"KnowMe",
-            "3":"Coffee"
+            "1": "Stuff2",
+            "2": "End"
         },
         "title": "Start2"
     },
     {
         "body": "[Ersilia, the Trustworthy] \"What do you mean? You lost your wallet or somethin'?\" \n\n[1]: \"I actually have to find some *Items*\" \n[2] \"Nah, forget about it\" [End]",
         "key": {
-            "1": "Items",
-            "2":"End"
+            "1": "Items2",
+            "2": "End"
         },
-        "title": "Stuff"
+        "title": "Stuff2"
     },
     {
-        "body": "[Ersilia, the Trustworthy] \"What are you talking about?\" \n\n[1]: \"The elevator guy needs a *Toolbox*, a *Zip tie* and some *Coffee*\"\n[2] \"I just *need* coffee\"\n[3]\"forget about it\" [End]",
+        "body": "[Ersilia, the Trustworthy] \"What are you talking about?\" \n\n[1]: \"The elevator guy needs a *Toolbox*, a *Zip tie* and some *Coffee*\"\n[2] \"Forget about it\" [End]",
         "key": {
-            "1": "Help"
+            "1": "Help2",
+            "2": "End"
         },
-        "title": "Items"
+        "title": "Items2"
     },
     {
-        "body": "[Ersilia, the Trustworthy] Okay, sure, i think i know this. Let's start: \"\n\n[Clairvoyance]: \"Wait a moment\" \n\n[1] [Continue]",
+        "body": "[Ersilia, the Trustworthy] Okay, sure, I think I know this. Let's start: \"\n\n[Clairvoyance]: \"Wait a moment\" \n\n[1] [Continue]",
         "key": {
             "1": "LyingCheck"
         },
-        "title": "Help"
+        "title": "Help2"
     },
     {
         "title": "LyingCheck",
-        "check_skill": "Ressonance",
-        "difficulty_class": 15
+        "check_skill": "Resonance",
+        "difficulty_class": 11
     },
     {
-        "body": "[Ressonance]: \"You can't trust her. She'll lie. She'll try to mock you.\"\n\n[1]: \" [Continue]",        
+        "body": "[Resonance]: \"You can't trust her. She'll lie. She'll try to mock you. (-1 Reason)\"\n\n[1]: \" [Continue]",        
         "key": {
-            "1": "Help"
+            "1": "List"
         },
         "reason": -1,
-        "title": "LyingFail"
+        "title": "LyingFail",
+        "condition": 3
     },
     {
-        "body": "[Ressonance]: Don't fully trust her tips. She's just messing around. \n\n[1]: \" [Continue]",
+        "body": "[Resonance]: Don't fully trust her tips. She's just messing around. \n\n[1]: \" [Continue]",
         "key": {
-            "1": "Help"
+            "1": "List"
         },
         "reason": 1,
-        "title": "LyingPass"
+        "title": "LyingPass",
+        "condition": 3
     },
     {
-        "body": "[Ersilia, the Trustworthy] I think Camelia should have some spare coffee, and Efrim has a bunch of zipties for some reason...: \"\n\n[Clairvoyance]: It's actually the other way around, probably \n\n[1]\"How about the toolbox?\" \n[2]\"Thanks, bye\" [end]",
+        "body": "[Ersilia, the Trustworthy] A short girl is standing and drinking some coffee, she's not in a hurry. \n\n[1]: \"Hey, I need to find some stuff, could you help me?\" \n[2] \"It's nothing, actually\" [End]",
+        "key": {
+            "1": "Stuff3",
+            "2": "End"
+        },
+        "title": "Start3"
+    },
+    {
+        "body": "[Ersilia, the Trustworthy] \"What do you mean? You lost your wallet or somethin'?\" \n\n[1]: \"I actually have to find some *Items*\" \n[2] \"Nah, forget about it\" [End]",
+        "key": {
+            "1": "Items3",
+            "2": "End"
+        },
+        "title": "Stuff3"
+    },
+    {
+        "body": "[Ersilia, the Trustworthy] \"What are you talking about?\" \n\n[1]: \"The elevator guy needs a *Toolbox*, a *Zip tie* and some *Coffee*.\"\n[2] \"Forget about it\" [End]",
+        "key": {
+            "1": "List",
+            "2": "End"
+        },
+        "title": "Items3"
+    },
+    {
+        "body": "[Ersilia, the Trustworthy] Camelia should have some spare coffee, and Efrim has a bunch of zipties for some reason...\"\n\n[Clairvoyance]: It's actually the other way around, probably. \n\n[1] \"How about the toolbox?\" \n[2]\"Thanks, bye\" [End]",
         "key": {
             "1": "ToolBox",
-            "2":"End"
+            "2": "End"
         },
         "title": "List"
     },
     {
-        "body": "[Ersilia, the Trustworthy] \"You actually had one of those on your room, didn't ya?\": \"\n\n[Clairvoyance]: \"That's the most absurd thing you heard today. It's probably true\" \n\n[1]\"Sure, thank you\"[end]",
+        "body": "[Ersilia, the Trustworthy] \"You actually had one of those on your room, didn't you?\" \"\n\n[Clairvoyance]: \"That's the most absurd thing you heard today. It's probably true\" \n\n[1] \"Sure, thank you\"[End]",
         "key": {
             "1":"End"
         },
         "title": "ToolBox"
     },
-
-
     {
         "body": "",
-        "condition": 2,
         "title": "End"
     }
 ]
