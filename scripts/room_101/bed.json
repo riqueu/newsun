@@ -3,19 +3,44 @@
         "title": "Start"
     },
     {
-        "body": "[Bed]: You are not sure why you woke up in a place that is not the bed. Maybe it's too dusty for you too sleep in. \n\n[Forbearance]: \"We shouldn't touch this bed for now.\" \n\n[1]: [Touch Bed] \n[2]: [Leave]",
+        "body": "[Bed]: You are not sure why you woke up in a place that is not the bed. Maybe it's too uncomfortable for you too sleep in. \n\n[Forbearance]: \"We shouldn't touch this bed for now.\" \n\n[1]: [Touch Bed] \n[2]: [Inspect underneath] \n[3]: [Leave]",
         "key": {
             "1": "Touch",
-            "2": "End"
+            "2": "Inspect",
+            "3": "End"
         },
         "title": "Start1"
     },
     {
-        "body": "[Bed]: You touch the bed, and it feels like a bed. That's it. You can leave now. \n\n[1]: [End]",
+        "body": "[Bed]: You touch the bed, and it feels like a bed. Nothing more, nothing less. \n\n[1]: [Inspect underneath] \n[2]: [Leave]",
+        "key": {
+            "1": "Inspect",
+            "2": "End"
+        },
+        "title": "Touch"
+    },
+    {
+        "body":"[Bed] Under the bed it lies a toolbox, you not sure why it's there, but it might be useful. \n\n[1]: [Take toolbox and leave]",
         "key": {
             "1": "End"
         },
-        "title": "Touch"
+        "title": "Inspect",
+        "condition": 2
+    },
+    {
+        "body": "[Bed]: You have been here before, and you know that there is nothing under the bed. You have already taken the toolbox. \n\n[1]: [Touch Bed] \n[2]: [Leave]",
+        "key": {
+            "1": "Touch2",
+            "2": "End"
+        },
+        "title": "Start2"
+    },
+    {
+        "body": "[Bed]: You touch the bed, and it feels like a bed. Nothing more, nothing less. \n\n[1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Touch2"
     },
     {
         "body": "",

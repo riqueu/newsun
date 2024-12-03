@@ -105,7 +105,8 @@
             "1": "Coffee",
             "2": "End"
         },
-        "title": "Items"
+        "title": "Items",
+        "condition": 2
     },
     {   "body": "[Vorakh, the Emshen]: \"It is essential for me to fix the elevator.\" \n\n [1] \"Yeah sure, I'll be back with the items.\" \n [2] \"Whatever, I'll be back.\"",
         "key": {
@@ -142,11 +143,19 @@
         "title": "GiveItems"
     },
     {
-        "body": "[Vorakh, the Emshen]: \"Perfect! Now it should be working, wanna give it a ride?\" \n [Clairvoyance]: \"We should probably give it a go. Trust me. I believe this is the key to our situation.\"\n[Tutorial Agent]: \"Hey again, you should probably hit Z on the elevator door right after you leave this conversation!\" \n\n [1]: \"Sure! I'll give it a try.\" \n [2]: \"I'm good, thanks! Might try it later haha.\"",
+        "body": "[Vorakh, the Emshen]: \"Perfect! Now it should be working, wanna give it a ride?\" \n [Clairvoyance]: \"We should probably give it a go. Trust me. I believe this is the key to our situation.\"\n[Tutorial Agent]: \"Hey again, you should probably hit Z on the elevator door right after you leave this conversation!\" \n\n [1]: \"Sure! I'll give it a go.\" \n [2]: \"I'm good, thanks! Might try it later haha.\"",
         "key": {
             "1": "End",
             "2": "End"
         },
-        "title": "Wait"
+        "title": "Wait",
+        "condition": 4
+    },
+    {
+        "body": "[Vorakh, the Emshen]: \"Thanks for the help fixing the elevator; it should be working now!\" \n\n[1]: \"No problem. See you around!\"",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start4"
     }
 ]

@@ -80,7 +80,7 @@
             "1": "Memory",
             "2": "End"
         },
-        "title": "NewsunCheckPass"
+        "title": "NewsunPass"
     },
     {
         "body": "[Resonance]: You feel he's telling the truth. (-1 Reason) \n\n[1]: \"Thank you for your help. I think I lost my memory...\" \n[2]: \"I'll find a way out, don't worry.\" [Leave]",
@@ -89,7 +89,7 @@
             "2": "End"
         },
         "reason": -1,
-        "title": "NewsunCheckFail"
+        "title": "NewsunFail"
     },
     {
         "body": "[Tabastan, the Mindful Truant]: \"That can't be good. Are you going to class today, maybe you can go to the nurse's office?\" \n\n[1]: \"I'm not going to class, I'm not even sure if I'm a student.\" \n[2]: \"I don't think I'm in the right place for that. What even is this place by the way?\" \n[3]: \"Why are YOU not in class right now?\"",
@@ -138,7 +138,8 @@
             "1": "Camellia",
             "2": "End"
         },
-        "title": "Help"
+        "title": "Help",
+        "condition": 2
     },
     {
         "body": "[Tabastan, the Mindful Truant]: \"Yeah, the one with the red hair. She's a bit shy, but she's nice and knows her way around.\" \n\n[1]: \"I'll go talk to her, thanks for the help.\" [Leave]",
@@ -153,6 +154,9 @@
     },
     {
         "body": "[Tabastan, the Mindful Truant]: Tabastan stands by the elevator, he's not up for talking right now. \n\n[1]: [Leave him alone]",
+        "key": {
+            "1": "End"
+        },
         "title": "Start2"
     }
 ]

@@ -34,7 +34,8 @@
     {
         "title": "PickCheck",
         "check_skill": "Forbearance",
-        "difficulty_class": 15
+        "difficulty_class": 15,
+        "condition": 2
     },
 
     {

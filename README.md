@@ -55,7 +55,7 @@ To run the unit tests, follow these steps:
 - Character Creator Structure: ✔️
 - Camera Movement ✔️
 - Render Map & Change Scenes ✔️
-- Inventory/Hotbar: ❌
+- Render Inventory/Hotbar: ✔️
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - Skill Checks: ✔️
     - Animations: ✔️
@@ -76,8 +76,10 @@ To run the unit tests, follow these steps:
     - Menu Background: ✔️
     - Character Status: ✔️
     - ... ✔️
-- Scene Variables: ❌
-    - Fix Elevator -> Change StartCondition, etc. ❌
+- Object Conditions: ✔️
+    - Elevator Fixed -> Change StartCondition ✔️
+    - Vorakh -> Check Items ✔️
+    - Camellia -> Book Quest ✔️
 - Map Placement/Positioning: ✔️
 
 ## License

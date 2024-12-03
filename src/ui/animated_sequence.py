@@ -34,9 +34,7 @@ class Video():
             start_delay (int, optional): Delay to start the animation. Defaults to 0.
             status (bool, optional): If its playing or not. Defaults to False.
             loop (bool, optional): Whether it loops or not. Defaults to False.
-        """
-        # TODO: Implement delay before starting animation
-        
+        """        
         self.screen = screen
         self.x, self.y = x, y
         self.sequence = load_png_sequence(folder)

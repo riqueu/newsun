@@ -11,7 +11,7 @@
         "title": "Start1"
     },
     {
-        "body": "[Forbearance]: \"Hey, are you sure you want to do this? I don't think we can make it.\" \n\n[1]: \"I'm sure, let's go!\" \n[2]: \"You're right, let's not do this.\"",
+        "body": "[Forbearance]: \"Are you sure you want to do this? I don't think we can make it.\" \n\n[1]: \"I'm sure, let's go!\" \n[2]: \"You're right, let's not do this.\"",
         "key": {
             "1": "Climb2",
             "2": "End"
@@ -25,7 +25,8 @@
             "2": "Climb3"
         },
         "title": "Climb2",
-        "health": -1
+        "health": -1,
+        "condition": 2
     },
     {
         "body": "[Forbearance]: \"I'm sorry, I can't do this anymore. I'm leaving. WE are leaving.\" \n\n[1]: \"I'm sorry.\"",
@@ -37,5 +38,12 @@
     {
         "body": "",
         "title": "End"
+    },
+    {
+        "body": "[Forbearance]: \"No. Just no.\" \n\n [1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
     }
 ]

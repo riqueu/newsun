@@ -12,10 +12,17 @@
     {
         "body": "[Elevator]: It is finally fixed. You can now enter the elevator. \n\n[1]: [Enter the elevator] \n[2]: [Leave]",
         "key": {
-            "1": "EnterElevator",
+            "1": "Enter",
             "2": "End"
         },
         "title": "Start2"
+    },
+    {
+        "body": "[Elevator]: A dim light illuminates the elevator. It seems like it's going to the 2th floor. Until a loud bang erupts. You feel as if the elevator is falling. Suddently, it stops. You take a step outside, and then... \n\n[1]: [Leave the elevator]",
+        "key": {
+            "1": "EnterElevator"
+        },
+        "title": "Enter"
     },
     {
         "title": "EnterElevator"
