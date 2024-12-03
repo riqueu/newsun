@@ -55,7 +55,7 @@ To run the unit tests, follow these steps:
 - Character Creator Structure: ✔️
 - Camera Movement ✔️
 - Render Map & Change Scenes ✔️
-- Render Inventory/Hotbar: ❌
+- Render Inventory/Hotbar: ✔️
 - Dialogue Trees System and Dialogue Boxes: ✔️
     - Skill Checks: ✔️
     - Animations: ✔️

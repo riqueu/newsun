@@ -5,6 +5,7 @@ import numpy as np
 import math
 
 from settings import *
+from src.ui.inventory import Inventory
 
 initial_pos = ((WIDTH-ROOM_WIDTH)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240)
 
@@ -53,10 +54,9 @@ class Player(pygame.sprite.Sprite):
             self.resonance = 0
             self.experience = 0
             self.health = 4
-            self.reason = 2
+            self.reason = 3
             
-            # PLACEHOLDER: Implement Inventory Object at ui/inventory.py
-            self.inventory = []
+            self.inventory = Inventory()
             
             self.initialized = True  # Mark as initialized
     

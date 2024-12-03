@@ -37,7 +37,10 @@ class Scene(pygame.sprite.Sprite):
 
         self.image = pygame.image.load(background_path).convert_alpha()
         self.image.set_colorkey(BLUE)
-
+        
+        self.inventory_hotbar = pygame.image.load("assets/ui/hotbar.png").convert_alpha()
+        self.scaled_hotbar = pygame.transform.scale(self.inventory_hotbar, (3*self.inventory_hotbar.get_width() // 4, 3*self.inventory_hotbar.get_height() // 4))
+        
         collision_path = background_path.replace("full.png", "collision.png")
         self.image_collision = pygame.image.load(collision_path).convert_alpha()
         self.image_collision.set_colorkey(BLUE)
@@ -148,6 +151,9 @@ class Scene(pygame.sprite.Sprite):
         status_bar.animate()
         self.screen.blit(self.font.render(f"Health: {self.player.health}", True, (255, 255, 255)), (20, 18))
         self.screen.blit(self.font.render(f"Reason: {self.player.reason}", True, (255, 255, 255)), (20, 44))
+        
+        self.screen.blit(self.scaled_hotbar, (20, HEIGHT - 80))
+        self.player.inventory.draw(self.screen)
         
         for manager in self.dialogue_managers.values():
             if manager.dialogue_active or manager.dialogue_ended: # dialogue_ended only to draw out animation

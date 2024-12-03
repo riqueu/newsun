@@ -15,7 +15,7 @@
         "title": "Start1"
     },
     {
-        "body": "[Efrim, the Coffee Grinder]: \"Oh, hello!\" \n\n[1] \"Could you give me some coffee?\" \n[2] \"oh, it's nothing, I'll leave you alone.\" [Leave]",
+        "body": "[Efrim, the Coffee Grinder]: \"Oh, hello!\" \n\n[1] \"Could you give me some coffee?\" \n[2] \"Nevermind, I'll leave you alone.\" [Leave]",
         "key": {
             "1": "Coffee",
             "2": "End"

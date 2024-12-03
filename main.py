@@ -4,6 +4,7 @@ import sys
 
 from settings import *
 from src.ui.camera import Camera
+from src.ui.inventory import Item
 from src.scenes.main_menu import MainMenu
 from src.scenes.options_menu import OptionsMenu
 from src.scenes.pause_menu import PauseMenu
@@ -53,21 +54,23 @@ class Game:
             self.matilda_spritesheet = SpriteSheet('assets/images/characters/cockroach.png')
             self.camera = Camera(self, WIDTH, HEIGHT)
             
+            # Initialize items
+            self.zip_tie = Item('zip_tie', 'assets/images/items/zip_tie.png')
+            self.books = Item('books', 'assets/images/items/books.png')
+            self.toolbox = Item('toolbox', 'assets/images/items/toolbox.png')
+            self.coffee =  Item('coffee', 'assets/images/items/coffee.png')
+            
             # Game variables
             self.menu_state = "main"
             self.interaction_state = False
             self.current_scene = None
+            self.elevator_fixed = False
 
             self.initialized = True  #  Mark as initialized
             
     def handle_events(self) -> None:
         """Handles events in the game
         """
-        # outside event loop to allow for continuous movement
-        #if self.menu_state == "game":
-            #keys = pygame.key.get_pressed()
-            #self.player.handle_movement(keys)
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
@@ -81,33 +84,39 @@ class Game:
                     if event.key == pygame.K_ESCAPE:
                         self.menu_state = "pause"
                         pygame.mixer.music.pause()
-                    
-
-                    """# TEMP: Change maps with number keys
-                    if event.key == pygame.K_7:
-                        self.change_map(self.current_scene, self.room_101)
-                        self.current_scene = self.room_101
-                    if event.key == pygame.K_8:
-                        self.change_map(self.current_scene, self.floor_1)
-                        self.current_scene = self.floor_1
-                    if event.key == pygame.K_9:
-                        self.change_map(self.current_scene, self.floor_0)
-                        self.current_scene = self.floor_0
-                    if event.key == pygame.K_0:
-                        self.change_map(self.current_scene, self.underground)
-                        self.current_scene = self.underground"""
-                
-                # If you got the book, Camellia will give you the zip tie
-                if self.floor_1.dialogue_conditions['bookshelf'] == 2 and self.floor_1.dialogue_conditions['npc_camellia'] != 4 and self.floor_1.dialogue_conditions['npc_camellia'] != 1:
-                    self.floor_1.change_conditions('npc_camellia', 3)
-                
-                # If you got all the items, Vorakh will fix the elevator
-                if self.floor_0.dialogue_conditions['npc_efrim'] == 2 and self.room_101.dialogue_conditions['bed'] == 2 and self.floor_1.dialogue_conditions['npc_camellia'] == 4 and self.floor_0.dialogue_conditions['npc_vorakh'] != 4 and self.floor_0.dialogue_conditions['npc_vorakh'] != 1:
-                    self.floor_0.change_conditions('npc_vorakh', 3)
                 
                 # That means Vorakh fixed the elevator
                 if self.floor_0.dialogue_conditions['npc_vorakh'] == 4:
+                    self.elevator_fixed = True
                     self.floor_0.change_conditions('door', 2)
+                
+                if not self.elevator_fixed:
+                    # If you interacted with the bookshelf and didn't already give the books to Camellia, you have the books
+                    if self.floor_1.dialogue_conditions['bookshelf'] == 2 and not self.player.inventory.has_item(self.books) and self.floor_1.dialogue_conditions['npc_camellia'] != 4:
+                        self.player.inventory.add_item(self.books)
+                        
+                    # If you got the book, Camellia can give you the zip tie
+                    if self.player.inventory.has_item(self.books) and self.floor_1.dialogue_conditions['npc_camellia'] != 1 and self.floor_1.dialogue_conditions['npc_camellia'] != 4:
+                        self.floor_1.change_conditions('npc_camellia', 3)
+                        
+                    # Trade book for zip tie.
+                    if self.floor_1.dialogue_conditions['npc_camellia'] == 4 and not self.player.inventory.has_item(self.zip_tie):
+                        self.player.inventory.remove_item(self.books)
+                        self.player.inventory.add_item(self.zip_tie)
+                        
+                    # If you interacted with the toolbox and didn't already give the toolbox to Vorakh, you have the toolbox
+                    if self.room_101.dialogue_conditions['bed'] == 2 and not self.player.inventory.has_item(self.toolbox) and self.floor_0.dialogue_conditions['npc_vorakh'] != 4:
+                        self.player.inventory.add_item(self.toolbox)
+                        
+                    # If you got the coffee from Efrim and di'nt already give it to Vorakh, you have the coffee
+                    if self.floor_0.dialogue_conditions['npc_efrim'] == 2 and not self.player.inventory.has_item(self.coffee) and self.floor_0.dialogue_conditions['npc_vorakh'] != 4:
+                        self.player.inventory.add_item(self.coffee)
+
+                    if all(item in self.player.inventory.items for item in [self.coffee, self.zip_tie, self.toolbox]) and self.floor_0.dialogue_conditions['npc_vorakh'] != 1:
+                        self.floor_0.change_conditions('npc_vorakh', 3)
+                else:
+                    self.player.inventory.clear_inventory()
+                    
                 
                 event_handled = self.current_scene.handle_event(event)
                 # check if event is a scene change

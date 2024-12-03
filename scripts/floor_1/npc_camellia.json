@@ -77,14 +77,14 @@
         "title": "Sounds"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"Crickets are insects that make a chirping sound. They're quite common in the countryside, but I've never heard them here. Förgätmigej is quite a crowded city, and Moya lives at the heart of it.\" \n\n[1]: \"I see... Do you know anything else? Did you see me or anything?\"",
+        "body": "[Camellia, The Uneasy Student]: \"Crickets are insects that make a chirping sound. They're quite common in the countryside, but I've never heard them here. Förgätmigej is quite a crowded city, and Moya lies at the heart of it.\" \n\n[1]: \"I see... Do you know anything else? Did you see me or anything?\"",
         "key": {
             "1": "AnythingElse"
         },
         "title": "Crickets"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"I'm sorry, that's all I know. I was too focused on my project. I've also been looking for these books, but I can't find it anywhere, and I don't want to look at that old bookshelf. I can't get close to it. Allergies.\"\n\n[1]: \"I see... Thanks for the help. Hopefully I'll find out what's going on. And your books! I'll check those bookshelves out.\"",
+        "body": "[Camellia, The Uneasy Student]: \"I'm sorry, that's all I know. I was too focused on my project. I've also been looking for these books, but I can't find it anywhere, and I don't want to look at that old bookshelf. I can't get close to it. Allergies.\"\n\n[1]: \"I see... Thanks for the help. Hopefully I'll find out what's going on. And your books! I'll check the bookshelves.\"",
         "key": {
             "1": "End"
         },
@@ -103,7 +103,7 @@
         "title": "Start2"
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"Hey, did you get those books?\" \n\n[1]: \"I found them! Here you go!\" [Give Books] \n[2]: \"No, not yet, I'm working on it\" [Lie]",
+        "body": "[Camellia, The Uneasy Student]: \"Hey, did you get those books?\" \n\n[1]: \"I found them! There you go!\" [Give Books] \n[2]: \"No, not yet, I'm working on it\" [Lie]",
         "key": {
             "1": "GiveBooks",
             "2": "End"
@@ -119,7 +119,7 @@
         "condition": 4
     },
     {
-        "body": "[Camellia, The Uneasy Student]: \"Thanks for the books again!\" \n\n[1]: \"You're welcome!!\"",
+        "body": "[Camellia, The Uneasy Student]: \"Thanks for the books again!\" \n\n[1]: \"You're welcome!! I'll check out your band later!\"",
         "key": {
             "1": "End"
         },
