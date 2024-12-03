@@ -171,7 +171,7 @@ class Room101(Scene):
         self.objects_positions = {
             "bed": [(890, 480)],
             "clock": [(508, 450)],
-            "door": [(870, 655)],
+            "door": [(870, 670)],
             "mirror": [(274, 450)],
             "poster": [(780, 450)],
             "sink": [(348, 450)],
