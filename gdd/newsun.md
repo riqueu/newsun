@@ -2,7 +2,7 @@
 
 ## Game Summary
 
-Newsun is a short Disco Elysium parody for a Programming Languages college course Final Project.
+Newsun is a short Disco Elysium inspired project for a Programming Languages college course Final Project.
 
 The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsun Hotel](ref/Newsun_Hotel.md), a weirdly familiar 5-story establishment.
 
@@ -10,7 +10,7 @@ The nameless amnesiac [Protagonist](ref/Protagonist.md) experiences a day [Newsu
 ## Inspiration
 
 - Disco Elysium
-    - pretty much everything lol
+    - pretty much everything
 - Pathologic 2
     - themes/dialogues
 - Rue Valley
