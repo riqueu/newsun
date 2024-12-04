@@ -8,7 +8,7 @@ from src.ui.animated_sequence import load_png_sequence, sequence_current_frame
 from settings import WIDTH, HEIGHT
 
 
-def get_key_to_node(interactions: dict) -> dict:
+def get_key_to_node(interactions: list) -> dict:
     """Function that gets interactions and returns the key_to_node dict to handle dialogue options
 
     Args:
