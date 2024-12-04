@@ -1,12 +1,15 @@
 [
     {
+        "title": "Start"
+    },
+    {
         "body": "[Poster]: There's a poster of a blue-haired anime girl hanging in the wall, she seem's familiar despite the non-latin characters written by her side. \n\n[1]: \"Maybe she's a rockstar\" \n[2] [Inspect further] \n[3] [Leave the poster be]",
         "key": {
             "1": "Rockstar",
             "2": "Inspect",
             "3": "End"
         },
-        "title": "Start"
+        "title": "Start1"
     },
     {
         "body": "[Poster]: Maybe she is. Or at least some sort of artist. \n\n[1]: [Inspect further] \n[2]: [Leave the poster be]",
@@ -24,6 +27,7 @@
         "title": "Inspect"
     },
     {
+        "body": "",
         "title": "End"
     }
 ]

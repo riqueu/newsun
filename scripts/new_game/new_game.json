@@ -1,12 +1,15 @@
 [
     {
+        "title": "Start"
+    },
+    {
       "body": "[???]: \"The car's on fire and there's no driver at the wheel.\" \n\n[1]: \"What's going on?\" \n[2]: \"Who are you?\" \n[3]: \"A dark wind blows.\"",
       "key": {
         "1": "Questions",
         "2": "Questions",
         "3": "Next"
         },
-      "title": "Start"
+      "title": "Start1"
     },
     {
       "body": "[???]: \"There are more questions than answers, and the more you find out, the less you know.\" \n\n[1]: \"What do you mean?\"",
@@ -31,7 +34,7 @@
       "title": "Sorry"
     },
     {
-      "body": "[???]: \"Soon you'll see.\" \n\n[1]: \"I guess?\"",
+      "body": "[???]: \"Soon you'll see.\" \n\n[1]: \"What?\"",
       "key": {
         "1": "Tutorial_Hello"
         },
@@ -45,7 +48,7 @@
       "title": "Tutorial_Hello"
     },
     {
-      "body": "[Tutorial Agent]: \"You can move around and interact with others to gain experience. Try to collect as many items as you can; once collected they'll be stored in your inventory. The skills you just chose will determine how well you do on skill checks. Furthermore...\" \n\n[1]: \"What are you even talking about? Who was that before you? What's going on?\" \n[2]: \"What's a skill check?\" \n[3]: \"Sure Sure, just let me play the game!\"",
+      "body": "[Tutorial Agent]: \"You can move around with the arrow keys, control the camera with WASD. Try to collect as many items as you can; once collected they'll be stored in your inventory. The skills you just chose will determine how well you do on skill checks. Furthermore...\" \n\n[1]: \"What are you even talking about? Who was that before you? What's going on?\" \n[2]: \"What's a skill check?\" \n[3]: \"Sure Sure, just let me play the game!\"",
       "key": {
         "1": "Tutorial_Confusion",
         "2": "Tutorial_SkillRolls",
@@ -77,13 +80,14 @@
       "title": "Tutorial_Confusion"
     },
     {
-      "body": "[Tutorial Agent]: \"Great! Let's get started. But remember, beware of time.\" \n\n[Press 1 to Begin]",
+      "body": "[Tutorial Agent]: \"Great! Let's get started. But remember, beware of time. One last thing, press Z to interact with objects. Not all are interactable, but most things are! Be kind and do your best. I believe in you.\" \n\n[Press 1 to Begin]",
       "key": {
         "1": "End"
         },
       "title": "Begin"
     },
     {
+      "body": "",
       "title": "End"
     }
   ]

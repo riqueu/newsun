@@ -1,24 +1,32 @@
 [
     {
-      "body": "[Old TV]: That was once a brand new TV model from a great company. Now it's just a piece of junk covered in dust. \n\n[1]: [Try to turn the TV on] \n[2]: [Check the cables (Forbearance|60%)] \n[3]: [Let the Old TV rest]",
+        "title": "Start"
+    },
+    {
+      "body": "[Old TV]: That was once a brand new TV model from a great company. Now it's just a piece of junk covered in dust. \n\n[1]: [Try to turn the TV on] \n[2]: [Check cables (Forbearance | DC 12)] \n[3]: [Let the Old TV rest]",
       "key": {
         "1": "TVOn",
         "2": "TVCablesCheck",
         "3": "End"
         },
-      "title": "Start"
+      "title": "Start1"
     },
     {
-        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check the cables (Forbearance|60%)] \n[2]: [Let the Old TV rest]",
+        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Check cables (Forbearance | DC 12)] \n[2]: [Let the Old TV rest]",
+        "key": {
+            "1": "TVCablesCheck",
+            "2": "End"
+        },
         "title": "TVOn"
     },
     {
         "title": "TVCablesCheck",
         "check_skill": "Forbearance",
-        "check_minpass": 12
+        "difficulty_class": 12,
+        "condition": 2
     },
     {
-        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV, but you're pretty sure you cannot fix such complex thing. \n\n[1]: [Let the Old TV rest]",
+        "body": "[Forbearance]: You check the cables and find out that they already plugged in. You're not sure what's wrong with the TV, but you're pretty sure you cannot fix such complex device. \n\n[1]: [Let the Old TV rest]",
         "key": {
             "1": "End"
             },
@@ -33,6 +41,22 @@
         "title": "TVCablesFail"
     },
     {
+        "body": "",
         "title": "End"
+    },
+    {
+        "body": "[Old TV]: That was once a brand new TV model from a great company. Now it's just a piece of junk covered in dust. \n\n[1]: [Try to turn the TV on] \n[2]: [Let the Old TV rest]",
+        "key": {
+            "1": "TVOn2",
+            "2": "End"
+            },
+        "title": "Start2"
+    },
+    {
+        "body": "[Old TV] You try to turn the TV on, but it doesn't respond. You're not sure if it's broken or if it's just not plugged in. \n\n[1]: [Let the Old TV rest]",
+        "key": {
+            "1": "End"
+        },
+        "title": "TVOn2"
     }
 ]

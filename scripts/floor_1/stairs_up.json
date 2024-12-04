@@ -1,14 +1,17 @@
 [
     {
+        "title": "Start"
+    },
+    {
         "body": "[Stairs]: There's a staircase leading up to the next floor. You're not sure if you can make it. \n\n[1]: [Climb the stairs] \n[2]: [Don't climb the stairs]",
         "key": {
             "1": "Climb1",
             "2": "End"
         },
-        "title": "Start"
+        "title": "Start1"
     },
     {
-        "body": "[Forbearance]: \"Hey, are you sure you want to do this? I don't think we can make it.\" \n\n[1]: \"I'm sure, let's go!\" \n[2]: \"You're right, let's not do this.\"",
+        "body": "[Forbearance]: \"Are you sure you want to do this? I don't think we can make it.\" \n\n[1]: \"I'm sure, let's go!\" \n[2]: \"You're right, let's not do this.\"",
         "key": {
             "1": "Climb2",
             "2": "End"
@@ -16,12 +19,14 @@
         "title": "Climb1"
     },
     {
-        "body": "[Forbearance]: \"I warned you, we can't climb those stairs.\"\n (-1 Health) \n\n[1]: \"I'm sorry, I won't do it again.\" \n[2]: \"Come on, there's not way we can't make it.\"",
+        "body": "[Forbearance]: You take a step foward, the stair creeks as you stub your toe and hit the stairs. It hurts. A lot. \"I warned you, we can't climb those stairs.\"\n (-1 Health) \n\n[1]: \"I'm sorry, I won't do it again.\" \n[2]: \"Come on, there's not way we can't make it.\"",
         "key": {
             "1": "End",
             "2": "Climb3"
         },
-        "title": "Climb2"
+        "title": "Climb2",
+        "health": -1,
+        "condition": 2
     },
     {
         "body": "[Forbearance]: \"I'm sorry, I can't do this anymore. I'm leaving. WE are leaving.\" \n\n[1]: \"I'm sorry.\"",
@@ -31,6 +36,14 @@
         "title": "Climb3"
     },
     {
+        "body": "",
         "title": "End"
+    },
+    {
+        "body": "[Forbearance]: \"No. Just no.\" \n\n [1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
     }
 ]

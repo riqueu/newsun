@@ -1,0 +1,54 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Large Sofa] A Long sofa sits in the middle of the room. It looks comfortable, but you don't feel like sitting down right now. \n[Forbearance]: \"Don't judge the book by its cover. This sofa could injure us if it's not comfortable. Inspect it first.\" \n\n[1]: [Inspect Sofa] \n[2]: [Sit on Sofa] \n[3]: [Leave]",
+        "key": {
+            "1": "InspectCheck",
+            "2": "Sit",
+            "3": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "title": "InspectCheck",
+        "check_skill": "Forbearance",
+        "difficulty_class": 12
+    },
+    {
+        "body": "[Forbearance] You inspect the sofa. It looks comfortable. We should try it. \n\n[1]: [Sit on Sofa]",
+        "key": {
+            "1": "Sit"
+        },
+        "title": "InspectFail"
+    },
+    {
+        "body": "[Forbearance] You closely inspect the sofa. It looks like a hazard. Your mind tells you to avoid it at all costs. \n\n[1]: [Sit on Sofa] \n[2]: [Leave]",
+        "key": {
+            "1": "Sit",
+            "2": "End"
+        },
+        "title": "InspectPass"
+    },
+    {
+        "body": "[Large Sofa] You sit on the sofa. It's not comfortable at all, it goes agains your own existance. (-1 Health) \n\n[1]: [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Sit",
+        "health": -1,
+        "condition": 2
+    },
+    {
+        "body": "[Large Sofa]: You leave the sofa alone. We all know where this would end. Don't sit on it. \n\n[1]: [Leave it alone]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
+    },
+    {
+        "body": "",
+        "title": "End"
+    }
+]

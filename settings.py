@@ -1,5 +1,5 @@
 # Screen dimensions
-WIDTH = 1440
+WIDTH = 1050
 HEIGHT = 600
 
 # Frames per second
@@ -7,3 +7,24 @@ FPS = 60
 
 # Colors
 TEXT_COLOR = (255, 255, 255)
+RED = (255, 0, 0)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+
+# Scenes
+ROOM_WIDTH = 690
+ROOM_HEIGHT = 411
+
+HALL_WIDHT = 2244
+HALL_HEIGHT = 354
+
+TILESIZE = 32
+
+PLAYER_LAYER = 3
+BLOCK_LAYER = 2
+GROUND_LAYER = 1
+
+PLAYER_SPEED = 4
+KEYBOARD_SPEED = 6
+
+
