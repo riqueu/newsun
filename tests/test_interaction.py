@@ -6,6 +6,9 @@ This module contains unit tests that verify the correct behavior of various func
 within the `interaction` module. It uses mocking to simulate dependencies and isolate the logic 
 being tested.
 """
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
