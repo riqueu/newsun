@@ -1,4 +1,9 @@
-"""Death Ending Scene"""
+"""
+Death Ending Scene
+
+This module contains the `DeathMenu` class, which is used to display the death screen when the player loses the game.
+It provides options for displaying the reason for the player's death and allows the player to quit the game.
+"""
 
 import pygame
 from src.ui.animated_sequence import black_bg
