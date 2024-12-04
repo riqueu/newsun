@@ -1,5 +1,8 @@
-"""Options Menu Scene"""
-
+"""
+This module represents the options menu scene, where the player can adjust settings such as volume,
+and navigate back to the previous screen. User interaction is handled by keystrokes,
+and the graphical interface is rendered using Pygame.
+"""
 import pygame
 from src.ui.animated_sequence import black_bg
 
