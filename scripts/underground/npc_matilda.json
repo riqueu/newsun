@@ -1,0 +1,327 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Resonance]: Shivers are sent down your spine, as you feel the presence of something ancient and powerful. The air is thick with the scent of decay and the sound of whispers fills your ears. You feel a pull towards the darkness, as if something is calling you to it. You can't help but feel a sense of dread, as you realize that you are not alone in this cryptic place. \n\n[1]: [Proceed] \n[2]: [Stand still] \n[3]: \"This is pointless, isn't it?\"",
+        "key": {
+            "1": "Next",
+            "2": "Next",
+            "3": "Next"
+            },
+        "title": "Start1"
+    },
+    {
+        "body": "[Resonance]: You take a step forward, resistance is pointless, and the whispers grow louder. The darkness seems to envelop you, and you feel as if you are being watched. \n\n[1]: [Accept your fate] \n[2]: [Close your eyes]",
+        "key": {
+            "1": "Fate",
+            "2": "EyesClosed"
+        },
+        "title": "Next"
+    },
+    {
+        "body": "[Clairvoyance]: You close your eyes, for exactly four seconds, and when you open them, you find yourself in a different place. The darkness is gone, and you are standing in a room filled with light. You feel a sense of peace and tranquility, as if you have finally found what you were looking for. \n\n[1]: [Embrace the light] \n[2]: [Wake up]",
+        "key": {
+            "1": "Embrace",
+            "2": "WakeUp"
+        }, 
+        "title": "EyesClosed"
+    },
+    {
+        "body": "[Forbearance]: \"Do yourself a favor and stop. We both know this place is not real. It's time to face the consequences and wake up. You've done well, I believe in you. We can do it.\" \n\n[1]: [Wake up]",
+        "key": {
+            "1": "WakeUp"
+        },
+        "title": "Embrace"
+    },
+    {
+        "body": "[Eloquence]: You open your eyes again, and the darkness is still there. This is for real now. \n[Forbearance]: There is no end. \n[Clairvoyance]: The time to face the consequences has arrived. \n [Resonance]: \"We can do this.\"\n\n[1]: [Face the consequences]",
+        "key": {
+            "1": "Fate"
+        },
+        "title": "WakeUp"
+    },
+    {
+        "body": "[Matilda]: \"In last night's dream, it appeared. A shining, glistening sign. I touched it. Did you?\" A voice echoes in your mind. It is not human. Your body reacts accordingly: you are terrified by the divine beast before your eyes. \n\n[1]: \"Who are you?\" \n[2]: [Ignore the voice]",
+        "key": {
+            "1": "Who",
+            "2": "Ignore"
+        },
+        "title": "Fate"
+    },
+    {
+        "body": "[Matilda]: \"You need not to speak if you wish. We are one.\" The voice echoes in your mind once again. *It* knows you're trying to ignore it; almost as if it's inside your mind. \n\n[1]: \"Who are you?\"",
+        "key": {
+            "1": "Who"
+        },
+        "title": "Ignore"
+    },
+    {
+        "body": "[Matilda]: \"You know who I am. We have met before. Just outside the pilgrim's door. Honestly, we both knew you had insufficient schemes.\" \n\n[1]: \"Are you the one who stole my memories?\" \n[2]: \"What do you want from me?\" \n[3]: \"What do you mean by 'insufficient schemes'?\"",
+        "key": {
+            "1": "Memories",
+            "2": "WhatWant",
+            "3": "Schemes"
+        },
+        "title": "Who"
+    },
+    {
+        "body": "[Matilda]: \"You have been chosen. You have been marked. You have been blessed. You have been cursed. You have been given a gift. You have been given a burden. You have been given a chance. Yet you threw it all away at the funeral march.\" \n\n[1]: \"Funeral march?\" \n[2]: \"What curse?\" \n[3]: \"What burden?\" \n[4]: \"What chance?\"",
+        "key": {
+            "1": "FuneralMarch",
+            "2": "Curse",
+            "3": "Burden",
+            "4": "Chance"
+        },
+        "title": "Schemes"
+    },
+    {
+        "body": "[Matilda]: \"You still don't understand...\" \n\n[1]: \"Give me my memories back!\"",
+        "key": {
+            "1": "Memories"
+        },
+        "title": "FuneralMarch"
+    },
+    {
+        "body": "[Matilda]: \"A curse, a gift, a burden, what's the difference? It always comes down to the hunters' helper to clean up after these sorts of messes.\" \n\n[1] \"What burden!?\"\n[2]: \"Who am I? What did you do to my memories?\"",
+        "key": {
+            "1": "Burden",
+            "2": "Memories"
+        },
+        "title": "Curse"
+    },
+    {
+        "body": "[Matilda]: \"Convenience is poison. One must accustom themselves to pursue any intention as soon as it appears, regardless of difficulty. Otherwise one burns out, gives in to doubt, starts fearing oneself. The bolder the dream, the more surely it becomes dust when the moment is lost. You, however, drank the poison. You were the one responsible for this mess!\" \n\n[1] \"What do you want from me?\"\n[2]: \"What happened to my memories?\"",
+        "key": {
+            "1": "WhatWant",
+            "2": "Memories"
+        },
+        "title": "Burden"
+    },
+    {
+        "body": "[Matilda]: \"You had the chance to do things right... You are a slave of the inevitable, while I am its mistress. The past is immutable, the future, unavoidable. However, the lines between both may be cut. Any line can be reattached with greater effort. There are consequences, however; burdens.” \" \n\n[1]: \"What burden?\" \n[2]\"What do you want from me?\"\n[3]: \"What happened to my memories?\"",
+        "key": {
+            "1": "Burden",
+            "2": "WhatWant",
+            "3": "Memories"
+        },
+        "title": "Chance"
+    },
+    {
+        "body": "[Matilda]: \"Want? I want nothing from you anymore.\" The cockroach-like eldritch beast speaks arrogantly. \"You have served your purpose. You have become what you were meant to be.\" \n\n[1]: \"Did you take my memories from me?\" \n[2]: \"What purpose?\"",
+        "key": {
+            "1": "Memories",
+            "2": "Purpose"
+        },
+        "title": "WhatWant"
+    },
+    {
+        "body": "[Matilda]: \"You haven't yet figured out why you feel the way you fell? Why no one can recall your name? Do you really believe no one in this dammed place knows your name?\" \n\n[1]: [Listen]",
+        "key": {
+            "1": "Memories"
+        },
+        "title": "Purpose"
+    },
+    {
+        "body": "[Matilda]: \"I didn't take or steal your memories! YOU were the one who came to me, begging for my assistance. I simply made an offer, and you simply accepted it.\" \n\n[1]: \"What offer?\" \n[2]: \"What did you do to my memories?\"",
+        "key": {
+            "1": "Offer1",
+            "2": "WhatHappenedMemories"
+        },
+        "title": "Memories"
+    },
+    {
+        "body": "[Matilda]: \"Does that matter? You gave them away, so why bother figuring it out. You should've asked before.\" \n\n[1]: \"What offer did I take?\"",
+        "key": {
+            "1": "Offer1"
+        },
+        "title": "WhatHappenedMemories"
+    },
+    {
+        "body": "[Matilda]: \"Well, you came to me desperate, asking for solutions. You had an 'assignment' due the next day. 'Assignment', is that how you call those things? It matters not to me, what matters is you needed a wish grant...\" \n\n[1]: [Listen]",
+        "key": {
+            "1": "Offer2"
+        },
+        "title": "Offer1"
+    },
+    {
+        "body": "[Matilda]: \"I myself, am not a genie, but a *Feedbacker*. Every action produces a reaction. You were desperate to finish that 'assignment' you call; I only helped you.\" \n\n[1]: \"You fooled me!\"",
+        "key": {
+            "1": "Offer3"
+        },
+        "title": "Offer2"
+    },
+    {
+        "body": "[Matilda]: \"I did not. You were aware of the consequences. You knew, yet you exchanged something for something else. Was it worth it? Did I make you happy?\" \n\n[1]: \"It couldn't be going worse!\" \n[2]: \"I want my memories back!\" \n[3]: \"Of course it wasn't worth it. An assignment for my memories? That's not fair at all!\"",
+        "key": {
+            "1": "BeWorse",
+            "2": "WantMemoriesBack",
+            "3": "NotFair"
+        },
+        "title": "Offer3"
+    },
+    {
+        "body": "[Matilda]: \"You are the one who made the choice. You are the one who decided to exchange your memories for a wish. You are the one who decided to forget.\" \n\n[1]: \"Nonsense! I want my memories back!\"",
+        "key": {
+            "1": "WantMemoriesBack"
+        },
+        "title": "BeWorse"
+    },
+    {
+        "body": "[Matilda]: \"You made a deal, and you must live with the consequences. You can't change the past, but you can change the future. You can't have your memories back, but you can make new ones.\" \n\n[1]: \"But I want my memories back!\"",
+        "key": {
+            "1": "WantMemoriesBack"
+        },
+        "title": "NotFair"
+    },
+    {
+        "body": "[Matilda]: \"You didn't seem to want them back then.\" \n\n[1]: \"Why would I not want my memories?\" \n[2]: \"It doesn't matter, I want them now.\" \n[3]: \"I don't care! Give me them now.\"",
+        "key": {
+            "1": "WhyNot",
+            "2": "WantNow",
+            "3": "WantNow"
+        },
+        "title": "WantMemoriesBack"
+    },
+    {
+        "body": "[Matilda]: \"You are not strong enough.\" \n\n[1]: \"Why am I not strong? Why did I not want my memories?\"",
+        "key": {
+            "1": "WhyNot"
+        },
+        "title": "WantNow"
+    },
+    {
+        "body": "[Matilda]: \"You were desperate. You were afraid. You were alone. You were lost. You were confused. You were angry. You were sad. You were hurt. You were broken. You were empty. You were nothing. You were everything. You were...\" \n\n[1]: \"I was what?\"",
+        "key": {
+            "1": "IWasWhat"
+        },
+        "title": "WhyNot"
+    },
+    {
+        "body": "[Resonance]: \"Tired. You were tired. *We* were tired. Of everything.\" \n[Matilda]: \"You wanted a new beginning; I gave you that.\" \n\n[1]: \"What do you mean by 'new beginning'?\" \n[2]: \"What did you do to me?\"",
+        "key": {
+            "1": "NewBeginning",
+            "2": "WhatDidYouDo"
+        },
+        "title": "IWasWhat"
+    },
+    {
+        "body": "[Matilda]: \"I did what I was asked to.\" \n\n[1]: \"What about this 'new beginning'? What does that mean?\"",
+        "key": {
+            "1": "NewBeginning"
+        },
+        "title": "WhatDidYouDo"
+    },
+    {
+        "body": "[Matilda]: \"It is up to you now. My job here is done. Your name is forgotten by all, including me. Your memories, gone. It's time to grab a new name and start a new life.\" \n\n[1]: \"I'm not leaving everything behind!\" \n[2]: \"Where would I even begin? I can't just...\"",
+        "key": {
+            "1": "NotLeaving",
+            "2": "WhereBegin"
+        },
+        "title": "NewBeginning"
+    },
+    {
+        "body": "[Matilda]: \"You must let it go. What was it? 'Real darkness has love for a face. The first death is in the heart.', a great friend of mine once said. You must accept it. You must build a new *you*.\" \n\n[1]: \"But... I can't.\" \n[2]: \"How would I rebuild everything? I just can't.\"",
+        "key": {
+            "1": "ThereIsALight",
+            "2": "WhereBegin"
+        },
+        "title": "NotLeaving"
+    },
+    {
+        "body": "[Matilda]: \"You must find a new name. You must find a new place. You must find a new purpose. You must find a new life. You must find a new you.\" \n\n[1]: \"But... I can't.\"",
+        "key": {
+            "1": "ThereIsALight"
+        },
+        "title": "WhereBegin"
+    },
+    {
+        "body": "[Matilda]: \"There is a way. A way to resurrect your old self back into this world. A light that never goes out within your inner self.\" \n\n[1]: \"Please, I will do anything!\" \n[2]: \"I don't believe you.\"",
+        "key": {
+            "1": "AWay",
+            "2": "AWay"
+        },
+        "title": "ThereIsALight"
+    },
+    {
+        "body": "[Matilda]: \"It is time to make a choice. If you truly express the desire to become your old self, close your eyes and remember.\" \n\n[1]: [Close your eyes and try to remember (Experience | DC 20)] \n[2]: [Accept your fate]",
+        "key": {
+            "1": "FinalCheck",
+            "2": "AcceptFate"
+        },
+        "title": "AWay"
+    },
+    {
+        "title": "FinalCheck",
+        "check_skill": "Experience",
+        "difficulty_class": 20
+    },
+    {
+        "body": "[Inner Self]: It's... you. Despite everything, you remember, you are still you. Not all is lost. You can still find your way back. \n\n[1]: [Embrace your old self] \n[2]: [Reject your old self]",
+        "key": {
+            "1": "EmbraceOldSelf",
+            "2": "RejectOldSelf"
+        },
+        "title": "FinalPass"
+    },
+    {
+        "body": "[Inner Self]: Despite your recollection, you believe it was for the better. You reject your old self and accept your new life. \n\n[1]: [Accept your fate]",
+        "key": {
+            "1": "AcceptFate"
+        },
+        "title": "RejectOldSelf"
+    },
+    {
+        "body": "[Inner Self]: You can't. No matter how hard you try, you can't remember. You can't remember your name, your past, your life. You feel a sense of despair, as you realize that you are truly lost. \n\n[1]: [Accept your fate]",
+        "key": {
+            "1": "AcceptFate"
+        },
+        "title": "FinalFail"
+    },
+    {
+        "body": "[Inner Self]: You close your eyes, embracing the darkness, and you feel a sense of peace wash over you. You feel a connection to something fresh and powerful, as if you are finally moving out of your childhood home. \n\n[1]: [Continue]",
+        "key": {
+            "1": "AcceptFate2"
+        },
+        "title": "AcceptFate"
+    },
+    {
+        "body": "[Inner Self]: It's finally over. You are free to build your new life. Free to discover the world, to be yourself. The world is yours. This might not be what you wanted, but it is what you got; it's all you have, don't let it go. \n\n[1]: [Continue]",
+        "key": {
+            "1": "VISION"
+        },
+        "title": "AcceptFate2"
+    },
+    {
+        "body": "[Inner Self]: You close your eyes, embracing the darkness, and you feel a sense of peace wash over you. You feel a connection to something ancient and powerful, as if you are finally home. \n\n[1]: [Continue]",
+        "key": {
+            "1": "EmbraceOldSelf2"
+        },
+        "title": "EmbraceOldSelf"
+    },
+    {
+        "body": "[Inner Self]: It's finally over. You remember things. You were not perfect, but you were you; that's all that matters. You got your memories back, and turned the assignment in just in time. A sense of relief is felt by your old self. We are back. \n\n[1]: [Continue]",
+        "key": {
+            "1": "VISION"
+        },
+        "title": "EmbraceOldSelf2"
+    },
+    {
+        "body": "[Resonance]: \"VISION\" \n\n[1]: [Continue]",
+        "key": {
+            "1": "CREATION"
+        },
+        "title": "VISION"
+    },
+    {
+        "body": "[Clairvoyance]: \"CREATION\" \n\n[1]: [Continue]",
+        "key": {
+            "1": "NEWSUN"
+        },
+        "title": "CREATION"
+    },
+    {
+        "body": "",
+        "title": "NEWSUN"
+    }
+]

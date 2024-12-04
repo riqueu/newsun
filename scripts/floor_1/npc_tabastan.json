@@ -1,0 +1,162 @@
+[
+    {
+        "title": "Start"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: There's a tall person standing by the elevator. Unlike the broken elevator, he seem to be in a hurry. \n\n [1]: \"Hello fellow human, do you know my name or where I am?\" \n [2]: \"Were you the one who knocked on my door?\" \n [3]: \"I don't think that elevator will work.\" \n[4] [Leave the person alone]",
+        "key": {
+            "1": "Hey",
+            "2": "Knock",
+            "3": "Elevator",
+            "4": "End"
+        },
+        "title": "Start1"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Maybe I did. Maybe I didn't. What's it to you?\" \n\n[1] \"Do you know me?\" \n[2] \"Do you know where I am?\" \n[3] \"Okay then, I'll leave you alone.\" [Leave]",
+        "key": {
+            "1": "Hey",
+            "2": "Hey",
+            "3": "End"
+        },
+        "title": "Knock"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"I know.\" \n\n[1]: \"Can you tell me what's going on?\" \n[2]: \"I'll leave you alone.\" [Leave]",
+        "key": {
+            "1": "Hey",
+            "2": "End"
+        },
+        "title": "Elevator"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"What are you talking about? Are you drunk or something?\" \n\n[1]: \"I'm sorry, but I don't know what's going on. I think I lost my memory.\" \n[2]: \"I'm being serious, I don't know where I am. I don't even drink... I think.\" \n[3]: \"I'm the one asking questions here. Can you please answer them?\"",
+        "key": {
+            "1": "Memory",
+            "2": "Serious",
+            "3": "Questions"
+        },
+        "title": "Hey"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Is this some sort of counter prank or something?\" \n\n[1]: \"What do you mean by counter prank?\" \n[2]: \"No. I'm serious\"",
+        "key": {
+            "1": "CounterPrank",
+            "2": "Serious"
+        },
+        "title": "Memory"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Look, I was the one who knocked on your door. It was just a prank. Now tell me, did you actually lose your memory?\" \n\n[1]: \"Of course, why would I joke about that?\" \n[2]: \"Nah, I'm just pranking you back you silly.\" [Leave]", 
+        "key": {
+            "1": "Serious",
+            "2": "End"
+        },
+        "title": "CounterPrank"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Sorry, but I only know you from sight, not by name. We are in *Newsun Hotel* though.\" \n\n[1]: \"Newsun...?\" \n[2]: \"I think I lost my memory.\"",
+        "key": {
+            "1": "NewsunHotel",
+            "2": "Memory"
+        },
+        "title": "Questions"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Yes, Newsun Hotel, at the heart of Moya. It's a place where people come to rest and relax. I'm not sure how you got here, but I'm sure you'll find a way out.\" \n\n[Press 1 to Continue]",
+        "key": {
+            "1": "NewsunCheck"
+        },
+        "title": "NewsunHotel"
+    },
+    {
+        "title": "NewsunCheck",
+        "check_skill": "Resonance",
+        "difficulty_class": 10
+    },
+    {
+        "body": "[Resonance]: \"He's clearly joking with you. You can tell by the way he's smiling.\" \n\n[1]: \"I lost my memory but I'm not stupid. Can you please not blatantly lie?\" \n[2]: \"You are not the best liar. If you won't help, at least don't get in my way.\" [Leave]",
+        "key": {
+            "1": "Memory",
+            "2": "End"
+        },
+        "title": "NewsunPass"
+    },
+    {
+        "body": "[Resonance]: You feel he's telling the truth. (-1 Reason) \n\n[1]: \"Thank you for your help. I think I lost my memory...\" \n[2]: \"I'll find a way out, don't worry.\" [Leave]",
+        "key": {
+            "1": "Memory",
+            "2": "End"
+        },
+        "reason": -1,
+        "title": "NewsunFail"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"That can't be good. Are you going to class today, maybe you can go to the nurse's office?\" \n\n[1]: \"I'm not going to class, I'm not even sure if I'm a student.\" \n[2]: \"I don't think I'm in the right place for that. What even is this place by the way?\" \n[3]: \"Why are YOU not in class right now?\"",
+        "key": {
+            "1": "Student",
+            "2": "Place",
+            "3": "Truant"
+        },
+        "title": "Serious"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Why would I go to class when I can just stay here? I already know the content.\" \n\n[1]: \"What do you mean by 'here'?\" \n[2]: \"Am I a student?\"",
+        "key": {
+            "1": "Place",
+            "2": "Student"
+        },
+        "title": "Truant"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"This is Newsun Hotel, it's a student dormitory. We are on the first floor. You are a student, but I'm not sure which one.\" \n\n[1]: \"I'm a student?\" \n[2]: \"I don't think I'm a student. Students usually remember things, right?\"",
+        "key": {
+            "1": "Student",
+            "2": "NotStudent"
+        },
+        "title": "Place"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Yes, you are a student. That's what you are.\" \n\n[1]: \"I'm not going to class, I'll se if I can find some help in here.\" \n[2]: \"Okay, thanks for the help!\" [Leave]",
+        "key": {
+            "1": "Help",
+            "2": "End"
+        },
+        "title": "Student"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"I'm not sure. I think you should go to the nurse's office. Maybe they can help you out.\" \n\n[1]: \"Okay, I might be a student. One that can't even sign attendance though.\" \n[2]: \"I'll leave you alone, thanks for the help though\" [Leave]",
+        "key": {
+            "1": "Student",
+            "2": "End"
+        },
+        "title": "NotStudent"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"You could probably speak with *Camellia*, she's the one standing next to the stairs.\" \n\n[1]: \"Camellia?\" \n[2]: \"I might just do that, thanks.\" [Leave]",
+        "key": {
+            "1": "Camellia",
+            "2": "End"
+        },
+        "title": "Help",
+        "condition": 2
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: \"Yeah, the one with the red hair. She's a bit shy, but she's nice and knows her way around.\" \n\n[1]: \"I'll go talk to her, thanks for the help.\" [Leave]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Camellia"
+    },
+    {
+        "body": "",
+        "title": "End"
+    },
+    {
+        "body": "[Tabastan, the Mindful Truant]: Tabastan stands by the elevator, he's not up for talking right now. \n\n[1]: [Leave him alone]",
+        "key": {
+            "1": "End"
+        },
+        "title": "Start2"
+    }
+]
