@@ -14,6 +14,11 @@
 ## About:
 Newsun is the final project for our Programming Languages course. You can read our [report](docs/relatorio_A2.pdf) for further information regarding the development of the game, and the [Game Design Document](gdd/newsun.md) to learn more about the concepts of the game.
 
+### Screenshots:
+![image](docs/prev2.png)
+
+![image](docs/prev3.png)
+
 ## How to Run
 
 1. Clone the repository:
