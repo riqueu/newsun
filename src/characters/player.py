@@ -1,4 +1,5 @@
-"""Player class for the protagonist of the game."""
+"""This module contains the Player class, representing the protagonist of the game.
+It manages the player's movement, animation, skills, and interaction with the game world."""
 
 import pygame
 import numpy as np
@@ -10,13 +11,26 @@ from src.ui.inventory import Inventory
 initial_pos = ((WIDTH-ROOM_WIDTH)//2 + 120, (WIDTH-ROOM_HEIGHT)//2 + 240)
 
 class Player(pygame.sprite.Sprite):
+    """
+    Represents the player character in the game.
+
+    Attributes:
+        screen (pygame.Surface): The screen to render the player.
+        position (tuple[int]): The player's starting position.
+        stats (dict): Player's skills, health, and experience.
+        inventory (Inventory): The player's inventory.
+    """
     _instance = None
     
     def __new__(cls, *args, **kwargs):
-        """Create a new instance of the Player class if one does not already exist, i.e. Singleton pattern.
+        """Ensure only one instance of Player is created (Singleton pattern).
+
+        Args:
+            *args: Arguments for the superclass constructor.
+            **kwargs: Keyword arguments for the superclass constructor.
 
         Returns:
-            _type_: The Player instance.
+            Player: The single Player instance.
         """
         if not cls._instance:
             cls._instance = super(Player, cls).__new__(cls)
@@ -61,10 +75,11 @@ class Player(pygame.sprite.Sprite):
             self.initialized = True  # Mark as initialized
     
     def add_game(self, game) -> None:
-        """Add the game instance to the player.
+        """
+        Associates the player with the game instance.
 
         Args:
-            game (Game): The game instance.
+            game (Game): The game instance to associate with.
         """
         self.game = game  # Use the passed game instance
         self._layer = PLAYER_LAYER
@@ -81,7 +96,9 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.groups)
     
     def handle_movement(self) -> None:
-        """Handles the movement of the player based on the keys pressed if not in dialogue.
+        """
+        Updates the player's movement based on key inputs (WASD or arrow keys), 
+        unless the player is in dialogue mode.
         """
         keys = pygame.key.get_pressed()
         # Only move if the player is not in dialogue
@@ -100,8 +117,12 @@ class Player(pygame.sprite.Sprite):
                 self.facing = 'down'
 
     def animate(self) -> None:
-        """Handles character animation based on the direction they are facing and their movement.
+        """Updates the player's animation based on their movement and facing direction.
+    
+        Chooses from pre-defined animation frames (down, up, left, right) based on movement and direction. 
+        Loops through frames for walking animations, resets after 3 frames.
         """
+        # Define animation frames for each direction (down, up, left, right)
         down_animations = [self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(0, 0, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(2, 0, self.width, self.height)]
@@ -117,7 +138,8 @@ class Player(pygame.sprite.Sprite):
         right_animations = [self.game.character_spritesheet.get_sprite(1, 2, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(0, 2, self.width, self.height),
                            self.game.character_spritesheet.get_sprite(2, 2, self.width, self.height)]
-        
+    
+        # Update the character's sprite based on their facing direction and movement
         if self.facing == 'down':
             if self.y_change == 0:
                 self.image = self.game.character_spritesheet.get_sprite(1, 0, self.width, self.height)
@@ -125,7 +147,7 @@ class Player(pygame.sprite.Sprite):
                 self.image = down_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
-                    self.animation_loop = 1
+                    self.animation_loop = 1  # Reset animation loop for down movement
         
         if self.facing == 'up':
             if self.y_change == 0:
@@ -134,7 +156,7 @@ class Player(pygame.sprite.Sprite):
                 self.image = up_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
-                    self.animation_loop = 1
+                    self.animation_loop = 1  # Reset animation loop for up movement
         
         if self.facing == 'left':
             if self.x_change == 0:
@@ -143,7 +165,7 @@ class Player(pygame.sprite.Sprite):
                 self.image = left_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
-                    self.animation_loop = 1
+                    self.animation_loop = 1  # Reset animation loop for left movement
         
         if self.facing == 'right':
             if self.x_change == 0:
@@ -152,22 +174,33 @@ class Player(pygame.sprite.Sprite):
                 self.image = right_animations[math.floor(self.animation_loop)]
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
-                    self.animation_loop = 1
+                    self.animation_loop = 1  # Reset animation loop for right movement
     
     def get_skills(self) -> dict[str, int]:
         """Get the current skills of the player.
-
+        
+        This method returns the player's current skill values as a dictionary. The skills include 
+        Eloquence, Clairvoyance, Forbearance, and Resonance, each represented as integers.
+        
         Returns:
-            Dict[str, int]: A dictionary of the player's skills.
+            dict[str, int]: A dictionary containing the player's skill names as keys and their 
+            corresponding skill values as integers.
         """
-        return {"Eloquence": self.eloquence, "Clairvoyance": self.clairvoyance,
-                "Forbearance": self.forbearance, "Resonance": self.resonance}
+        return {
+            "Eloquence": self.eloquence,
+            "Clairvoyance": self.clairvoyance,
+            "Forbearance": self.forbearance,
+            "Resonance": self.resonance
+            }
     
     def get_skills_description(self) -> dict[str, str]:
         """Get the descriptions of the player's skills.
+        
+        This method returns a dictionary containing detailed descriptions for each of the player's skills.
+        Each skill's description provides an explanation of its function and role within the game.
 
         Returns:
-            Dict[str, str]: A dictionary of the player's skill descriptions.
+            dict[str, str]: A dictionary containing the skill names as keys and their descriptions as values.
         """
         return {
             "Eloquence": "Your speech and persuasion\nskills to influence others.\n"
@@ -194,9 +227,13 @@ class Player(pygame.sprite.Sprite):
     def set_skills(self, skills: dict[str, int]) -> None:
         """
         Set the player's skills.
+        
+        This method assigns values to the player's skills based on a given dictionary.
+        It also updates the player's experience by summing the values of all skills.
 
         Args:
-            skills (Dict[str, int]): A dictionary of the player's skills.
+            skills (Dict[str, int]): A dictionary where the keys are skill names (e.g., "Eloquence", "Clairvoyance")
+                                    and the values are the skill levels (integers).
         """
         self.eloquence = skills["Eloquence"]
         self.clairvoyance = skills["Clairvoyance"]
@@ -205,14 +242,19 @@ class Player(pygame.sprite.Sprite):
         self.experience = self.eloquence + self.clairvoyance + self.forbearance + self.resonance
 
     def roll_skill_check(self, skill_name: str, difficulty_class: int) -> bool:
-        """Roll a skill check based on the player's current stats.
+        """
+        Roll a skill check based on the player's current stats.
+
+        This method simulates a skill check by rolling a 20-sided die and adding the player's 
+        skill value. The result is compared to the specified difficulty class (DC) to determine 
+        success or failure.
 
         Args:
-            skill_name (str): The name of the skill to check.
-            difficulty_class (int): The difficulty class to beat.
+            skill_name (str): The name of the skill to check (e.g., "Eloquence").
+            difficulty_class (int): The difficulty class that the player must meet or exceed.
 
         Returns:
-            bool: True if the skill check is successful, False otherwise.
+            bool: True if the skill check is successful (roll + skill value >= DC), False otherwise.
         """
         skill_value = getattr(self, skill_name.lower(), 0)  # Get the value of the skill
         roll = np.random.randint(1, 21)
@@ -225,7 +267,11 @@ class Player(pygame.sprite.Sprite):
         return result  # Simple pass/fail check
     
     def raise_experience(self, amount: int) -> None:
-        """Increase the player's experience by a specified amount.
+        """
+        Increase the player's experience by a specified amount.
+
+        This method increments the player's experience based on the given `amount`.
+        It's typically called when the player successfully performs an action or achieves a goal.
 
         Args:
             amount (int): The amount to increase the experience by.
@@ -241,7 +287,9 @@ class Player(pygame.sprite.Sprite):
         self.screen.blit(self.font.render(f"Reason: {self.reason}", True, (255, 255, 255)), (20, 44))"""
 
     def update(self) -> None:
-        """Updates the player's position and animation.
+        """
+        Updates the player's position and animation. Handles movement, checks for collisions, 
+        and reverts position if a collision is detected. Resets movement changes after each update.
         """
         previous_x = self.rect.x
         previous_y = self.rect.y
@@ -262,13 +310,15 @@ class Player(pygame.sprite.Sprite):
         self.y_change = 0
         
     def check_collision(self, all_sprites: pygame.sprite.LayeredUpdates) -> bool:
-        """Check for collisions with the walls of the room.
-
+        """
+        Checks for collisions between the player and other objects in the scene,
+        such as walls or obstacles, using masks for precise collision detection.
+        
         Args:
-            all_sprites (pygame.sprite.LayeredUpdates): all sprites in scene.
-
+            all_sprites (pygame.sprite.LayeredUpdates): A collection of all sprites in the current scene.
+        
         Returns:
-            bool: True if the player collides with a wall, False otherwise.
+            bool: True if the player collides with a wall or obstacle, otherwise False.
         """
         for sprite in all_sprites:
             if not isinstance(sprite, Player):  # Verifique colisão com o fundo do quarto
