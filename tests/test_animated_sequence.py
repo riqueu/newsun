@@ -11,6 +11,9 @@ Functions:
     - `test_load_png_sequence_empty_folder`: Tests the case when the folder contains no PNG files, ensuring 
       that the function returns an empty list.
 """
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
 import pygame
