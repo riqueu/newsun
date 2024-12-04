@@ -322,7 +322,7 @@ class DialogueManager:
                 self.current_node = self.find_node("Start")
                 self.dialogue_ended = False
             
-		# Render skill check animations based on current status
+        # Render skill check animations based on current status
         if vid_roll.status:
             vid_roll.draw(self.screen)
             vid_roll.animate()
