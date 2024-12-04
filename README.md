@@ -1,5 +1,7 @@
 # Newsun
 
+[Relatório](docs/relatorio_A2.pdf)
+
 [Game Design Document](gdd/newsun.md)
 
 ## Group:
@@ -10,8 +12,7 @@
 - [Henrique Coelho Beltrão](https://github.com/riqueu)
 
 ## About:
-
-Lorem Ipsium
+Newsun is the final project for our Programming Languages course. You can read our [report](docs/relatorio_A2.pdf) for further information regarding the development of the game, and the [Game Design Document](gdd/newsun.md) to learn more about the concepts of the game.
 
 ## How to Run
 
@@ -44,43 +45,6 @@ To run the unit tests, follow these steps:
     ```bash
     python -m unittest discover -s tests
     ```
-
-# Progresso (Temp.)
-
-- Main Menu Structure: ✔️
-- Pause Menu Structure: ✔️
-- Options Menu Structure: ✔️
-- Credits Menu Structure: ✔️
-- Death Menu Structure: ✔️
-- Character Creator Structure: ✔️
-- Camera Movement ✔️
-- Render Map & Change Scenes ✔️
-- Render Inventory/Hotbar: ✔️
-- Dialogue Trees System and Dialogue Boxes: ✔️
-    - Skill Checks: ✔️
-    - Animations: ✔️
-- Player Movement: ✔️
-    - Block when Interacting / Paused ✔️
-- Interactions with Objects in Range: ✔️
-- Sprites/Scenes: ✔️
-    - Scene Transition ✔️
-    - Draw NPCs(Interactable) ✔️
-- Write Dialogues ✔️
-    - Room 101: ✔️
-    - Floor 1 Corridor: ✔️
-    - Floor 0: ✔️
-    - Floor -1: ✔️
-- Animated UI:✔️
-    - Dialogue Box: ✔️
-    - Character Creator: ✔️
-    - Menu Background: ✔️
-    - Character Status: ✔️
-    - ... ✔️
-- Object Conditions: ✔️
-    - Elevator Fixed -> Change StartCondition ✔️
-    - Vorakh -> Check Items ✔️
-    - Camellia -> Book Quest ✔️
-- Map Placement/Positioning: ✔️
 
 ## License
 
