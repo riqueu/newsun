@@ -1,4 +1,11 @@
-"""New Game Scene"""
+"""
+New Game Scene Module
+
+This module represents the scene where the player creates their character and engages in a dialogue sequence 
+to start the game. It handles both the character creation process, where the player distributes points across 
+their stats, and the dialogue that follows once character creation is complete.
+"""
+
 
 import pygame
 import json
@@ -9,11 +16,18 @@ from src.characters.player import Player
 # from main import Game
 
 class NewGame:
+    """
+    A class representing the 'New Game' scene where the player creates their character and interacts with 
+    the dialogue system to start the game. This includes selecting character stats, distributing points, 
+    and progressing through dialogue sequences.
+    """
     def __init__(self, screen: pygame.Surface) -> None:
-        """Function that initializes the NewGame object
+        """
+        Handles user input events during the new game scene. The player can interact with the UI to select 
+        and modify character stats or interact with the dialogue system.
 
         Args:
-            screen (pygame.Surface): The screen.
+            event (pygame.event.Event): The pygame event to handle.
         """
         self.screen = screen
         self.interactions = json.load(open('scripts/new_game/new_game.json'))
@@ -33,12 +47,15 @@ class NewGame:
         self.game_begin = False
 
     def handle_event(self, event: pygame.event.Event) -> None:
-        """Function that calls and handles dialogue interaction and character creation events for this scene
+        """
+        Handles user input events during the new game scene. The player can interact with the UI to select 
+        and modify character stats or interact with the dialogue system.
 
         Args:
-            event (pygame.event.Event): current event
+            event (pygame.event.Event): The pygame event to handle.
         """
         if self.character_creator_active and event.type == pygame.KEYDOWN:
+            # Handle navigation and modification of character stats
             if event.key == pygame.K_UP:
                 self.selected_skill = (self.selected_skill - 1) % len(self.skill_names)
             elif event.key == pygame.K_DOWN:
@@ -50,22 +67,28 @@ class NewGame:
                 self.stats[self.skill_names[self.selected_skill]] -= 1
                 self.points += 1
             elif event.key == pygame.K_z:
+                # Finish character creation and start the dialogue phase
                 self.character_creator_active = False
                 self.dialogue_manager.dialogue_active = True
                 pygame.mixer.music.stop()
                 self.player.set_skills(self.stats)
                     
         elif self.dialogue_manager.dialogue_active:
+            # Handle events in the dialogue phase
             self.dialogue_manager.handle_event(event)
         
         if self.dialogue_manager.dialogue_ended:
+            # Indicate that the game can begin
             self.game_begin = True
             pygame.mixer.music.stop()
 
     def draw(self) -> None:
-        """Function that handles the character creator part of the new game scene
-        """      
+        """
+        Renders the New Game scene to the screen. This includes the character creation UI and dialogue box, 
+        as well as the player stats and descriptions for selection.
 
+        Once character creation is complete, the dialogue box appears.
+        """
         black_bg.draw(self.screen)
         black_bg.animate()
         
@@ -97,8 +120,10 @@ class NewGame:
             for i, line in enumerate(description_lines):
                 description_surface = self.font.render(line, True, (255, 255, 255))
                 self.screen.blit(description_surface, (500, y_offset - 250 + i * 30))
-
+                
+            # Display confirm prompt
             confirm_text = self.font.render("Press Z to confirm", True, (255, 255, 255))
             self.screen.blit(confirm_text, (50, y_offset + 50))
         else:
+            # Display the dialogue once the character creation is finished
             self.dialogue_manager.draw()

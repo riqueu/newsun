@@ -1,3 +1,9 @@
+"""
+This module contains the main game loop and logic for running the game "Newsun".
+It includes the Game class, which is responsible for managing various game systems such as 
+menus, player interactions, inventory management, scene handling, and the game environment.
+"""
+
 import pygame
 from src.characters.sprites import *
 import sys
@@ -15,20 +21,26 @@ from src.scenes.hotel_scenes import *
 
 
 class Game:
-    _instance = None
-    
+    """
+    The Game class represents the core of the game "Newsun", handling the main game loop, 
+    event handling, scene transitions, and rendering. It uses the Singleton pattern to ensure 
+    only one instance of the game exists during runtime.
+    """
     def __new__(cls, *args, **kwargs):
-        """Create a new instance of the Game class if one does not already exist, i.e. Singleton pattern.
-
+        """
+        Ensures that only one instance of the Game class exists (Singleton pattern).
+        
         Returns:
-            _type_: The Player instance.
+            Game: The single instance of the Game class.
         """
         if not cls._instance:
             cls._instance = super(Game, cls).__new__(cls)
         return cls._instance
     
     def __init__(self) -> None:
-        """Initialize the Game
+        """
+        Initializes the game by setting up Pygame, the screen, clock, scenes, and game variables. 
+        Also initializes various menus and game elements like the player, camera, and items.
         """
         if not hasattr(self, "initialized"):  # Prevent re-initialization
             pygame.init()
@@ -69,7 +81,9 @@ class Game:
             self.initialized = True  #  Mark as initialized
             
     def handle_events(self) -> None:
-        """Handles events in the game
+        """
+        Processes and handles all user input events (keyboard, mouse, etc.) during the game.
+        This method also manages the state transitions between different menus and scenes.
         """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -205,7 +219,8 @@ class Game:
                 pass
 
     def load_map(self) -> None:
-        """Method that creates the map
+        """
+        Initializes the different rooms (scenes) in the game, such as Room101, Floor1, Floor0, etc.
         """
         self.room_101 = Room101(self.screen)
         self.floor_1 = Floor1(self.screen, width=self.room_101.rect.topleft[0] + 500, height=self.room_101.rect.topleft[1] - 600)
@@ -213,11 +228,12 @@ class Game:
         self.underground = Underground(self.screen, width=self.floor_0.rect.topleft[0] - 1950, height=self.floor_0.rect.topleft[1] - 750)
     
     def change_map(self, old_map, new_map) -> None:
-        """Method that changes the current map, i.e. removes the old and adds the new map
-
+        """
+        Transitions from the current scene (old_map) to a new scene (new_map).
+        
         Args:
-            old_map (Scene): old scene
-            new_map (Scene): target scene
+            old_map (Scene): The current scene being removed.
+            new_map (Scene): The new scene being added.
         """
         self.all_sprites.remove(old_map)
         for sprite in old_map.scene_sprites:
@@ -228,7 +244,9 @@ class Game:
             self.all_sprites.add(sprite)
 
     def draw(self) -> None:
-        """Method that renders the game
+        """
+        Renders the game by drawing the current screen and all active sprites.
+        It checks the current menu state and draws the corresponding screen.
         """
         self.screen.fill((35, 14, 13))
             
@@ -254,7 +272,8 @@ class Game:
         pygame.display.flip()  # Update the entire screen
 
     def update(self) -> None:
-        """Function that updates the game loop
+        """
+        Updates the game world, including all sprites and camera position.
         """
         if hasattr(self, 'player') and self.menu_state == "game":
             self.all_sprites.update()
@@ -262,7 +281,9 @@ class Game:
             self.camera.keyboard_control()
     
     def run(self) -> None:
-        """Method to run through the game loop
+        """
+        The main game loop that continuously handles events, updates the game world, 
+        and renders the screen until the game ends.
         """
         while self.running:
             self.handle_events()

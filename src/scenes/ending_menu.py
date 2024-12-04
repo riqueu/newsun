@@ -1,14 +1,26 @@
-"""Game Ending Scene"""
+"""
+This module contains the `EndingMenu` class, which is responsible for displaying 
+the final screen of the game after the player completes it. The screen includes 
+the game title, a thank you message, developer credits, and an option to quit 
+the game. The user can quit by pressing the 'Q' key.
+"""
+
 
 import pygame
 from src.ui.animated_sequence import black_bg
 
 class EndingMenu:
+    """
+    Class that handles the game’s ending screen.
+    Displays the game title, developer credits, and a thank-you message.
+    Offers the option to quit the game.
+    """
     def __init__(self, screen: pygame.Surface) -> None:
-        """Initializes the EndingMenu object
+        """
+        Initializes the ending menu.
 
         Args:
-            screen (pygame.Surface): The screen.
+            screen (pygame.Surface): The surface where the ending menu will be drawn.
         """
         self.screen = screen
         self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 60)
@@ -17,10 +29,13 @@ class EndingMenu:
         self.default_color = (255, 255, 255)
 
     def update(self) -> str|None:
-        """Function to update the ending menu state
+        """
+        Updates the state of the ending menu.
 
         Returns:
-            str|None: the next state of the game
+            str|None: 
+                - Returns "quit" if the player presses the 'Q' key to exit the game.
+                - Returns None if no relevant input is detected.
         """
         for event in pygame.event.get():
             result = self.handle_event(event)
@@ -29,20 +44,30 @@ class EndingMenu:
         return None
 
     def handle_event(self, event: pygame.event.Event) -> str|None:
-        """Function that handles menu interaction
+        """
+        Handles user interaction events for the ending menu.
 
         Args:
-            event (pygame.event.Event): current event
+            event (pygame.event.Event): The event object representing the current user input.
 
         Returns:
-            str|None: key pressed or nothing if no key is pressed
+            str|None: 
+                - Returns "quit" if the player presses the 'Q' key to exit the game.
+                - Returns None if no relevant key is pressed or if the event is not related to quitting.
         """
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 return "quit"
     
     def draw(self) -> None:
-        """Functions that draws the ending menu
+        """
+        Renders the ending menu on the screen.
+
+        This method draws the final elements of the game on the screen, including the title, 
+        developer names, a thank you message, and the option to quit. It also handles background 
+        animations.
+
+        The background is animated using `black_bg` and redrawn each time this method is called.
         """
         black_bg.draw(self.screen)
         black_bg.animate()
