@@ -13,6 +13,10 @@ from src.scenes.main_menu import MainMenu
 class TestMainMenu(unittest.TestCase):
 
     def setUp(self):
+        """
+        Configuração inicial para os testes. Inicializa o pygame e cria uma instância
+        de MainMenu com opções de menu simuladas.
+        """
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
         self.main_menu = MainMenu(self.screen)
@@ -25,23 +29,35 @@ class TestMainMenu(unittest.TestCase):
         self.assertEqual(self.main_menu.default_color, (255, 255, 255))
 
     def test_handle_event_up(self):
+        """
+        Testa a navegação para cima no menu. Verifica se a opção selecionada é atualizada corretamente.
+        """
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_UP})
         self.main_menu.handle_event(event)
         expected_option = (0 - 1) % len(self.main_menu.options)
         self.assertEqual(self.main_menu.selected_option, expected_option)
 
     def test_handle_event_down(self):
+        """
+        Testa a navegação para baixo no menu. Verifica se a opção selecionada é atualizada corretamente.
+        """
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_DOWN})
         self.main_menu.handle_event(event)
         expected_option = (0 + 1) % len(self.main_menu.options)
         self.assertEqual(self.main_menu.selected_option, expected_option)
 
     def test_handle_event_select(self):
+        """
+        Testa a seleção de uma opção do menu. Verifica se a opção correta é retornada.
+        """
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_z})
         selected_option = self.main_menu.handle_event(event)
         self.assertEqual(selected_option, self.main_menu.options[self.main_menu.selected_option])
 
     def tearDown(self):
+        """
+        Finaliza o pygame após os testes.
+        """
         pygame.quit()
 
 if __name__ == '__main__':

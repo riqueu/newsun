@@ -19,11 +19,19 @@ from src.scenes.hotel_scenes import Scene, Room101, Floor1, Floor0, Underground
 class TestScene(unittest.TestCase):
 
     def setUp(self):
+        """
+        Configuração inicial para os testes. Inicializa o pygame, cria uma tela e uma instância
+        de Scene com uma imagem de fundo e um script de diálogo.
+        """
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
         self.scene = Scene(self.screen, "assets/images/backgrounds/room_full.png", "scripts/room_101", 800, 600)
 
     def test_initialization(self):
+        """
+        Testa a inicialização da cena. Verifica se as dimensões e a posição da cena estão corretas,
+        e se a imagem e a máscara foram carregadas corretamente.
+        """
         self.assertEqual(self.scene.width, 800)
         self.assertEqual(self.scene.height, 600)
         self.assertEqual(self.scene.x, 125)
@@ -34,11 +42,17 @@ class TestScene(unittest.TestCase):
         self.assertEqual(self.scene.rect.y, self.scene.y)
 
     def test_handle_event(self):
+        """
+        Testa o manuseio de eventos na cena. Verifica se a cena não está em diálogo após um evento de tecla pressionada.
+        """
         event = pygame.event.Event(pygame.KEYDOWN, {'key': pygame.K_z})
         self.scene.handle_event(event)
         self.assertFalse(self.scene.in_dialogue)
 
     def test_change_of_scene(self):
+        """
+        Testa a mudança de cena. Simula um gerenciador de diálogo e verifica se a cena muda corretamente.
+        """
         self.scene.dialogue_managers['door'] = type('', (), {})()  # Mock dialogue manager
         self.scene.dialogue_managers['door'].current_node = {'title': 'GoToRoom'}
         self.scene.dialogue_managers['door'].dialogue_active = True
@@ -53,6 +67,9 @@ class TestScene(unittest.TestCase):
         self.assertEqual(self.scene.dialogue_conditions['test_condition'], 1)
 
     def tearDown(self):
+        """
+        Finaliza o pygame após os testes.
+        """
         pygame.quit()
 
 if __name__ == '__main__':
