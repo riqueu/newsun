@@ -1,5 +1,14 @@
-"""This module contains the Player class, representing the protagonist of the game.
-It manages the player's movement, animation, skills, and interaction with the game world."""
+"""
+This module contains the `Player` class, which represents the protagonist of the game. 
+It is responsible for managing the player's movement, animation, skills, interactions, and other game-related properties.
+
+The class follows the Singleton pattern to ensure there is only one player instance in the game.
+
+Key Features:
+- Handles player movement and animation.
+- Manages player skills, experience, health, and inventory.
+- Allows interaction with the game world and NPCs.
+"""
 
 import pygame
 import numpy as np
