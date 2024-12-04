@@ -9,12 +9,18 @@ import pygame
 from src.ui.animated_sequence import black_bg
 
 class DeathMenu:
+    """
+    Class that handles the death screen when the player loses the game.
+    Displays a message based on the type of death and offers the option
+    to quit the game.
+    """
     def __init__(self, screen: pygame.Surface, d_type: str = "") -> None:
-        """Initializes the EndingMenu object
+        """
+        Initializes the death menu.
 
         Args:
-            screen (pygame.Surface): The screen.
-            d_type (str, optional): The way you lost (reason/health). Defaults to "".
+            screen (pygame.Surface): The surface where the death menu will be drawn.
+            d_type (str, optional): Type of death ("health" or "reason"). Defaults to an empty string.
         """
         self.screen = screen
         self.title_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 60)
@@ -24,10 +30,11 @@ class DeathMenu:
         self.d_type = d_type
 
     def update(self) -> str|None:
-        """Function to update the ending menu state
+        """
+        Updates the death menu state and checks for events.
 
         Returns:
-            str|None: the next state of the game
+            str | None: The next state of the game (e.g., "quit" if the player presses 'Q').
         """
         for event in pygame.event.get():
             result = self.handle_event(event)
@@ -36,20 +43,23 @@ class DeathMenu:
         return None
 
     def handle_event(self, event: pygame.event.Event) -> str|None:
-        """Function that handles menu interaction
+        """
+        Handles events in the death menu.
 
         Args:
-            event (pygame.event.Event): current event
+            event (pygame.event.Event): The event that occurred.
 
         Returns:
-            str|None: key pressed or nothing if no key is pressed
+            str | None: The action to be taken (e.g., "quit" if 'Q' is pressed).
         """
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 return "quit"
     
     def draw(self) -> None:
-        """Functions that draws the ending menu
+        """
+        Draws the death menu on the screen, including the title, death message,
+        and options (such as quitting the game by pressing 'Q').
         """
         black_bg.draw(self.screen)
         black_bg.animate()
