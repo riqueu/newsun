@@ -229,7 +229,7 @@ class Room101(Scene):
         self.objects_positions = {
             "bed": [(890, 480)],
             "clock": [(508, 450)],
-            "door": [(870, 670)],
+            "door": [(870, 675)],
             "mirror": [(274, 450)],
             "poster": [(780, 450)],
             "sink": [(348, 450)],
@@ -292,7 +292,7 @@ class Floor1(Scene):
             "stairs_up": 1,
         }
         self.objects_positions = {
-            "door": [(870, 600)],
+            "door": [(870, 580)],
             "elevator": [(1965, 600)],
             "stairs_up": [(2170, 600), (100, 50)],
             "stairs": [(1750, 600), (110, 50)],
