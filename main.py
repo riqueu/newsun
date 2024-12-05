@@ -21,6 +21,7 @@ from src.scenes.hotel_scenes import *
 
 
 class Game:
+    _instance = None  # Singleton instance
     """
     The Game class represents the core of the game "Newsun", handling the main game loop, 
     event handling, scene transitions, and rendering. It uses the Singleton pattern to ensure 

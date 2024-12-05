@@ -85,6 +85,8 @@ class Scene(pygame.sprite.Sprite):
         self.people = []
         self.objects = []
         self.scene_sprites = []
+        if not hasattr(self, 'objects_positions'):
+            self.objects_positions = {}
         
         self.npc_positionns = {
             "npc_tabastan": [(1940, 680), (10,0)],
@@ -352,7 +354,6 @@ class Floor0(Scene):
             "stairs": [(1800, 600), (100, 50)],
             "sofa": [(1595, 900), (290, 60)],
         }
-        super().__init__(screen, background_path, scripts_path, width, height)
         self.dialogue_conditions = {
             "npc_vorakh": 1,
             "npc_efrim": 1,
@@ -360,6 +361,7 @@ class Floor0(Scene):
             "sofa": 1,
             "door": 1
         }
+        super().__init__(screen, background_path, scripts_path, width, height)
 
     def handle_event(self, event: pygame.event.Event) -> None:
         """

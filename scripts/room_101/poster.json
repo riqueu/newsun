@@ -3,7 +3,7 @@
         "title": "Start"
     },
     {
-        "body": "[Poster]: There's a poster of a blue-haired anime girl hanging in the wall, she seem's familiar despite the non-latin characters written by her side. \n\n[1]: \"Maybe she's a rockstar\" \n[2] [Inspect further] \n[3] [Leave the poster be]",
+        "body": "[Poster]: There's a poster of a blue-haired anime girl hanging in the wall, she seems familiar despite the non-latin characters written by her side. \n\n[1]: \"Maybe she's a rockstar\" \n[2] [Inspect further] \n[3] [Leave the poster be]",
         "key": {
             "1": "Rockstar",
             "2": "Inspect",
