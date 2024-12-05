@@ -35,6 +35,7 @@ class NewGame:
         self.key_to_node = get_key_to_node(self.interactions)
         self.dialogue_manager = DialogueManager(self.screen, self.interactions, self.key_to_node)
         self.font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 24)
+        self.small_font = pygame.font.Font("assets/fonts/Helvetica-Bold.ttf", 18)
         self.player = Player(self.screen)  # Initialize the Player object
         
         self.points = 8 # Points to distribute
@@ -122,8 +123,10 @@ class NewGame:
                 self.screen.blit(description_surface, (500, y_offset - 250 + i * 30))
                 
             # Display confirm prompt
+            arrow_keys_text = self.small_font.render("Use arrow keys to navigate", True, (255, 255, 255))
+            self.screen.blit(arrow_keys_text, (50, y_offset + 50))
             confirm_text = self.font.render("Press Z to confirm", True, (255, 255, 255))
-            self.screen.blit(confirm_text, (50, y_offset + 50))
+            self.screen.blit(confirm_text, (50, y_offset + 100))
         else:
             # Display the dialogue once the character creation is finished
             self.dialogue_manager.draw()
